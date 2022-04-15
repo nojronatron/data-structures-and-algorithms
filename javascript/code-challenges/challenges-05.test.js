@@ -60,7 +60,10 @@ Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
 const countNumberOfElements = (arr) => {
-  // Solution code here...
+  let result = arr.reduce((totalItems, currentItem) => {
+    return (totalItems + `${currentItem}`.split('').length);
+  }, 0);
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
