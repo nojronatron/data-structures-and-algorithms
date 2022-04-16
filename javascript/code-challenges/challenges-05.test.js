@@ -123,7 +123,11 @@ let starWarsData = [{
 }];
 
 const returnNames = (arr) => {
-  // Solution code here...
+  let result = arr.reduce((names, item) => {
+    names.push(item.name);
+    return names; // sets next iteration starting value/obj
+  }, []); // starting value/obj
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
