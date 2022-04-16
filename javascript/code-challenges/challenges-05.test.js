@@ -139,7 +139,11 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 ------------------------------------------------------------------------------------------------ */
 
 const reversedString = (str) => {
-  // Solution code here...
+  let strArr = str.split('');
+  let result = strArr.reduce((previousValue, currentValue) => {
+    return currentValue + previousValue;
+  }, '');
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
