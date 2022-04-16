@@ -48,8 +48,9 @@ For example, twoToThe([1,2,3]) returns [2,4,8] because 2 ^ 1 = 2, 2 ^ 2 = 4, and
 
 const forLoopTwoToThe = (arr) => {
   let results = [];
-  for(let i=0; i<arr.length; i++){
-    results.push(Math.pow(2, arr[i]));
+  for (const property in arr) {
+    console.log(`${property}: ${arr[property]}`);
+    results.push(Math.pow(2, arr[property]));
   }
   return results;
 };
@@ -102,7 +103,7 @@ For example: evenOdd([1,2,3]) returns ['odd','even','odd'].
 
 const evenOdd = (arr) => {
   return arr.map(item => {
-    typeof(item) === 'string' ? 'N/A' : (item % 2 === 0) ? 'even' : 'odd';
+    return typeof(item) === 'string' ? 'N/A' : item % 2 === 0 ? 'even' : 'odd';
   });
 };
 
@@ -149,7 +150,9 @@ const snorlaxAbilities = {
 };
 
 const extractAbilities = (arr) => {
-  // Solution code here...
+  return arr.map( (snorlax) => {
+    snorlax.abilities.name;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -268,7 +271,7 @@ describe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return an array containing the keys from an object', () => {
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541])).toStrictEqual([ 'odd', 'even', 'even', 'even', 'odd', 'odd', 'even', 'odd' ]);
     expect(evenOdd([5, 8, 2, 6, 9, 13, 542, 541]).length).toStrictEqual(8);
