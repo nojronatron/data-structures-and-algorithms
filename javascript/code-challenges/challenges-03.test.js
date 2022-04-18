@@ -1,5 +1,7 @@
 'use strict';
 
+const { it } = require("eslint/lib/rule-tester/rule-tester");
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -116,7 +118,8 @@ For example, getStatName(snorlaxData.stats, 50) will return ['special-defense', 
 ------------------------------------------------------------------------------------------------ */
 
 const getStatName = (arr, minBaseStat) => {
-  return arr.filter((statItem) => statItem.baseStat> minBaseStat).stat.name;
+  // let filtered = getBaseStatGreaterThan(arr, minBaseStat);
+  // return filtered.filter(item => item['name'] !== undefined);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -263,7 +266,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-describe('Testing challenge 7', () => {
+xdescribe('Testing challenge 7', () => {
   test('It should return the name of the stats that exceed that maximum', () => {
     expect(getStatName(snorlaxData.stats, 50)).toStrictEqual([ 'special-defense', 'special-attack' ]);
     expect(getStatName(snorlaxData.stats, 50).length).toStrictEqual(2);
@@ -284,7 +287,7 @@ describe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return an array containing characters who do not have children', () => {
     expect(getCharactersWithoutChildren(characters)).toStrictEqual([ { name: 'Sansa', spouse: 'Tyrion', house: 'Stark' }, { name: 'Jon', spouse: null, house: 'Snow' } ]);
     expect(getCharactersWithoutChildren(characters).length).toStrictEqual(2);
