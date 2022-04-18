@@ -172,7 +172,9 @@ const characters = [
 ];
 
 const getCharactersWithoutChildren = (arr) => {
-  // Solution code here...
+  let result = arr.filter((family) => family.children === undefined);
+  console.dir(result);
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
