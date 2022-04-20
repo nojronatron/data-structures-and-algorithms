@@ -66,8 +66,12 @@ For example, if the input is 'Welcome', the output will be:
 ------------------------------------------------------------------------------------------------ */
 
 const howMuchPencil = (str) => {
-  let result = [];
-  // Solution code here...
+  let result = str.split();
+  let i=0;
+  while (i < str.length) {
+    i++;
+    result.push(str.slice(i, str.length));
+  }
   return result;
 };
 
