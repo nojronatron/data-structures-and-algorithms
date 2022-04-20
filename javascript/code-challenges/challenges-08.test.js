@@ -53,13 +53,31 @@ let characters = [
 ];
 
 const sortByChildren = (charArray) => {
-  // Solution code here...
+  return charArray.sort((a, b) => {
+    let aChldrn = a.children;
+    let bChldrn = b.children;
+    if (aChldrn.length < bChldrn.length) {
+      return -1;
+    }
+    if (aChldrn.length > bChldrn.length) {
+      return 1;
+    }
+    let aHouse = a.house;
+    let bHouse = b.house;
+    if (aHouse < bHouse){
+      return -1;
+    }
+    if (aHouse > bHouse){
+      return 1;
+    }
+    return 0;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
-Write a function named containsW that takes in a string. This function should use a regular expression pattern to return true if the string contains the letter 'w' in lower case or false if it does not. 
+Write a function named containsW that takes in a string. This function should use a regular expression pattern to return true if the string contains the letter 'w' in lower case or false if it does not.
 
 ------------------------------------------------------------------------------------------------ */
 
