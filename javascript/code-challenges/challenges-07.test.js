@@ -133,7 +133,7 @@ const listFoods = (recipe) => {
   let result = [];
   for (let i=0; i<recipe.length; i++) {
     let line = recipe.slice(i,1);
-    console.log(line);
+    console.log(`line`);
     for(let j=0; j<line.length; j++) {
       if(typeof(line[j]) !== 'number') {
         console.log(line[j]);
