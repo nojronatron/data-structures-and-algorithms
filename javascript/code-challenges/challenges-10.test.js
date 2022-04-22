@@ -51,7 +51,13 @@ For example:
 return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
-  // Solution code here...
+  let ttlSum = 0;
+  matrix.forEach((outerEl) => {
+    outerEl.forEach((innerEl) => {
+      ttlSum = ttlSum + innerEl;
+    });
+  });
+  return ttlSum;
 };
 
 
