@@ -122,7 +122,9 @@ const characters = [
 
 const getHouses = (arr) => {
   let houses = [];
-  // Solution code here...
+  for(let home of arr){
+    houses.push(home.house);
+  }
   return houses;
 };
 
