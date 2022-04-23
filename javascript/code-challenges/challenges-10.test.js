@@ -84,9 +84,18 @@ const alkiBeach = [33, 31, 147, 130, 27, 93, 38, 126, 141, 63, 46, 17];
 const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
-  // Solution code here...
-
+  let totals = [];
+  for (let outer = 0; outer < hoursOpen.length; outer++){
+    let sum = 0;
+    for (let inner = 0; inner < stores.length; inner++){
+      sum += stores[inner][outer];
+    }
+    totals.push(sum);
+  }
+  return totals;
 };
+
+// expected: [88, 153, 252, 286, 139, 161, 145, 232, 276, 207, 161, 169]
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
@@ -255,7 +264,7 @@ describe('Testing challenge 4', () => {
   });
 });
 
-describe('Testing challenge 5', () => {
+xdescribe('Testing challenge 5', () => {
   test('It should create an object of data for each store', () => {
     expect(salesData(hoursOpen, grandTotal(cookieStores))).toStrictEqual([
       { sales: '88 cookies', time: '9 a.m.' },
