@@ -73,6 +73,7 @@ const totalSum = (input) => {
     return result += innerResult;
   });
   console.log(result);
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
