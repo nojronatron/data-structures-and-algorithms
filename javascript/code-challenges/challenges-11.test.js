@@ -91,7 +91,6 @@ const divisibleByFiveTwoToThePower = (input) => {
     arr.forEach((item) => {
       if(typeof(item) === 'number'){
         if (item % 5 === 0){
-          console.log(item);
           tempResult.push(Math.pow(2, item));
         }
       }
@@ -109,7 +108,7 @@ returns the names of the characters whose gender is either male or female.
 
 The names should be combined into a single string with each character name separated by "and".
 
-For example, "C-3PO and Luke Skywalker".
+For example, "Leia Organa and Luke Skywalker".
 ------------------------------------------------------------------------------------------------ */
 
 let starWarsData = [{
@@ -164,7 +163,9 @@ let starWarsData = [{
 }];
 
 let findMaleAndFemale = (data) => {
-  // Solution code here...
+  return data.map((character) => (character.gender === 'male' || character.gender === 'female') && character.name)
+    .filter((item) => typeof(item)==='string')
+    .join(' and ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -174,7 +175,12 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 ------------------------------------------------------------------------------------------------ */
 
 let findShortest = (data) => {
-  // Solution code here...
+  let result = data.reduce((previousValue, currentValue) => {
+    let innerResult = currentValue.height > previousValue.height ? currentValue : previousValue;
+    console.log('innerResult: ', innerResult);
+    return innerResult;
+  });
+  return result.name;
 };
 
 /* ------------------------------------------------------------------------------------------------
