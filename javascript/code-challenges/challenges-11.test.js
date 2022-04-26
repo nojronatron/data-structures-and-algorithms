@@ -46,10 +46,8 @@ const count = (target, input) => {
         }
         return previousValue;
       }), 0);
-    console.log(innerResult);
     return result += innerResult;
   });
-  console.log(result);
   return result;
 };
 
@@ -72,7 +70,6 @@ const totalSum = (input) => {
       }), 0);
     return result += innerResult;
   });
-  console.log(result);
   return result;
 };
 
@@ -89,7 +86,19 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 ------------------------------------------------------------------------------------------------ */
 
 const divisibleByFiveTwoToThePower = (input) => {
-  // Solution code here...
+  let result = input.map((arr) => {
+    let tempResult = [];
+    arr.forEach((item) => {
+      if(typeof(item) === 'number'){
+        if (item % 5 === 0){
+          console.log(item);
+          tempResult.push(Math.pow(2, item));
+        }
+      }
+    });
+    return tempResult;
+  });
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
