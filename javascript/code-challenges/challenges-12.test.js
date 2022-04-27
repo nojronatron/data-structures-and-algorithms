@@ -45,7 +45,8 @@ If it does, return true. If not, return false.
 ------------------------------------------------------------------------------------------------ */
 
 const hasNumber = (string) => {
-  // Solution code here...
+  let re = /[a-zA-Z]+[0-9]+\S*/g;
+  return re.test(string);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -84,13 +85,30 @@ Acceptable formats include:
  - 555555-5555
  - 5555555555
 
+UNacceptables
+(222 222-2222
+222 222-2222-
+(222 222- 2222
+(222 222 -2222
+523 555--5555
+55555555555
+55555555555
+55555555555
+55_55_5555
+
 Your function should include a single regular expression pattern that matches any of these formats.
 
 Return either true or false.
 ------------------------------------------------------------------------------------------------ */
 
 const validatePhoneNumber = (phoneNumber) => {
-  // Solution code here...
+  //  let re=/\d{6}\S?\d{4}|\d{3}\d?|\d{10}/mg;
+  //  /^\d?^\(?\d{3}\)?[\s|-]?\d{3}[\s|-]?\d{4}$/mg
+  //  \)\s(?!\(\d\d\d\s)
+  //  /^\d?^\(?                \d{3}\)?[\s|-]?\d{3}[\s|-]?\d{4}$/mg
+  //  \^\d?^\(?\s(?!\(\d\d\d\s)\d{3}\)?[\s|-]?\d{3}[\s|-]?\d{4}$/mg
+  // let re = /^\d?^\(?\d{3}\)?[\s|-]?\d{3}[\s|-]?\d{4}$/mg;
+  // return re.test(phoneNumber);
 };
 
 /* ------------------------------------------------------------------------------------------------
