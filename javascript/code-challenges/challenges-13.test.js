@@ -7,11 +7,14 @@ Write a function named longestString that takes in an array of strings and retur
 ------------------------------------------------------------------------------------------------ */
 
 const longestString = (arr) => {
-  return arr.reduce((previousValue, currentValue, idx) => {
-    if (currentValue.split('').length > previousValue.split('').length) {
-      return idx;
-    }
-  }, -1);
+  let longestStringIdx = -1;
+  arr.forEach((item,idx) => {
+    longestStringIdx < 0 ? longestStringIdx = 0 :
+      item.length > arr[longestStringIdx].length
+        ? longestStringIdx = idx
+        : null;
+  });
+  return longestStringIdx;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -180,9 +183,9 @@ Run your tests from the console: jest challenges-13.test.js
 
 describe('Testing challenge 1', () => {
   test('It should return an index position of the longest string', () => {
-    const strArray1 = ['Ginger', 'Goose', 'Tangerine', 'Rosie', 'Mario', 'Malaki']
+    const strArray1 = ['Ginger', 'Goose', 'Tangerine', 'Rosie', 'Mario', 'Malaki'];
     const strArray2 = [];
-    const strArray3= ['Ginger']
+    const strArray3= ['Ginger'];
 
     expect(longestString(strArray1)).toStrictEqual(2);
     expect(longestString(strArray2)).toStrictEqual(-1);
