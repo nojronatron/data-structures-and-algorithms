@@ -39,7 +39,13 @@ For example, ['this is great :)', 'wow', 'whyyyyyy :(', ':)))))'] returns ['this
 ------------------------------------------------------------------------------------------------ */
 
 const findHappiness = (arr) => {
-  // Solution code here...
+  let result = [];
+  arr.forEach(frag => {
+    if(frag.includes(':)')) {
+      result.push(frag);
+    }
+  });
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
