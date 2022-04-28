@@ -87,9 +87,11 @@ Write a function named allHappy that takes in an array of strings and returns a 
 ------------------------------------------------------------------------------------------------ */
 
 const allHappy = (arr) => {
-  // Solution code here...
+  const arrLength = arr.length;
+  let happyCount = 0;
+  arr.forEach(item => item.includes(':)') && happyCount++);
+  return arrLength === happyCount;
 };
-
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7 - Stretch Goal
 
