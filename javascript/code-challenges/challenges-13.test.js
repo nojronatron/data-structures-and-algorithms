@@ -61,8 +61,14 @@ For example, (123) 456-7890 returns 1234567890
 
 const standardizePhoneNumbers = (arr) => {
   let result = [];
-  arr.forEach(phNumber => {
-    result.push(phNumber.replaceAll(/\(|\)|\s|-/g,''));
+  // arr.forEach(phNumber => {
+  //   result.push(phNumber.replaceAll(/\(|\)|\s|-/g,''));
+  // });
+  arr.forEach(phNumStr => {
+    let partialFix = phNumStr.substring(1, 4);
+    partialFix += phNumStr.substring(6, 9);
+    partialFix += phNumStr.substring(phNumStr.length - 4);
+    result.push(partialFix);
   });
   return result;
 };
@@ -102,7 +108,11 @@ Write a function named findAnything that takes in an array of strings, along wit
 ------------------------------------------------------------------------------------------------ */
 
 const findAnything = (arr, target) => {
-  // Solution code here...
+  let result = [];
+  arr.forEach(item => {
+    item.includes(target) && result.push(item);
+  });
+  return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -112,7 +122,9 @@ Write a function named findEvery that takes in an array of strings, along with a
 ------------------------------------------------------------------------------------------------ */
 
 const findEvery = (arr, target) => {
-  // Solution code here...
+  return arr.reduce((previousValue, currentValue) => {
+    return currentValue.includes(target) && previousValue ? true : false;
+  }, true);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -128,7 +140,7 @@ For example, [['Brook Testing', 'Actual Person'], ['Human Person', 'Brook again'
 ------------------------------------------------------------------------------------------------ */
 
 const unenrollBrook = (arr) => {
-  // Solution code here...
+  return arr.map(subArr => subArr.filter(item => !item.includes('Brook')));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -242,7 +254,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should find all the strings that contain a given string', () => {
     const words = ['things', 'apple (:)', ':)banana', 'missing that thing', 'cant:)aloupe'];
 
@@ -251,7 +263,7 @@ xdescribe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should determine whether all the strings contain a given string', () => {
     const words = ['things', 'apple pie (:)', ':)banana pie', 'missing that thing', 'cant:)aloupe is tasty'];
 
@@ -261,7 +273,7 @@ xdescribe('Testing challenge 8', () => {
   });
 });
 
-xdescribe('Testing challenge 9', () => {
+describe('Testing challenge 9', () => {
   test('It should remove Brook from all courses', () => {
     const roster = [
       ['Michelle', 'Allie', 'Brook TESTING'],
