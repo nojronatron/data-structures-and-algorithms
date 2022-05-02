@@ -112,7 +112,10 @@ let starWarsData = [{
 }];
 
 let biggerThanLuke = (arr) => {
-  // Solution code here...
+  // let lukeMass = starWarsData.filter((luke) => luke.name === 'Luke Skywalker')[0].mass;
+  // return arr.filter(character => (character.mass > lukeMass));
+  // // console.log('result: ', result);
+  // // return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -130,7 +133,16 @@ This data could be sorted by name or price.
 ------------------------------------------------------------------------------------------------ */
 
 const sortBy = (property, arr) => {
-  // Solution code here...
+  arr.sort((a, b) => {
+    if (a[property] < b[property]) {
+      return -1;
+    }
+    if (a[property] > b[property]) {
+      return 1;
+    }
+    return 0;
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
