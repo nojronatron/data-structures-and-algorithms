@@ -2,6 +2,14 @@
 
 ## Language: `Java`
 
+### Code Challenge Reverse An Array
+
+This is a whiteboarding challenge. No external program files will be included.
+
+[My completed whiteboarding challenge](https://miro.com/app/board/uXjVO7O--eA=/?share_link_id=414484945572)
+
+![code challenge 1 whiteboarding](./dsa-challenge-whiteboard.jpg)
+
 ### Folder/Project Setup
 
 Each type of code challenge has slightly different instructions. Please refer to the notes and examples below for instructions for each DS&A assignment type.
