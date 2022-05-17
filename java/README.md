@@ -8,7 +8,16 @@ This is a whiteboarding challenge. No external program files will be included.
 
 [My completed whiteboarding challenge](https://miro.com/app/board/uXjVO7O--eA=/?share_link_id=414484945572)
 
+#### Reverse An Array Process
+
 ![code challenge 1 whiteboarding](./dsa-challenge-whiteboard.jpg)
+
+#### Approach and Efficiency
+
+My approach was to re-use the input array as the output array.
+This avoided having to create a new array to store temporary or resulting values, saving memory.
+The value-swapping was basically copied from Instructor White, with names changed to make them my own.
+The algorithm is designed to handle null or other empty-like situations on input arguments, and also handles a single-element array where no swapping would be necessary.
 
 ### Folder/Project Setup
 
