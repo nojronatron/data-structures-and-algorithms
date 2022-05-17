@@ -10,7 +10,7 @@ This is a whiteboarding challenge. No external program files will be included.
 
 #### Reverse An Array Process
 
-![code challenge 1 whiteboarding](./dsa-challenge-whiteboard.jpg)
+![code challenge 1 whiteboarding](./array-reverse.jpg)
 
 #### Approach and Efficiency
 
