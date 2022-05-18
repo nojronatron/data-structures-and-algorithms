@@ -22,7 +22,10 @@ To run your tests
 
 - Please follow the instructions specific to your 401 language, which can be found in the directory below, matching your course.
 
-#### Assignments TOC
+## Assignments TOC
 
 Code Challenge [Reverse An Array Readme](./java/README.md)
+
 Code Challenge [Array Insert and Shift](./java/arr-insert-shift/readme.md)
+
+Code Challenge [Array Binary Search](./java/array-binary-search/readme.md)
