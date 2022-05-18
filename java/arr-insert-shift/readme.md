@@ -4,7 +4,7 @@ A Code Challenge assignment.
 
 ## Whiteboard Process
 
-![]()
+![Insert-Shift-Array Whiteboard](array-insert-shift.jpg)
 
 ## Approach and Efficiency
 
