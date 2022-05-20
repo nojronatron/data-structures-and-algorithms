@@ -18,6 +18,11 @@ Develop data structures and algorithms using:
 
 ## Linked Lists
 
+### Challenge
+
+Create a Linked List Node Class.
+Create a Linked List Class.
+
 ### Requirements
 
 Create a Node Class:
@@ -36,6 +41,14 @@ Create a Linked List Class:
 #### ToString Override
 
 Returns `[a]->[b]->[c]->NULL` where a, b, and c are NODEs.
+
+### LL Approach and Efficiency
+
+Description of BigO Time and Space efficiency...
+
+### LL API
+
+Description of each method publicly available to the Linked List...
 
 ## Footer
 

@@ -2,6 +2,7 @@ package datastructures.linkedlist;
 
 public class LinkedList
 {
+  // TODO: Implement try-catch structures to return semantically descriptive errors from within calling method
   public LinkedListNode head;
   public LinkedList() {
     head = new LinkedListNode(null);
