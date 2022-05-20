@@ -2,15 +2,23 @@
 
 ## Description
 
-Develop a Linked List algorithmic solution to exercise using:
+Develop data structures and algorithms using:
 
 - OOP concepts
 - References
 - Gradle
 - JUnit Jupiter
 - And of course, Java
--
-## Requirements
+
+## List of Projects
+
+[Linked Lists](#linked-lists)
+
+(more to come)
+
+## Linked Lists
+
+### Requirements
 
 Create a Node Class:
 
@@ -25,7 +33,7 @@ Create a Linked List Class:
 - Method: INCLUDES => args 'value', returns Boolean, indicates whether the value exists as a Node's value somewhere within the list.
 - Method: TOSTRING => Override, no args, returns String representing all the values in the Linked List
 
-### ToString Override
+#### ToString Override
 
 Returns `[a]->[b]->[c]->NULL` where a, b, and c are NODEs.
 
