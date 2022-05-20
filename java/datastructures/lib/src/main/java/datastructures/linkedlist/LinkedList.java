@@ -2,12 +2,12 @@ package datastructures.linkedlist;
 
 public class LinkedList
 {
-  public Node head;
+  public LinkedListNode head;
   public LinkedList() {
-    head = new Node(null);
+    head = new LinkedListNode(null);
   }
-  public void insert(Node value) {
-    
+  public void insert(LinkedListNode value) {
+
   }
   @Override
   public String toString()
