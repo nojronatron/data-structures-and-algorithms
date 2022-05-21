@@ -10,11 +10,11 @@ public class LinkedListTest {
   @Test
   void testInstantiatesEmptyLinkedList() {
     LinkedList sut = new LinkedList();
-    Boolean expectedResult = false;
+    Boolean expectedResult = true;
     Boolean actualResult = sut.count == 0;
     System.out.println("LL Node Count: " + sut.count);
     System.out.println("LL To String: " + sut);
-    assertTrue(false);
+    assertEquals(expectedResult, actualResult, "Newly instantiated LinkedList will have zero Nodes.");
   }
 
   @Test
