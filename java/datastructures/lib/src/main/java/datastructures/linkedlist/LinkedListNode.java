@@ -1,10 +1,10 @@
 package datastructures.linkedlist;
 
 public class LinkedListNode {
-  public Object value;
+  public Integer value;
   public LinkedListNode next=null;
 
-  public LinkedListNode(Object data) {
+  public LinkedListNode(Integer data) {
     value = data;
   }
 }
