@@ -20,9 +20,12 @@ public class LinkedListTest {
   @Test
   void testCanInsertNodeIntoLinkedList() {
     LinkedList sut = new LinkedList();
+    sut.insert(42);
+    String expectedResult = "[42]";
+    String actualResult = sut.toString();
     System.out.println("LL Node Count: " + sut.count);
     System.out.println("LL To String: " + sut);
-    assertTrue(false);
+    assertEquals(expectedResult, actualResult, "LinkedList with single Node.value=42 to string returns \"[42]\"");
   }
 
   @Test
@@ -55,38 +58,33 @@ public class LinkedListTest {
   @Test
   void testReturnFalseWhenNotContainsSearchValue() {
     LinkedList sut = new LinkedList();
+
     Boolean actualResult = sut.includes(42);
     Boolean expectedResult = false;
+
     System.out.println("LL Node Count: " + sut.count);
     System.out.println("LL To String: " + sut);
+
     assertEquals(expectedResult, actualResult);
   }
 
   @Test
   void testCanReturnCollectionOfValuesInLinkedList() {
-    //  single Node
     LinkedList sut = new LinkedList();
-    sut.insert(42);
-    String expectedResult = "[42]";
-    String actualResult = sut.toString();
-    System.out.println("LL Node Count: " + sut.count);
-    System.out.println("LL To String: " + sut);
-    assertEquals(expectedResult, actualResult, "LinkedList with single Node.value=42 to string returns \"[42]\"");
-
-    //  list of several Nodes
-    sut = null; // ensure previous instance is GC and ref is cleared
-    sut = new LinkedList();
     sut.insert(999_999_999);
     sut.insert(123);
     sut.insert(-7);
     sut.insert(11);
     sut.insert(42);
-    expectedResult = "[42]=>[11]=>[-7]=>[123]=>[999999999]";
+
     int expectedCount = 5;
     int actualCount = sut.count;
-    actualResult = sut.toString();
+    String expectedResult = "[42]=>[11]=>[-7]=>[123]=>[999999999]";
+    String actualResult = sut.toString();
+
     System.out.println("LL Node Count: " + sut.count);
     System.out.println("LL To String: " + sut);
+
     assertEquals(expectedCount, actualCount, "LinkedList count instance method should maintain accurate count");
     assertEquals(expectedResult, actualResult, "LinkedList with single Node.value=42 to string returns \"[42]\"");
   }
