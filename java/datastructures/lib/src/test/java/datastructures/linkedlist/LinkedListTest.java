@@ -4,7 +4,7 @@ import datastructures.linkedlist.LinkedList;
 import datastructures.linkedlist.LinkedListNode;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedListTest {
   @Test
@@ -52,7 +52,10 @@ public class LinkedListTest {
   @Test
   void testCanReturnCollectionOfValuesInLinkedList() {
     LinkedList sut = new LinkedList();
+    sut.insert(42);
     System.out.println(sut);
-    assertTrue(true);
+    String expectedResult = "[42]";
+    String actualResult = sut.toString();
+    assertEquals(expectedResult,actualResult, "LinkedList with single Node.value=42 to string returns \"[42]\"");
   }
 }
