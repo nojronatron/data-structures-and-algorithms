@@ -57,7 +57,7 @@ public class LinkedList
           stringBuilder.append("=>");
         }
       }
-      
+
       return stringBuilder.toString();
     }
 }
