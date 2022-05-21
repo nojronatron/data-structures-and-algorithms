@@ -44,11 +44,23 @@ Returns `[a]->[b]->[c]->NULL` where a, b, and c are NODEs.
 
 ### LL Approach and Efficiency
 
-Description of BigO Time and Space efficiency...
+My approach was to avoid loops whenever possible, however searching required an iterative approach.
+
+Linked List Class:
+
+Constructor => Time: O(1) Space: O(1) => Sets up Properties in single call
+Insert => Time: O(1) Space: O(1) => Utilized HEAD reference and re-links Nodes without iterating
+Includes => Time: O(n) Space: O(1) => No additional methods or object utilized
+ToString => Time: O(1) Space: O(1) => Avoids using immutable String type
 
 ### LL API
 
-Description of each method publicly available to the Linked List...
+Description of each method publicly available to the Linked List:
+
+- Constructor: Custom empty constructor sets Head, Tail to null.
+- Insert: Accepts an Integer value and returns void.
+- Includes: Accepts an Integer value and returns True if found in LL, otherwise False.
+- ToString: See ToString Override (above). Returns all node values in Head-to-Tail order.
 
 ## Footer
 

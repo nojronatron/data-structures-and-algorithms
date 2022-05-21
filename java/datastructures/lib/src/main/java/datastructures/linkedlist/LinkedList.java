@@ -9,6 +9,8 @@ public class LinkedList
 
   public LinkedList() {
     head = new LinkedListNode(null);
+    tail = head;
+    count = 0;
   }
 
   public void insert(Integer value) {
