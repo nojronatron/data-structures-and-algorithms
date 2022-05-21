@@ -4,6 +4,7 @@ public class LinkedList
 {
   // TODO: Implement try-catch structures to return semantically descriptive errors from within calling method
   protected LinkedListNode head;
+  protected LinkedListNode tail;
   protected int count;
 
   public LinkedList() {
@@ -11,15 +12,22 @@ public class LinkedList
   }
 
   public void insert(Integer value) {
-    // TODO: test
     // adds a new node with the value to the head of the list with an O(1) time performance
     LinkedListNode Node = new LinkedListNode(value);
 
     if (count < 1) {
-      head = Node;
+      head = Node; // HEAD and TAIL both point to same node
+      tail = head;
+      Node.next = null; // no other Nodes so next is null
+    } else
+      if (count == 1) {
+      Node.next = head; // link new Node.next to current head node
+      head = Node; // move HEAD pointer to new Node
+      tail = head.next; // move TAIL pointer to old HEAD Node
     } else
     {
-      Node.next = head; // connect new node to the current HEAD node
+      Node.next = head; // add head to the new Node next
+      head = Node; // assign HEAD pointer to the new Node
     }
 
     this.count++; // increment the count
@@ -30,7 +38,7 @@ public class LinkedList
     // indicates whether that value exists as a Node's value somewhere within the list.
     LinkedListNode Node = head;
 
-    while(Node != null) {
+    while(Node != null && Node.value != null) {
       // test for null which means we have reached the end of the list
       if (Node.value.equals(value)) {
         return true;
