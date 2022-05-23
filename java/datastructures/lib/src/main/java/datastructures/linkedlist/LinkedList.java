@@ -88,6 +88,7 @@ public class LinkedList {
     if (head.value == nodeValue) {
       newNode.next = head;
       head = newNode;
+      count++;
       return true;
     }
 
@@ -100,6 +101,7 @@ public class LinkedList {
         if (currentNode.value.equals(nodeValue)) {
           previousNode.next = newNode;
           newNode.next = currentNode;
+          count++;
           return true;
         }
         previousNode = previousNode.next;
