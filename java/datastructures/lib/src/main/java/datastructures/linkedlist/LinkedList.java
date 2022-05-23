@@ -57,7 +57,7 @@ public class LinkedList {
     } catch (Exception ex) {
       System.out.println("An error occurred while searching the Linked List. Message: " + ex.getMessage());
     }
-    
+
     return false;
   }
 
@@ -69,6 +69,7 @@ public class LinkedList {
       tail.next = newNode;
       tail = newNode;
       tail.next = null;
+      count++;
       return true;
     }
     catch (Exception ex) {
@@ -89,10 +90,11 @@ public class LinkedList {
       stringBuilder.append("[").append(Node.value).append("]");
       Node = Node.next;
       if (Node != null) {
-        stringBuilder.append("=>");
+        stringBuilder.append("->");
       }
     }
 
+    stringBuilder.append("->NULL");
     return stringBuilder.toString();
   }
 }
