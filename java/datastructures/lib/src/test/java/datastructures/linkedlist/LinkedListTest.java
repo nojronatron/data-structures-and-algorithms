@@ -2,6 +2,9 @@ package datastructures.linkedlist;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedListTest {
@@ -113,5 +116,28 @@ public class LinkedListTest {
     System.out.println("LL To String: " + sut);
 
     assertEquals(expectedResult, actualResult, "Can return collection of values in linked list.");
+  }
+
+  @Test
+  void testCanAppendNodeWithNewValueToEndOfLinkedList() {
+    int valueOfNewNode = 5150;
+    int expectedCount = 6;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    sut.append(valueOfNewNode);
+    int actualCount = sut.count;
+    boolean actualFoundNode = sut.includes(valueOfNewNode);
+
+    Pattern pattern = Pattern.compile("/[5150/]->NULL", Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(sut.toString());
+    boolean matchFound = matcher.find();
+
+    assertEquals(expectedCount, actualCount);
+    assertTrue(matchFound);
   }
 }

@@ -57,6 +57,24 @@ public class LinkedList {
     } catch (Exception ex) {
       System.out.println("An error occurred while searching the Linked List. Message: " + ex.getMessage());
     }
+    
+    return false;
+  }
+
+  public Boolean append(int value) {
+    // create a new Node using value param and add to LL at end of list
+
+    try {
+      LinkedListNode newNode = new LinkedListNode(value);
+      tail.next = newNode;
+      tail = newNode;
+      tail.next = null;
+      return true;
+    }
+    catch (Exception ex) {
+      System.out.println("An error occurred while searching the Linked List. Message: " + ex.getMessage());
+    }
+
     return false;
   }
 
