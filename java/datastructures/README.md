@@ -36,9 +36,14 @@ Create a Linked List Class:
 - Include a custom (default) Constructor should create an empty Linked List when instantiated.
 - Method: INSERT => args 'value', returns void, adds new Node with that value to the 'head' of the list with an O(1) Time performance.
 - Method: INCLUDES => args 'value', returns Boolean, indicates whether the value exists as a Node's value somewhere within the list.
-- Method: TOSTRING => Override, no args, returns String representing all the values in the Linked List
+- Method: TOSTRING => Override, no args, returns String representing all the values in the Linked List.
+- Method: APPEND => args 'new value', adds new node with given value to end of the Linked List.
+- Method: INSERTBEFORE => args 'value, new value', adds new node with given value prior to first Node found with specified value.
+- Method: INSERTAFTER => args 'value, new value', adds new Node with given value immediately following the first Node found with specified value.
 
 #### ToString Override
+
+An included requirement.
 
 Returns `[a]->[b]->[c]->NULL` where a, b, and c are NODEs.
 
@@ -51,6 +56,9 @@ Linked List Class:
 Constructor => Time: O(1) Space: O(1) => Sets up Properties in single call
 Insert => Time: O(1) Space: O(1) => Utilized HEAD reference and re-links Nodes without iterating
 Includes => Time: O(n) Space: O(1) => No additional methods or object utilized
+Append =>
+InsertBefore =>
+InsertAfter =>
 ToString => Time: O(1) Space: O(1) => Avoids using immutable String type
 
 ### LL API
