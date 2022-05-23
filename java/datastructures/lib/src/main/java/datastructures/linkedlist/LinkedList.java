@@ -79,6 +79,39 @@ public class LinkedList {
     return false;
   }
 
+  public Boolean insertBefore(int nodeValue, int newNodeValue) {
+    // insert a new Node with value newNodeValue before node with nodeValue
+    LinkedListNode newNode = new LinkedListNode(newNodeValue);
+    LinkedListNode currentNode = head;
+
+    // if head is the first instance of value then replace head with newNodeValue
+    if (head.value == nodeValue) {
+      newNode.next = head;
+      head = newNode;
+      return true;
+    }
+
+    // create a previousNode reference so an insertion can be done before the Node with matching search value
+    LinkedListNode previousNode = head;
+    currentNode = head.next;
+
+    try {
+      while (currentNode.value != null) {
+        if (currentNode.value.equals(nodeValue)) {
+          previousNode.next = newNode;
+          newNode.next = currentNode;
+          return true;
+        }
+        previousNode = previousNode.next;
+        currentNode = currentNode.next;
+      }
+    } catch (Exception ex) {
+      System.out.println("An error occurred while searching the Linked List. Message: " + ex.getMessage());
+    }
+
+    return false;
+  }
+
   @Override
   public String toString() {
     // must iterate through existing Nodes and display their values as a single string
