@@ -25,11 +25,11 @@ public class LinkedListTest {
   void testCanInsertNodeIntoLinkedList() {
     LinkedList sut = new LinkedList();
     sut.insert(42);
-    String expectedResult = "[42]";
+    String expectedResult = "[42]->NULL";
     String actualResult = sut.toString();
     System.out.println("LL Node Count: " + sut.count);
     System.out.println("LL To String: " + sut);
-    assertEquals(expectedResult, actualResult, "LinkedList with single Node.value=42 to string returns \"[42]\"");
+    assertEquals(expectedResult, actualResult, "LinkedList with single Node.value=42 to string returns \"[42]\"->");
   }
 
   @Test
@@ -110,7 +110,7 @@ public class LinkedListTest {
     sut.insert(11);
     sut.insert(42);
 
-    String expectedResult = "[42]=>[11]=>[-7]=>[123]=>[999999999]";
+    String expectedResult = "[42]->[11]->[-7]->[123]->[999999999]->NULL";
     String actualResult = sut.toString();
 
     System.out.println("LL To String: " + sut);
