@@ -138,11 +138,11 @@ public class LinkedList {
     return false;
   }
 
-  public int getKthNodeFromEndValue(int idx) throws ArrayIndexOutOfBoundsException {
+  public int getKthNodeFromEndValue(int idx) throws IndexOutOfBoundsException {
     // returns the value of the kth Node from the end of the linked list
     // Throws ArrayIndexOutOfBoundsException if idx < 0 or > number of Nodes in Linked List
     if (idx < 0 || idx > this.count) {
-      throw new ArrayIndexOutOfBoundsException();
+      throw new IndexOutOfBoundsException();
     }
 
     // if the 0th node from the end is selected it is the Tail node reference

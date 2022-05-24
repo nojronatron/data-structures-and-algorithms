@@ -1,8 +1,6 @@
 package datastructures.linkedlist;
 
-import org.apache.commons.math3.exception.OutOfRangeException;
 import org.junit.jupiter.api.Test;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -228,7 +226,7 @@ public class LinkedListTest {
       "InsertBefore method returns True when succeeds.");
   }
 
-  @Test testWhereKIsGreaterThanLengthOfLinkedListThrows() {
+  @Test void testWhereKIsGreaterThanLengthOfLinkedListThrows() {
     int expectedCount = 5;
     int testInput = 15;
     LinkedList sut = new LinkedList();
@@ -238,10 +236,26 @@ public class LinkedListTest {
     sut.insert(11);
     sut.insert(42);
 
-    assertEquals(expectedCount, sut.count);
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
 
-    assertThrows(OutOfRangeException.class, () -> {
-      sut.getKthFromEnd(testInput);
-    });
+    assertThrows(IndexOutOfBoundsException.class, () -> sut.getKthNodeFromEndValue(testInput),
+      "Asking for kth that is larger than Linked List node count results in ArrayIndexOutOfBoundsException.");
   }
+
+  @Test void testWhereKIsNegativeIntegerThrows() {
+    int expectedCount = 5;
+    int testInput = -1;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    assertThrows(IndexOutOfBoundsException.class, () -> sut.getKthNodeFromEndValue(testInput),
+      "Asking for kth that is a negative number results in ArrayIndexOutOfBoundsException.");
+  }
+
 }
