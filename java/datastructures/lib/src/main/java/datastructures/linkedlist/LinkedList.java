@@ -88,7 +88,7 @@ public class LinkedList {
     LinkedListNode currentNode = head;
 
     // create a previousNode reference so an insertion can be done before the Node with matching search value
-    LinkedListNode previousNode = head;
+    LinkedListNode previousNode = null;
 
     try {
       while (currentNode.value != null) {
@@ -104,7 +104,7 @@ public class LinkedList {
           count++;
           return true;
         }
-        previousNode = previousNode.next;
+        previousNode = currentNode;
         currentNode = currentNode.next;
       }
     } catch (Exception ex) {
