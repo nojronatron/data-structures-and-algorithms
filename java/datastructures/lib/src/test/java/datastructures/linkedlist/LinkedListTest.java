@@ -258,4 +258,45 @@ public class LinkedListTest {
       "Asking for kth that is a negative number results in ArrayIndexOutOfBoundsException.");
   }
 
+ @Test void testKZeroReturnsValueOfTailNode() {
+    int kthNodeFromEnd = 0;
+    int expectedCount = 5;
+    int expectedResult = 999_999_999;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    int actualTailNodeValue = sut.tail.value;
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    int actualResult = sut.getKthNodeFromEndValue(kthNodeFromEnd);
+
+    assertEquals(expectedResult, actualResult, "Kth Node 0 should return last node.");
+    assertEquals(expectedResult, actualTailNodeValue, "Kth Node 0 returns value of Tail node");
+ }
+
+ @Test void testKEqualsLengthOfLLShouldReturnValueOfHeadNode() {
+   int expectedCount = 5;
+   int expectedResult = 42;
+   LinkedList sut = new LinkedList();
+   sut.insert(999_999_999);
+   sut.insert(123);
+   sut.insert(-7);
+   sut.insert(11);
+   sut.insert(42);
+
+   int kthNodeFromEnd = sut.count - 1; // 0th from end is Tail, 4th from end is Head in 5-count LL
+   int actualHeadNodeValue = sut.head.value;
+
+   assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+   int actualResult = sut.getKthNodeFromEndValue(kthNodeFromEnd);
+
+   assertEquals(expectedResult, actualResult, "Kth Node 4 should return first node.");
+   assertEquals(expectedResult, actualHeadNodeValue, "Kth Node 4 returns value of Head node");
+ }
 }
