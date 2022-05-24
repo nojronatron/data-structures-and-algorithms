@@ -13,6 +13,7 @@ public class LinkedList {
 
   public void insert(Integer value) {
     // adds a new node with the value to the head of the list with an O(1) time performance
+    // TODO: Consider changing return to Boolean so caller knows how to handle success vs failure condx
     LinkedListNode Node = new LinkedListNode(value);
 
     try {
