@@ -158,7 +158,10 @@ public class LinkedList {
     // set up temp and current Node instances
     LinkedListNode temp = null;
     LinkedListNode current = this.head;
-    int counter = this.count; // count back from the end of the list of nodes by imaginary index
+
+    // count back from the end of the list of nodes by imaginary index
+    // remember that 0th from the end is Tail, and 0th from the start is Head
+    int counter = this.count - 1;
 
     // swap Nodes using temp and current until counter is equal to idx then exit iterator
     while(counter != idx) {

@@ -299,4 +299,45 @@ public class LinkedListTest {
    assertEquals(expectedResult, actualResult, "Kth Node 4 should return first node.");
    assertEquals(expectedResult, actualHeadNodeValue, "Kth Node 4 returns value of Head node");
  }
+
+  @Test
+  void testKSomewhereInMiddleOfLinkedListReturnsCorrectValue() {
+    int expectedCount = 5;
+    int expectedResult = -7;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    int kthNodeFromEnd = 2; // should return value -7
+    int actualHeadNodeValue = sut.head.value;
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    int actualResult = sut.getKthNodeFromEndValue(kthNodeFromEnd);
+
+    assertEquals(expectedResult, actualResult, "2nd Node from end should return value -7.");
+  }
+
+  @Test void testRevisitKSomewhereInMiddleOfLinkedListReturnsCorrectValue() {
+    int expectedCount = 5;
+    int expectedResult = 11;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    int kthNodeFromEnd = 3; // should return value 11
+    int actualHeadNodeValue = sut.head.value;
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    int actualResult = sut.getKthNodeFromEndValue(kthNodeFromEnd);
+
+    assertEquals(expectedResult, actualResult, "3nd Node from end should return value 11.");
+  }
 }
