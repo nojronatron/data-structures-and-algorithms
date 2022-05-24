@@ -85,4 +85,6 @@ Description of each method publicly available to the Linked List:
 
 ## Footer
 
+Link to [this challenge code files](../datastructures/lib/src/main/)
+
 Return to Data Structures and Algorithms root [Readme.md](../../README.md)
