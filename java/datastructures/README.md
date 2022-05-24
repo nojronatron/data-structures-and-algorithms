@@ -27,7 +27,10 @@ Update Methods to enable functionality like:
 1. Includes
 2. Inserts
 3. ToString
-4. (more tbd)
+4. Append
+5. InsertBefore (Node with value)
+6. InsertAfter (Node with value)
+7. Return Kth from end Node's value
 
 ### Requirements
 
@@ -46,10 +49,15 @@ Create a Linked List Class:
 - Method: APPEND => args 'new value', adds new node with given value to end of the Linked List.
 - Method: INSERTBEFORE => args 'value, new value', adds new node with given value prior to first Node found with specified value.
 - Method: INSERTAFTER => args 'value, new value', adds new Node with given value immediately following the first Node found with specified value.
+- Method: getKthNodeFromEndValue => args 'index', finds Node that is 'index' from Tail Node and returns that Node's value.
+
+Create Unit Tests:
+
+- At least 1 unit test for all Feature functions => Presumably the 'happy path' test. :)
+- Additional tests as defined in instructions.
+- Additional tests for edge-cases etc per domain diagramming and technical whiteboard planning session.
 
 #### ToString Override
-
-An included requirement.
 
 Returns `[a]->[b]->[c]->NULL` where a, b, and c are NODEs.
 
@@ -60,12 +68,20 @@ My approach was to avoid loops whenever possible, however searching required an 
 Linked List Class:
 
 Constructor => Time: O(1) Space: O(1) => Sets up Properties in single call
+
 Insert => Time: O(1) Space: O(1) => Single new object; Utilized HEAD reference and re-links Nodes without iterating
+
 Includes => Time: O(n) Space: O(1) => No additional methods or object utilized
+
 Append => Time: O(1) Space O(1) => Single new object; No loops just REF to TAIL with REF replacement
+
 InsertBefore => Time: O(n) Space: O(1) => Single while loop, single added object, other REFs are shallow pointers
+
 InsertAfter => Time: O(n) Space: O(1) => Single while loop, single added object, other REFs are shallow pointers
+
 ToString => Time: O(1) Space: O(1) => Avoids using immutable String type
+
+GetKthNode... => Time: O(n) Space: O(1) => Single while loop only runs in worse-case scenarios otherwise quickly exits; REFs to existing nodes used and only 1 new Node is instantiated
 
 ### LL API
 
@@ -79,9 +95,11 @@ Description of each method publicly available to the Linked List:
 - InsertAfter: Accepts an Integer value to create a new node and a search Integer value. Inserts New Node behind existing Node with same value as Integer arg.
 - ToString: See ToString Override (above). Returns all node values in Head-to-Tail order.
 
-### LL Design Whiteboard
+### LL Design Whiteboards
 
 ![Features: insertBefore, insertAfter, and append](res/Append-InsertB4-InsertAfter.jpg)
+
+![Feature: getKthNodeValue](res/linked-list-kth.jpg)
 
 ## Footer
 
