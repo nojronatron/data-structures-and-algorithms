@@ -2,6 +2,16 @@
 
 See [setup instructions](https://codefellows.github.io/setup-guide/code-301/3-code-challenges), in the Code 301 Setup Guide.
 
+## Assignments TOC
+
+Code Challenge [Reverse An Array Readme](./java/README.md)
+
+Code Challenge [Array Insert and Shift](./java/arr-insert-shift/readme.md)
+
+Code Challenge [Array Binary Search](./java/array-binary-search/readme.md)
+
+Code Challenge (multiple) [Linked Lists](./java/datastructures/README.md)
+
 ## Repository Quick Tour and Usage
 
 ### 301 Code Challenges
@@ -21,11 +31,3 @@ To run your tests
 ### 401 Data Structures, Code Challenges
 
 - Please follow the instructions specific to your 401 language, which can be found in the directory below, matching your course.
-
-## Assignments TOC
-
-Code Challenge [Reverse An Array Readme](./java/README.md)
-
-Code Challenge [Array Insert and Shift](./java/arr-insert-shift/readme.md)
-
-Code Challenge [Array Binary Search](./java/array-binary-search/readme.md)
