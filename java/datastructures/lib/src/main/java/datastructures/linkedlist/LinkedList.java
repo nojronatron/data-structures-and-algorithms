@@ -84,23 +84,20 @@ public class LinkedList {
     LinkedListNode newNode = new LinkedListNode(newNodeValue);
     LinkedListNode currentNode = head;
 
-    // if head is the first instance of value then replace head with newNodeValue
-    if (head.value == nodeValue) {
-      newNode.next = head;
-      head = newNode;
-      count++;
-      return true;
-    }
-
     // create a previousNode reference so an insertion can be done before the Node with matching search value
     LinkedListNode previousNode = head;
-    currentNode = head.next;
 
     try {
       while (currentNode.value != null) {
         if (currentNode.value.equals(nodeValue)) {
-          previousNode.next = newNode;
-          newNode.next = currentNode;
+          if (currentNode != head) {
+            previousNode.next = newNode;
+            newNode.next = currentNode;
+          }
+          else {
+            newNode.next = head;
+            head = newNode;
+          }
           count++;
           return true;
         }
@@ -108,7 +105,30 @@ public class LinkedList {
         currentNode = currentNode.next;
       }
     } catch (Exception ex) {
-      System.out.println("An error occurred while searching the Linked List. Message: " + ex.getMessage());
+      System.out.println("An error occurred while searching or inserting to the Linked List. Message: " +
+        ex.getMessage());
+    }
+
+    return false;
+  }
+
+  public boolean insertAfter(int nodeValue, int newNodeValue) {
+    LinkedListNode newNode = new LinkedListNode(newNodeValue);
+    LinkedListNode currentNode = head;
+
+    try {
+      while (currentNode.value != null) {
+        if (currentNode.value.equals(nodeValue)) {
+          newNode.next = currentNode.next;
+          currentNode.next = newNode;
+          count++;
+          return true;
+        }
+        currentNode = currentNode.next;
+      }
+    } catch (Exception ex) {
+      System.out.println("An error occurred while searching or inserting to the Linked List. Message: " +
+        ex.getMessage());
     }
 
     return false;

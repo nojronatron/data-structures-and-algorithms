@@ -132,7 +132,9 @@ public class LinkedListTest {
     int actualCount = sut.count;
     assertEquals(expectedCount, actualCount, "LinkedList should have 5 Nodes.");
 
-    sut.append(valueOfNewNode);
+    boolean expectedAppendResult = true;
+    boolean actualAppendReturn = sut.append(valueOfNewNode);
+
     expectedCount++;
     actualCount = sut.count;
     assertEquals(expectedCount, actualCount,"New Node addition increments LL Count property.");
@@ -148,10 +150,11 @@ public class LinkedListTest {
     boolean matchFound = matcher.find();
 
     assertTrue(matchFound, "regex finds newly insert node at end of the list via toString().");
+    assertEquals(expectedAppendResult, actualAppendReturn,"Append method returns True when succeeds.");
   }
 
   @Test
-  void testInsertsNewNodeWithGivenValueBeforeFirstNodeInLL() {
+  void testInsertBeforeFoundNodeWithNewNode() {
     int valueOfNewNode = 5150;
     int expectedCount = 5;
     int nodeValue = -7;
@@ -165,7 +168,9 @@ public class LinkedListTest {
     int actualCount = sut.count;
     assertEquals(expectedCount, actualCount, "LinkedList should have 5 Nodes.");
 
-    sut.insertBefore(nodeValue, valueOfNewNode);
+    boolean expectedInsertBeforeReturn = true;
+    boolean actualInsertBeforeReturn = sut.insertBefore(nodeValue, valueOfNewNode);
+
     expectedCount++;
     actualCount = sut.count;
     assertEquals(expectedCount, actualCount, "New Node addition increments LL Count property.");
@@ -180,5 +185,46 @@ public class LinkedListTest {
     Matcher matcher = pattern.matcher(sut.toString());
     boolean matchFound = matcher.find();
 
-    assertTrue(matchFound, "regex finds newly inserted node at end of the list via toString().");  }
+    assertTrue(matchFound, "regex finds newly inserted node at end of the list via toString().");
+    assertEquals(expectedInsertBeforeReturn, actualInsertBeforeReturn,
+      "InsertBefore method returns True when succeeds.");
+  }
+
+  @Test
+  void testInsertAfterFoundNodeWithNewNode() {
+    int valueOfNewNode = 5150;
+    int expectedCount = 5;
+    int nodeValue = 123;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(nodeValue);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    int actualCount = sut.count;
+    assertEquals(expectedCount, actualCount, "LinkedList should have 5 Nodes.");
+
+    boolean expectedInsertBeforeReturn = true;
+    boolean actualInsertBeforeReturn = sut.insertAfter(nodeValue, valueOfNewNode);
+
+    expectedCount++;
+    actualCount = sut.count;
+    assertEquals(expectedCount, actualCount, "New Node addition increments LL Count property.");
+
+    boolean actualFoundNode = sut.includes(valueOfNewNode);
+    assertTrue(actualFoundNode, "LL.includes method finds node with value after append method called.");
+
+    // use regex to find the actual node at the end of the list via toString() method
+    // there are probably better ways to do this, but it gets the job done at this level
+    String myPattern = "\\[123]->\\[5150]->\\[-7]->";
+    Pattern pattern = Pattern.compile(myPattern, Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(sut.toString());
+    boolean matchFound = matcher.find();
+
+    assertTrue(matchFound, "regex finds newly inserted node at end of the list via toString().");
+    assertEquals(expectedInsertBeforeReturn, actualInsertBeforeReturn,
+      "InsertBefore method returns True when succeeds.");
+  }
+
 }
