@@ -138,6 +138,38 @@ public class LinkedList {
     return false;
   }
 
+  public int getKthNodeFromEndValue(int idx) throws ArrayIndexOutOfBoundsException {
+    // returns the value of the kth Node from the end of the linked list
+    // Throws ArrayIndexOutOfBoundsException if idx < 0 or > number of Nodes in Linked List
+    if (idx < 0 || idx > this.count) {
+      throw new ArrayIndexOutOfBoundsException();
+    }
+
+    // if the 0th node from the end is selected it is the Tail node reference
+    if (idx == 0) {
+      return tail.value;
+    }
+
+    // if the 4th node from the end in a 5-node-list is wanted, that is the Head node reference
+    if (idx == this.count - 1) {
+      return head.value;
+    }
+
+    // set up temp and current Node instances
+    LinkedListNode temp = null;
+    LinkedListNode current = this.head;
+    int counter = this.count; // count back from the end of the list of nodes by imaginary index
+
+    // swap Nodes using temp and current until counter is equal to idx then exit iterator
+    while(counter != idx) {
+      temp = current;
+      current = temp.next;
+      counter--;
+    }
+
+    return current.value;
+  }
+
   @Override
   public String toString() {
     // must iterate through existing Nodes and display their values as a single string

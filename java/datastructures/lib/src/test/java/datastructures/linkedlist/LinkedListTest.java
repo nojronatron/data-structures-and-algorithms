@@ -1,5 +1,6 @@
 package datastructures.linkedlist;
 
+import org.apache.commons.math3.exception.OutOfRangeException;
 import org.junit.jupiter.api.Test;
 
 import java.util.regex.Matcher;
@@ -227,4 +228,20 @@ public class LinkedListTest {
       "InsertBefore method returns True when succeeds.");
   }
 
+  @Test testWhereKIsGreaterThanLengthOfLinkedListThrows() {
+    int expectedCount = 5;
+    int testInput = 15;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    assertEquals(expectedCount, sut.count);
+
+    assertThrows(OutOfRangeException.class, () -> {
+      sut.getKthFromEnd(testInput);
+    });
+  }
 }
