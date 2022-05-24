@@ -217,7 +217,7 @@ public class LinkedListTest {
 
     // use regex to find the actual node at the end of the list via toString() method
     // there are probably better ways to do this, but it gets the job done at this level
-    String myPattern = "\\[123]->\\[5150]->\\[-7]->";
+    String myPattern = "\\[123]->\\[5150]->\\[999999999]->";
     Pattern pattern = Pattern.compile(myPattern, Pattern.CASE_INSENSITIVE);
     Matcher matcher = pattern.matcher(sut.toString());
     boolean matchFound = matcher.find();

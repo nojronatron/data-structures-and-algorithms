@@ -41,6 +41,7 @@ public class LinkedList {
 
   public Boolean includes(Integer value) {
     // indicates whether that value exists as a Node's value somewhere within the list.
+    // TODO: refactor this to use a private method FIND
     LinkedListNode Node = head;
 
     try {
@@ -81,6 +82,7 @@ public class LinkedList {
 
   public Boolean insertBefore(int nodeValue, int newNodeValue) {
     // insert a new Node with value newNodeValue before node with nodeValue
+    // TODO: refactor this to utilize a helper method to FIND
     LinkedListNode newNode = new LinkedListNode(newNodeValue);
     LinkedListNode currentNode = head;
 
@@ -113,6 +115,7 @@ public class LinkedList {
   }
 
   public boolean insertAfter(int nodeValue, int newNodeValue) {
+    // TODO: refactor this to utilize a private helper method to FIND
     LinkedListNode newNode = new LinkedListNode(newNodeValue);
     LinkedListNode currentNode = head;
 
