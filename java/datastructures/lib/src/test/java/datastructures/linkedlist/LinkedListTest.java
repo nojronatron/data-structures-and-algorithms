@@ -1,7 +1,6 @@
 package datastructures.linkedlist;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -227,4 +226,118 @@ public class LinkedListTest {
       "InsertBefore method returns True when succeeds.");
   }
 
+  @Test void testWhereKIsGreaterThanLengthOfLinkedListThrows() {
+    int expectedCount = 5;
+    int testInput = 15;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    assertThrows(IndexOutOfBoundsException.class, () -> sut.getKthNodeFromEndValue(testInput),
+      "Asking for kth that is larger than Linked List node count results in ArrayIndexOutOfBoundsException.");
+  }
+
+  @Test void testWhereKIsNegativeIntegerThrows() {
+    int expectedCount = 5;
+    int testInput = -1;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    assertThrows(IndexOutOfBoundsException.class, () -> sut.getKthNodeFromEndValue(testInput),
+      "Asking for kth that is a negative number results in ArrayIndexOutOfBoundsException.");
+  }
+
+ @Test void testKZeroReturnsValueOfTailNode() {
+    int kthNodeFromEnd = 0;
+    int expectedCount = 5;
+    int expectedResult = 999_999_999;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    int actualTailNodeValue = sut.tail.value;
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    int actualResult = sut.getKthNodeFromEndValue(kthNodeFromEnd);
+
+    assertEquals(expectedResult, actualResult, "Kth Node 0 should return last node.");
+    assertEquals(expectedResult, actualTailNodeValue, "Kth Node 0 returns value of Tail node");
+ }
+
+ @Test void testKEqualsLengthOfLLShouldReturnValueOfHeadNode() {
+   int expectedCount = 5;
+   int expectedResult = 42;
+   LinkedList sut = new LinkedList();
+   sut.insert(999_999_999);
+   sut.insert(123);
+   sut.insert(-7);
+   sut.insert(11);
+   sut.insert(42);
+
+   int kthNodeFromEnd = sut.count - 1; // 0th from end is Tail, 4th from end is Head in 5-count LL
+   int actualHeadNodeValue = sut.head.value;
+
+   assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+   int actualResult = sut.getKthNodeFromEndValue(kthNodeFromEnd);
+
+   assertEquals(expectedResult, actualResult, "Kth Node 4 should return first node.");
+   assertEquals(expectedResult, actualHeadNodeValue, "Kth Node 4 returns value of Head node");
+ }
+
+  @Test
+  void testKSomewhereInMiddleOfLinkedListReturnsCorrectValue() {
+    int expectedCount = 5;
+    int expectedResult = -7;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    int kthNodeFromEnd = 2; // should return value -7
+    int actualHeadNodeValue = sut.head.value;
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    int actualResult = sut.getKthNodeFromEndValue(kthNodeFromEnd);
+
+    assertEquals(expectedResult, actualResult, "2nd Node from end should return value -7.");
+  }
+
+  @Test void testRevisitKSomewhereInMiddleOfLinkedListReturnsCorrectValue() {
+    int expectedCount = 5;
+    int expectedResult = 11;
+    LinkedList sut = new LinkedList();
+    sut.insert(999_999_999);
+    sut.insert(123);
+    sut.insert(-7);
+    sut.insert(11);
+    sut.insert(42);
+
+    int kthNodeFromEnd = 3; // should return value 11
+    int actualHeadNodeValue = sut.head.value;
+
+    assertEquals(expectedCount, sut.count, "Five nodes exist in this Linked List.");
+
+    int actualResult = sut.getKthNodeFromEndValue(kthNodeFromEnd);
+
+    assertEquals(expectedResult, actualResult, "3nd Node from end should return value 11.");
+  }
 }
