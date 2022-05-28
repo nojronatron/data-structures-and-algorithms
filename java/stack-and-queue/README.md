@@ -18,7 +18,15 @@ Generics were implemented to allow the caller to use any Type or customer Class 
 
 ### Design
 
-![Stacks and Queues Technical Design Drawing](./stack-and-queue.jpg)
+MyStack Class Design Document:
+
+![StackClass Technical Design Drawing](./stack.jpg)
+
+-- -
+
+MyQueue Class Design Document:
+
+![QueueClass Technical Design Drawing](./queue.jpg)
 
 ### Big O Analysis
 
@@ -65,20 +73,22 @@ Dequeue:
 
 [P] Calling pop or peek on empty stack raises exception
 
-*Note*: Calling peek will return *null* instead of an Exception.
+*Note*: Calling peek() will return *null* instead of an Exception.
 
 ### QUEUE Tests
 
-[ ] Can successfully enqueue into a queue
+[X] Can successfully enqueue into a queue
 
-[ ] Can successfully enqueue multiple values into a queue
+[X] Can successfully enqueue multiple values into a queue
 
-[ ] Can successfully dequeue out of a queue the expected value
+[X] Can successfully dequeue out of a queue the expected value
 
-[ ] Can successfully peek into a queue, seeing the expected value
+[X] Can successfully peek into a queue, seeing the expected value
 
-[ ] Can successfully empty a queue after multiple dequeues
+[X] Can successfully empty a queue after multiple dequeues
 
-[ ] Can successfully instantiate an empty queue
+[X] Can successfully instantiate an empty queue
 
-[ ] Calling dequeue or peek on empty queue raises exception
+[P] Calling dequeue or peek on empty queue raises exception
+
+*Note*: Calling peek() will return *null* instead of an Exception.
