@@ -60,7 +60,7 @@ public class MyStack<T> {
   }
 
   public boolean isEmpty() {
-    // getter method for this.isEmpty property
+    // getter-setter method for this.isEmpty property
     this.isEmpty = (this.count == 0);
     return this.isEmpty;
   }

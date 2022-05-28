@@ -43,12 +43,14 @@ public class MyQueue<T> {
     return null;
   }
 
-  public T Peek() throws NullPointerException {
+  public T peek() throws NullPointerException {
     return front.value;
   }
 
-  private void isEmpty() {
-    this.isEmpty = this.front != null;
+  public boolean isEmpty() {
+    // getter-setter method for this.isEmpty property
+    this.isEmpty = this.front == null;
+    return this.isEmpty;
   }
 
   @Override
