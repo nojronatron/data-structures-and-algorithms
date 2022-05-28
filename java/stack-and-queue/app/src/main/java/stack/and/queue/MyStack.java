@@ -4,6 +4,9 @@ public class MyStack<T> {
   protected MyNode<T> top;
   private int count;
   private boolean isEmpty;
+  public MyStack(T value) {
+    this.top = new MyNode<T>(value);
+  }
 
   public T pop() {
     // returns the value of the top node, reducing stack size by 1
@@ -21,6 +24,9 @@ public class MyStack<T> {
   }
 
   public boolean push(T value) {
+    // takes a generic value type, creates a new Node, and adds it to the top of the stack
+    // adds to stack size by 1
+
     var newNode = new MyNode<T>(value);
 
     try {
@@ -28,8 +34,8 @@ public class MyStack<T> {
         newNode.next = top;
       }
       top = newNode;
+      this.count++;
       this.isEmpty = this.count > 0;
-
       return true;
 
     } catch (Exception ex) {
@@ -45,7 +51,7 @@ public class MyStack<T> {
   }
 
   public boolean isEmpty() {
-    // this is a getter method for this.isEmpty property
+    // getter method for this.isEmpty property
     return this.isEmpty;
   }
 }

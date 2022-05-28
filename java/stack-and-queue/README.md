@@ -4,17 +4,50 @@ summary and background info
 
 ## Challenge
 
-description
+Implement both a stack and a Queue using lessons learned from creating and using Linked Lists.
 
-## Approach and Effeciency
+## Approach and Efficiency
 
-Big O's and Whys
+A design document was created prior to writing any code.
+
+Big O analysis was used to keep space and time estimates linear or better in worst-case scenarios.
+
+Whenever possible additional properties and Get/Setters were created to manage List Size and exception throwing situations in graceful ways.
+
+Generics were implemented to allow the caller to use any Type or customer Class as their custom Node payload.
+
+### Design
+
+![Stacks and Queues Technical Design Drawing](./stack-and-queue.jpg)
+
+### Big O Analysis
+
+All Stack methods are O(1) operation because no iterations or recursive functions are used.
 
 ## API
 
 Methods and their short descriptions
 
+### Stack
+
+Constructor: Only necessary to instantiate a Stack, and requires a value with a user-defined Type T.
+
+Push: Accepts a value type T, creates a new Node of type T, adds it to top of the existing stack, sets the 'top' property to new Node T, and updates count and isEmpty properties.
+
+Pop: Creates temporary Node and moves head pointer to previous Node, then returns temp Node value to the caller.
+
+### Queue
+
+Constructor:
+
+Enqueue:
+
+Dequeue:
+
+
 ## Tests
+
+### STACK Tests
 
 [ ] Can successfully push onto a stack
 
@@ -29,6 +62,8 @@ Methods and their short descriptions
 [ ] Can successfully instantiate an empty stack
 
 [ ] Calling pop or peek on empty stack raises exception
+
+### QUEUE Tests
 
 [ ] Can successfully enqueue into a queue
 
