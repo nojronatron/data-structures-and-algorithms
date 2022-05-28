@@ -1,6 +1,27 @@
 # Stacks and Queues
 
-summary and background info
+Understanding how to build and use Stacks and Queues is essential knowledge for a software engineer.
+
+## How to Use
+
+1. Install a Java JDK at version 17.x or higher
+2. Install Gradle w/ JUnit Jupiter support
+3. Clone this repo
+4. CD to 'stack-and-queue' directory
+5. To build: `./gradlew build` and review the output
+6. To execute tests suite: `./gradlew test` and review the output
+
+At this point you can import the packages 'MyStack' and 'MyQueue' by pointing to the main directory in this project
+
+## Tools and Technologies
+
+- Temurin Java JDK v17.x
+- Gradle
+- JUnit Jupiter test framework
+- IntelliJ IDEA
+- Linux
+- Miro (for technical planning documentation)
+- Java "Generics"
 
 ## Challenge
 
@@ -40,20 +61,25 @@ Methods and their short descriptions
 
 Constructor: Only necessary to instantiate a Stack, and requires a value with a user-defined Type T.
 
-Push: Accepts a value type T, creates a new Node of type T, adds it to top of the existing stack, sets the 'top' property to new Node T, and updates count and isEmpty properties.
+Push: Accepts a value type T, creates a new Node of type T, adds it to top of the existing stack instance.
 
 Pop: Creates temporary Node and moves head pointer to previous Node, then returns temp Node value to the caller.
 
 Peek: Returns the value of the 'top' Node in the Stack, or null if the Stack is empty.
 
+IsEmpty(): Getter/Setter function to A) Return true if the Stack is empty, and B) Stack functions can call this method to update the hidden isEmpty property, for internal use.
+
 ### Queue
 
-Constructor:
+Constructor: Only necessary to instantiate a new Queue. Does not require a value.
 
-Enqueue:
+Enqueue: Accepts a value type T, creates a new Node of type T, and adds it to the 'end' of the existing Queue instance.
 
-Dequeue:
+Dequeue: Returns a value type T as was stored in a Node now at the 'front' of the existing Queue instance.
 
+Peek: Returns the value of the 'front' Node in the existing Queue, or null if the Queue is empty.
+
+IsEmpty(): Getter/Setter function to A) Return true if the Queue is empty, and B) Queue functions can call this method to update the hidden isEmpty property, for internal use.
 
 ## Tests
 
