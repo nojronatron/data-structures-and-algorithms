@@ -4,8 +4,16 @@ public class MyStack<T> {
   protected MyNode<T> top;
   private int count;
   private boolean isEmpty;
+  public MyStack() {
+    this.top = null;
+    this.count = 0;
+    this.isEmpty = true;
+  }
+
   public MyStack(T value) {
     this.top = new MyNode<T>(value);
+    this.count = 1;
+    this.isEmpty = false;
   }
 
   public T pop() {
@@ -16,7 +24,7 @@ public class MyStack<T> {
       this.top = top.next;
       temp.next = null;
       this.count--;
-      this.isEmpty = this.count > 0;
+      this.isEmpty();
       return temp.value;
     }
 
@@ -35,7 +43,7 @@ public class MyStack<T> {
       }
       top = newNode;
       this.count++;
-      this.isEmpty = this.count > 0;
+      this.isEmpty();
       return true;
 
     } catch (Exception ex) {
@@ -45,13 +53,34 @@ public class MyStack<T> {
     return false;
   }
 
-  public T peek() {
+  public T peek() throws NullPointerException {
     // return top.value only if top is not null
-    return count > 0 ? this.top.value : null;
+    //return count > 0 ? this.top.value : null;
+    return this.top.value;
   }
 
   public boolean isEmpty() {
     // getter method for this.isEmpty property
+    this.isEmpty = (this.count == 0);
     return this.isEmpty;
+  }
+
+  @Override
+  public String toString() {
+    // must iterate through existing Nodes and display their values as a single string
+
+    MyNode<T> Node = top;
+    StringBuilder stringBuilder = new StringBuilder();
+
+    while (Node != null) {
+      stringBuilder.append("[").append(Node.value).append("]");
+      Node = Node.next;
+      if (Node != null) {
+        stringBuilder.append("->");
+      }
+    }
+
+    stringBuilder.append("->NULL");
+    return stringBuilder.toString();
   }
 }
