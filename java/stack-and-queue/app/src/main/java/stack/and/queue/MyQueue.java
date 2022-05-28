@@ -15,8 +15,13 @@ public class MyQueue<T> {
     MyNode newNode = new MyNode(value);
 
     try {
-      rear.next = newNode;
-      rear = newNode;
+      if (this.rear == null) {
+        this.rear = newNode;
+        this.front = this.rear;
+      } else {
+        rear.next = newNode;
+        rear = newNode;
+      }
       this.isEmpty();
       return true;
     } catch (Exception ex) {

@@ -67,7 +67,7 @@ class AppTest {
       assertEquals(null, sut.pop());
 
       NullPointerException thrown = null;
-      
+
       thrown = assertThrows(NullPointerException.class, ()-> {
         sut.peek();
       });
@@ -76,18 +76,34 @@ class AppTest {
     }
 
     @Test void testCanEnqueueIntoQueue(){
-
-      assertTrue(false);
+      boolean expectedResult = true;
+      MyQueue<Integer> sut = new MyQueue<>();
+      boolean actualResult = sut.enqueue(42);
+      System.out.println(sut);
+      assertEquals(expectedResult, actualResult);
     }
 
     @Test void testEnqueueManyIntoQueue() {
-
-      assertTrue(false);
+      MyQueue<Integer> sut = new MyQueue<>();
+      assertTrue( sut.enqueue(42));
+      System.out.println(sut);
+      assertTrue(sut.enqueue(-11));
+      System.out.println(sut);
+      assertTrue(sut.enqueue(0));
+      System.out.println(sut);
+      assertTrue(sut.enqueue(999_999_999));
+      System.out.println(sut);
     }
 
     @Test void testDequeueOutOfQueueReturnsExpectedValue() {
-
-      assertTrue(false);
+      int expectedValue = 42;
+      MyQueue<Integer> sut = new MyQueue<>();
+      if( sut.enqueue(expectedValue)) {
+        System.out.println(sut);
+        assertEquals(expectedValue, sut.dequeue(), "Dequeue returns value input which was 42.");
+      }
+      
+      assertFalse(false);
     }
 
     @Test void testPeekIntoQueueReturnsExpectedValue() {
