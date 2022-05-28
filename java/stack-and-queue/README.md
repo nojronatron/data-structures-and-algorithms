@@ -36,6 +36,8 @@ Push: Accepts a value type T, creates a new Node of type T, adds it to top of th
 
 Pop: Creates temporary Node and moves head pointer to previous Node, then returns temp Node value to the caller.
 
+Peek: Returns the value of the 'top' Node in the Stack, or null if the Stack is empty.
+
 ### Queue
 
 Constructor:
