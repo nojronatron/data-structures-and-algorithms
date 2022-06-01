@@ -2,7 +2,7 @@ package stack.and.queue;
 
 public class MyStack<T> {
   protected MyNode<T> top;
-  private int count;
+  protected int count;
   private boolean isEmpty;
   public MyStack() {
     this.top = null;
