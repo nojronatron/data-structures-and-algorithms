@@ -23,9 +23,17 @@ At this point you can import the packages 'MyStack' and 'MyQueue' by pointing to
 - Miro (for technical planning documentation)
 - Java "Generics"
 
-## Challenge
+## Challenge Pseudo Queue
+
+Implement a PseudoQueue class that uses two MyStack class objects to implement the Queue API.
+
+See the sibling readme file [PseudoQueueREADME.md](./PseudoQueueREADME.html)
+
+## Challenge Stack And Queue
 
 Implement both a stack and a Queue using lessons learned from creating and using Linked Lists.
+
+The remainder of this readme will focus on Stack-and-Queue challenge documentation.
 
 ## Approach and Efficiency
 
