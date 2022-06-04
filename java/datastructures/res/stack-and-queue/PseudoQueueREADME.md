@@ -78,14 +78,18 @@ public count: The total number of values (Nodes) being held in this PseudoQueue.
 
 ## Tests
 
-[X] Instantiating a new Queue does not throw.
+-[X] Instantiating a new Queue does not throw.
 
-[X] Calling Dequeue() on an empty PseudoQueue returns Null.
+-[X] Calling Dequeue() on an empty PseudoQueue returns Null.
 
-[X] Calling Enqueue() on an empty PseudoQueue increments the PseudoQueue count.
+-[X] Calling Enqueue() on an empty PseudoQueue increments the PseudoQueue count.
 
-[X] Calling Enqueue() multiple times, then calling Dequeue() once, then calling Enqueue() once correctly alters the PseuduQueue count.
+-[X] Calling Enqueue() multiple times, then calling Dequeue() once, then calling Enqueue() once correctly alters the PseuduQueue count.
 
-[X] Calling Enqueue() multiple times, then calling Dequeue() multiple times, then calling Enqueue() once correctly increments PseudoQueue count.
+-[X] Calling Enqueue() multiple times, then calling Dequeue() multiple times, then calling Enqueue() once correctly increments PseudoQueue count.
 
-[X] Calling Enqueue() multiple times to load [1, 2, 3, 4, 5], then calling Dequeue() multiple times returns [1, 2, 3, 4, 5].
+-[X] Calling Enqueue() multiple times to load [1, 2, 3, 4, 5], then calling Dequeue() multiple times returns [1, 2, 3, 4, 5].
+
+## Link to code
+
+Code for this challenge can be found in [this repo](../../datastructures/lib/src/main/java/stack/and/queue/PseudoQueue.java)

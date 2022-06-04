@@ -1,6 +1,6 @@
 # Array Insert and Shift
 
-A Code Challenge assignment.
+A *whiteboard only* Code Challenge assignment.
 
 ## Whiteboard Process
 
@@ -29,3 +29,7 @@ Do not use built-in methods available in Java.
 ## Stretch Goal
 
 Whiteboard a second function that removes an element from the middle index and shifts other elements in the array to fill the new gap.
+
+## Footer
+
+Back to room [Readme.md]

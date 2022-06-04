@@ -1,8 +1,8 @@
+# Trees
 
+Code Challenge: Design and code a Binary Tree and implement Binary Search Tree algorithms.
 
-## Trees
-
-### Trees Challenge Requirements
+## Trees Challenge Requirements
 
 This will be a new implementation.
 
@@ -26,7 +26,7 @@ This will be a new implementation.
 
 -[X] BST Contains: Takes a value, and returns a boolean: True if value is in BST, False otherwise.
 
-#### Structure and Testing
+## Structure and Testing
 
 -[X] All methods should follow single-responsibility principal.
 
@@ -46,7 +46,7 @@ This will be a new implementation.
 
 -[ ] Contains Method verifies it returns True when value exists in a Node, False if not (2 tests).
 
-### Trees Approach & Efficiency
+## Trees Approach & Efficiency
 
 Ideally, a BST will have a Time Complexity of O(log(n)) with a worst of O(n) in an unbalanced Tree, and a Space Complexity of O(n).
 
@@ -55,11 +55,11 @@ Ideally, a BST will have a Time Complexity of O(log(n)) with a worst of O(n) in 
 
 Space Complexity of Search: O(1) because no significant memory is allocated.
 
-#### Design Whiteboard
+### Design Whiteboard
 
 ![Binary Trees Design Whiteboard](trees.jpg)
 
-### Trees API
+###Trees API
 
 - Instantiate a Binary Search Tree Class without a Root: `binarySearchTree bst = new BinarySerachTree()`
 
@@ -71,8 +71,12 @@ Space Complexity of Search: O(1) because no significant memory is allocated.
 
 - Find out if the Binary Tree is empy or not: `bst.getIsEmpty()` returns True if empty, otherwise false.
 
--- -
-
-### ISSUES
+## ISSUES
 
 None at the time this was written.
+
+-- -
+
+## Link to Code
+
+Code can be found [in this repo](../../datastructures/lib/src/main/java/binarySearchTree)

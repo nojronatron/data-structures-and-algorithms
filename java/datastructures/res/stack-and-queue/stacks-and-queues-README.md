@@ -126,3 +126,7 @@ IsEmpty(): Getter/Setter function to A) Return true if the Queue is empty, and B
 [P] Calling dequeue or peek on empty queue raises exception
 
 *Note*: Calling peek() will return *null* instead of an Exception.
+
+## Link to Code
+
+Code files are [in this repo](../../datastructures/lib/src/main/java/stack/and/queue)

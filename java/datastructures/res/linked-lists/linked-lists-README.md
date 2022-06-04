@@ -1,9 +1,6 @@
+# Linked Lists
 
-
-
-## Linked Lists
-
-### Linked Lists Challenge
+## Linked Lists Challenge
 
 Create a Linked List Node Class.
 Create a Linked List Class.
@@ -17,7 +14,7 @@ Update Methods to enable functionality like:
 6. InsertAfter (Node with value)
 7. Return Kth from end Node's value
 
-### LL Requirements
+## LL Requirements
 
 Create a Node Class:
 
@@ -42,11 +39,11 @@ Create Unit Tests:
 - Additional tests as defined in instructions.
 - Additional tests for edge-cases etc per domain diagramming and technical whiteboard planning session.
 
-#### LL ToString Override
+### LL ToString Override
 
 Returns `[a]->[b]->[c]->NULL` where a, b, and c are NODEs.
 
-### LL Approach and Efficiency
+## LL Approach and Efficiency
 
 My approach was to avoid loops whenever possible, however searching required an iterative approach.
 
@@ -68,7 +65,7 @@ ToString => Time: O(1) Space: O(1) => Avoids using immutable String type
 
 GetKthNode... => Time: O(n) Space: O(1) => Single while loop only runs in worse-case scenarios otherwise quickly exits; REFs to existing nodes used and only 1 new Node is instantiated
 
-### LL API
+## LL API
 
 Description of each method publicly available to the Linked List:
 
@@ -88,4 +85,6 @@ Description of each method publicly available to the Linked List:
 
 -- -
 
-Link to [this challenge code files](../datastructures/lib/src/main/)
+## Link to Code Files
+
+Link to [this challenge code files](java/datastructures/lib/src/main/java/datastructures/linkedlist)

@@ -34,3 +34,6 @@ An empty input returns False by default.
 
 Execute a bivvy of tests (see BalancedBracketsTests.java) to ensure the basic functionality requirements are met.
 
+## Link to Code
+
+Code for this challenge is [in this repo](../../datastructures/lib/src/main/java/stack/and/queue/BalancedBrackets.java)
