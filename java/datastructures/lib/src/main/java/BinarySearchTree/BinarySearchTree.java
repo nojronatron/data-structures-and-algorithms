@@ -5,18 +5,19 @@ import java.util.Locale;
 import stack.and.queue.*;
 
 public class BinarySearchTree extends BinaryTree {
+  private boolean hasRootNode;
   protected MyQueue<BinaryNode> storageQueue;
 
   public BinarySearchTree() {
     super();
-    storageQueue = new MyQueue<BinaryNode>() {
-    };
+    storageQueue = new MyQueue<BinaryNode>() {};
+    hasRootNode = this.root != null;
   }
 
   public BinarySearchTree(int rootNodeValue) {
     super(rootNodeValue);
-    storageQueue = new MyQueue<BinaryNode>() {
-    };
+    storageQueue = new MyQueue<BinaryNode>() {};
+    hasRootNode = this.root != null;
   }
 
   // creates a new BinaryNode with received value and inserts it into the tree using Breadth Traversal to find first available edge
@@ -75,6 +76,7 @@ public class BinarySearchTree extends BinaryTree {
   }
 
   // helper method calls the correct recursive function and returns the loaded array of values
+  // yes this breaks YAGNI but it is here anyway
   private boolean orderWrapper(BinaryNode node, String order) throws ExceptionSorryDave {
     this.outputArray = new ArrayList<>();
 
@@ -91,5 +93,9 @@ public class BinarySearchTree extends BinaryTree {
     }
 
     return true;
+  }
+
+  public boolean getHasRootNode() {
+    return hasRootNode;
   }
 }

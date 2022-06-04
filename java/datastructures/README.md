@@ -24,31 +24,31 @@ Develop data structures and algorithms using:
 
 This will be a new implementation.
 
-[ ] Create a Node class that has properties to store a Value, left child Node, and right child Node.
+-[X] Create a Node class that has properties to store a Value, left child Node, and right child Node.
 
-[ ] Create a Binary Tree Class.
+-[X] Create a Binary Tree Class.
 
-[ ] Define a PreOrder depth-first traversal method.
+-[X] Define a PreOrder depth-first traversal method.
 
-[ ] Define an InOrder depth-first traversal method.
+-[X] Define an InOrder depth-first traversal method.
 
-[ ] Define a PostOrder depth-first traversal method.
+-[X] Define a PostOrder depth-first traversal method.
 
-[ ] Exceptions and errors that come from my code should be *Custom Exceptions*, named semantically and capture-able by other calling methods.
+-[X] Exceptions and errors that come from my code should be *Custom Exceptions*, named semantically and capture-able by other calling methods.
 
-[ ] Create a Binary Search Tree class (BST).
+-[X] Create a Binary Search Tree class (BST).
 
-[ ] BST should be sub-class of Binary Tree Class, adding a few of its own methods (next goal).
+-[X] BST should be sub-class of Binary Tree Class, adding a few of its own methods (next goal).
 
-[ ] BST Add method: Takes a value, returns nothing, and adds a new node with that value in the correct location in the BST.
+-[X] BST Add method: Takes a value, returns nothing, and adds a new node with that value in the correct location in the BST.
 
-[ ] BST Contains: Takes a value, and returns a boolean: True if value is in BST, False otherwise.
+-[X] BST Contains: Takes a value, and returns a boolean: True if value is in BST, False otherwise.
 
 #### Structure and Testing
 
-[ ] All methods should follow single-responsibility principal.
+-[X] All methods should follow single-responsibility principal.
 
-[ ] All methods should be reusable, abstract component parts.
+-[X] All methods should be reusable, abstract component parts.
 
 [ ] Can successfully instantiate an empty tree.
 
@@ -73,9 +73,25 @@ Ideally, a BST will have a Time Complexity of O(log(n)) with a worst of O(n) in 
 
 Space Complexity of Search: O(1) because no significant memory is allocated.
 
+#### Design Whiteboard
+
+![Binary Trees Design Whiteboard](./res/trees.jpg)
+
 ### Trees API
 
-TODO: Define how to use this implementation.
+- Instantiate a Binary Search Tree Class without a Root: `BinarySearchTree bst = new BinarySerachTree()`
+
+- Instantiate a BST with a root containing value integer 11: `BinarySearchTree bst = new BinarySerachTree(11)`
+
+- Add a Node with value integer 25 to the Binary Tree: `bst.Add(25)`
+
+- Discover if the Binary Tree contains a value 25: `bst.Contains(25)` returns True if so, otherwise False.
+
+- Find out if the Binary Tree is empy or not: `bst.getIsEmpty()` returns True if empty, otherwise false.
+
+### ISSUES
+
+The Tests do not currently work. I am not sure what broke them but Gradle cannot "find" the tests for '[BinarySearchTree.BinarySerachTreePackageTests]'.
 
 -- -
 
