@@ -1,4 +1,4 @@
-package BinarySearchTree;
+package binarySearchTree;
 
 public class MyNode<T> {
   protected T value;

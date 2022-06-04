@@ -79,9 +79,9 @@ Space Complexity of Search: O(1) because no significant memory is allocated.
 
 ### Trees API
 
-- Instantiate a Binary Search Tree Class without a Root: `BinarySearchTree bst = new BinarySerachTree()`
+- Instantiate a Binary Search Tree Class without a Root: `binarySearchTree bst = new BinarySerachTree()`
 
-- Instantiate a BST with a root containing value integer 11: `BinarySearchTree bst = new BinarySerachTree(11)`
+- Instantiate a BST with a root containing value integer 11: `binarySearchTree bst = new BinarySerachTree(11)`
 
 - Add a Node with value integer 25 to the Binary Tree: `bst.Add(25)`
 
@@ -91,7 +91,7 @@ Space Complexity of Search: O(1) because no significant memory is allocated.
 
 ### ISSUES
 
-The Tests do not currently work. I am not sure what broke them but Gradle cannot "find" the tests for '[BinarySearchTree.BinarySerachTreePackageTests]'.
+The Tests do not currently work. I am not sure what broke them but Gradle cannot "find" the tests for '[binarySearchTree.BinarySerachTreePackageTests]'.
 
 -- -
 
