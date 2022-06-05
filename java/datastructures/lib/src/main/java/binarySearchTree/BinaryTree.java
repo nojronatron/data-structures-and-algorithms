@@ -18,6 +18,7 @@ public class BinaryTree {
 
   // starting from parameter 'node', load the outputArray using inOrder traversal.
   protected void inOrder(BinaryNode node) {
+    // TODO Test this for bugs
     if (node.left != null) {
       this.inOrder(node.left);
     }

@@ -136,6 +136,8 @@ public class BinarySearchTree extends BinaryTree {
       result.append(", ");
     }
 
+    result.append(" ]");
+
     return result.toString();
   }
 
@@ -144,9 +146,12 @@ public class BinarySearchTree extends BinaryTree {
     String result = "";
 
     try {
+      this.outputArray = new ArrayList<>();
+
       if (this.orderWrapper(this.root, traversalType)) {
         result = this.getOutputArrayString();
       }
+
       this.outputArray = new ArrayList<>();
     } catch (ExceptionSorryDave esd) {
       result = "Something went wrong call a developer! " + esd.getMessage();

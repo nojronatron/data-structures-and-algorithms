@@ -22,9 +22,10 @@ public class MyQueue<T> {
       }
 
       if (this.front == this.rear && this.front != null) {
-        // there is one node in the Queue so make front.next point to rear and point rear to new node
-        this.front.next = this.rear;
+        // there is one node in the Queue so make front point to new Node then point new node next to rear
+        // TODO: verify bug squashed
         this.rear = newNode;
+        this.front.next = this.rear;
         return true;
       }
 

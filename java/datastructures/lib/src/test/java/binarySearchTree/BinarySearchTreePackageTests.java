@@ -2,9 +2,6 @@ package binarySearchTree;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -42,7 +39,7 @@ public class BinarySearchTreePackageTests {
 
   @Test
   void testCanReturnCollectionFromInorderTraversal() {
-    int[] expectedResult = new int[]{1, 2, 3, 4, 5, 6, 7};
+    int[] expectedResult = new int[]{ 4, 2, 5, 1, 6, 3, 7 };
     BinarySearchTree sut = new BinarySearchTree();
     sut.add(1);
     sut.add(2);
@@ -56,4 +53,39 @@ public class BinarySearchTreePackageTests {
     System.out.println("Actual in order result: " + actualResult);
     assertEquals(expectedResult,actualResult);
   }
+
+  @Test
+  void testCanReturnCollectionFromPreorderTraversal() {
+    int[] expectedResult = new int[]{ 1, 2, 4, 5, 3, 6, 7 };
+    BinarySearchTree sut = new BinarySearchTree();
+    sut.add(1);
+    sut.add(2);
+    sut.add(3);
+    sut.add(4);
+    sut.add(5);
+    sut.add(6);
+    sut.add(7);
+
+    var actualResult = sut.toString("pre");
+    System.out.println("Actual pre order result: " + actualResult);
+    assertEquals(expectedResult,actualResult);
+  }
+
+  @Test
+  void testCanReturnCollectionFromPostorderTraversal() {
+    int[] expectedResult = new int[]{ 4, 5, 2, 6, 7, 3, 1 };
+    BinarySearchTree sut = new BinarySearchTree();
+    sut.add(1);
+    sut.add(2);
+    sut.add(3);
+    sut.add(4);
+    sut.add(5);
+    sut.add(6);
+    sut.add(7);
+
+    var actualResult = sut.toString("post");
+    System.out.println("Actual post order result: " + actualResult);
+    assertEquals(expectedResult,actualResult);
+  }
+
 }
