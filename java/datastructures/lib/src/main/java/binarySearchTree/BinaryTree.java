@@ -11,9 +11,12 @@ public class BinaryTree {
   public BinaryTree(){}
 
   public BinaryTree(int value) {
+
     root = new BinaryNode(value);
+    this.count++;
   }
 
+  // starting from parameter 'node', load the outputArray using inOrder traversal.
   protected void inOrder(BinaryNode node) {
     if (node.left != null) {
       this.inOrder(node.left);
@@ -26,6 +29,7 @@ public class BinaryTree {
     }
   }
 
+  // starting from parameter 'node', load the outputArray using preOrder traversal.
   protected void preOrder(BinaryNode node) {
     this.outputArray.add(node.value);
 
@@ -37,6 +41,7 @@ public class BinaryTree {
     }
   }
 
+  // starting from parameter 'node', load the outputArray using postOrder traversal.
   protected void postOrder(BinaryNode node) {
     if(node.left != null){
       this.postOrder(node.left);
@@ -46,5 +51,10 @@ public class BinaryTree {
     }
 
     outputArray.add(node.value);
+  }
+
+  // return the cound of Nodes in this tree instance.
+  public int getCount() {
+    return count;
   }
 }
