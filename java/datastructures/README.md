@@ -2,7 +2,7 @@
 
 ## Description
 
-Develop data structures and algorithms using:
+Develop data structures and algorithms planning and coding skills using:
 
 - OOP concepts
 - References
@@ -12,178 +12,38 @@ Develop data structures and algorithms using:
 
 ## List of Projects
 
-[Binary Tree and BST Implementation](#trees)
+Code Challenge Class 15: Binary Tree and BST [Implementation](./res/trees/README-trees.md)
 
-[Linked Lists](#linked-lists)
+Code Challenge Class 14: Mock Interviews (not in this project)
 
--- -
+Code Challenge Class 13: Stack Queue Brackets aka [Balanced Brackets](./res/stack-and-queue/BalancedBracketsREADME.md)
 
-## Trees
+Code Challenge Class 12: [FIFO Animal Shelter (Links to GitHub PR)](https://github.com/mScottEvans/data-structures-and-algorithms/pull/36)
 
-### Trees Challenge Requirements
+Code Challenge Class 11: [Stack Queue Pseudo](./res/stack-and-queue/PseudoQueueREADME.md)
 
-This will be a new implementation.
+Code Challenge Class 10: [Stacks and Queues](./res/stack-and-queue/stacks-and-queues-README.md)
 
--[X] Create a Node class that has properties to store a Value, left child Node, and right child Node.
+Code Challenge Class 09: Mock Interviews (not in this project)
 
--[X] Create a Binary Tree Class.
+Code Challenge Class 08 [Zip Two Linked Lists (Links to GitHub PR)](https://github.com/AbdulahiMohamud/data-structures-and-algorithms/pull/21)
 
--[X] Define a PreOrder depth-first traversal method.
+Code Challenge Class 07 [Linked List Kth](res/linked-lists/linked-lists-README.md)
 
--[X] Define an InOrder depth-first traversal method.
+Code Challenge Class 06 [Linked List Insertions](res/linked-lists/linked-lists-README.md)
 
--[X] Define a PostOrder depth-first traversal method.
+Code Challenge Class 05: [Linked List Implementation](./res/linked-lists/linked-lists-README.md)
 
--[X] Exceptions and errors that come from my code should be *Custom Exceptions*, named semantically and capture-able by other calling methods.
+Code Challenge Class 04: Mock Interviews (not in this project)
 
--[X] Create a Binary Search Tree class (BST).
+Code Challenge Class 03 [Array Binary Search](./res/array-binary-search/readme.md)
 
--[X] BST should be sub-class of Binary Tree Class, adding a few of its own methods (next goal).
+Code Challenge Class 02 [Array Insert Shift](./res/arr-insert-shift/array-insert-shift.md)
 
--[X] BST Add method: Takes a value, returns nothing, and adds a new node with that value in the correct location in the BST.
-
--[X] BST Contains: Takes a value, and returns a boolean: True if value is in BST, False otherwise.
-
-#### Structure and Testing
-
--[X] All methods should follow single-responsibility principal.
-
--[X] All methods should be reusable, abstract component parts.
-
-[ ] Can successfully instantiate an empty tree.
-
-[ ] Can successfully instantiate a tree with a single root node.
-
-[ ] For a Binary Search Tree, can successfully add a left child and right child properly to a node.
-
-[ ] Can successfully return a collection from a preorder traversal.
-
-[ ] Can successfully return a collection from an inorder traversal.
-
-[ ] Can successfully return a collection from a postorder traversal.
-
-[ ] Contains Method verifies it returns True when value exists in a Node, False if not (2 tests).
-
-### Trees Approach & Efficiency
-
-Ideally, a BST will have a Time Complexity of O(log(n)) with a worst of O(n) in an unbalanced Tree, and a Space Complexity of O(n).
-
-- Searching: O(h) where h is the Height of the tree (or log(total_nodes)).
-- Inserting: O(h) because in worst-case scenario, it is the same a searching.
-
-Space Complexity of Search: O(1) because no significant memory is allocated.
-
-#### Design Whiteboard
-
-![Binary Trees Design Whiteboard](./res/trees.jpg)
-
-### Trees API
-
-- Instantiate a Binary Search Tree Class without a Root: `BinarySearchTree bst = new BinarySerachTree()`
-
-- Instantiate a BST with a root containing value integer 11: `BinarySearchTree bst = new BinarySerachTree(11)`
-
-- Add a Node with value integer 25 to the Binary Tree: `bst.Add(25)`
-
-- Discover if the Binary Tree contains a value 25: `bst.Contains(25)` returns True if so, otherwise False.
-
-- Find out if the Binary Tree is empy or not: `bst.getIsEmpty()` returns True if empty, otherwise false.
-
-### ISSUES
-
-The Tests do not currently work. I am not sure what broke them but Gradle cannot "find" the tests for '[BinarySearchTree.BinarySerachTreePackageTests]'.
-
--- -
-
-## Linked Lists
-
-### Linked Lists Challenge
-
-Create a Linked List Node Class.
-Create a Linked List Class.
-Update Methods to enable functionality like:
-
-1. Includes
-2. Inserts
-3. ToString
-4. Append
-5. InsertBefore (Node with value)
-6. InsertAfter (Node with value)
-7. Return Kth from end Node's value
-
-### LL Requirements
-
-Create a Node Class:
-
-- Property for the value stored in the Node.
-- Property pointing to the 'next' node.
-
-Create a Linked List Class:
-
-- Include a HEAD property.
-- Include a custom (default) Constructor should create an empty Linked List when instantiated.
-- Method: INSERT => args 'value', returns void, adds new Node with that value to the 'head' of the list with an O(1) Time performance.
-- Method: INCLUDES => args 'value', returns Boolean, indicates whether the value exists as a Node's value somewhere within the list.
-- Method: TOSTRING => Override, no args, returns String representing all the values in the Linked List.
-- Method: APPEND => args 'new value', adds new node with given value to end of the Linked List.
-- Method: INSERTBEFORE => args 'value, new value', adds new node with given value prior to first Node found with specified value.
-- Method: INSERTAFTER => args 'value, new value', adds new Node with given value immediately following the first Node found with specified value.
-- Method: getKthNodeFromEndValue => args 'index', finds Node that is 'index' from Tail Node and returns that Node's value.
-
-Create Unit Tests:
-
-- At least 1 unit test for all Feature functions => Presumably the 'happy path' test. :)
-- Additional tests as defined in instructions.
-- Additional tests for edge-cases etc per domain diagramming and technical whiteboard planning session.
-
-#### LL ToString Override
-
-Returns `[a]->[b]->[c]->NULL` where a, b, and c are NODEs.
-
-### LL Approach and Efficiency
-
-My approach was to avoid loops whenever possible, however searching required an iterative approach.
-
-Linked List Class:
-
-Constructor => Time: O(1) Space: O(1) => Sets up Properties in single call
-
-Insert => Time: O(1) Space: O(1) => Single new object; Utilized HEAD reference and re-links Nodes without iterating
-
-Includes => Time: O(n) Space: O(1) => No additional methods or object utilized
-
-Append => Time: O(1) Space O(1) => Single new object; No loops just REF to TAIL with REF replacement
-
-InsertBefore => Time: O(n) Space: O(1) => Single while loop, single added object, other REFs are shallow pointers
-
-InsertAfter => Time: O(n) Space: O(1) => Single while loop, single added object, other REFs are shallow pointers
-
-ToString => Time: O(1) Space: O(1) => Avoids using immutable String type
-
-GetKthNode... => Time: O(n) Space: O(1) => Single while loop only runs in worse-case scenarios otherwise quickly exits; REFs to existing nodes used and only 1 new Node is instantiated
-
-### LL API
-
-Description of each method publicly available to the Linked List:
-
-- Constructor: Custom empty constructor sets Head, Tail to null.
-- Insert: Accepts an Integer value, creates a new Node with that value, inserts to head of list, and returns void.
-- Includes: Accepts an Integer value and returns True if at least 1 Node with same value found in LL, otherwise False.
-- Append: Accepts an Integer value, creates a new Node with that value, then appends it to the end of the linked list.
-- InsertBefore: Accepts an Integer value to create a new node and a search Integer value. Inserts New Node ahead of existing Node with same value as Integer arg.
-- InsertAfter: Accepts an Integer value to create a new node and a search Integer value. Inserts New Node behind existing Node with same value as Integer arg.
-- ToString: See ToString Override (above). Returns all node values in Head-to-Tail order.
-
-### LL Design Whiteboards
-
-![Features: insertBefore, insertAfter, and append](res/Append-InsertB4-InsertAfter.jpg)
-
-![Feature: getKthNodeValue](res/linked-list-kth.jpg)
+Code Challenge Class 01 [Array Reversal](./res/array-reverse/README.md)
 
 -- -
 
 ## Footer
-
-Link to [this challenge code files](../datastructures/lib/src/main/)
 
 Return to Data Structures and Algorithms root [Readme.md](../../README.md)
