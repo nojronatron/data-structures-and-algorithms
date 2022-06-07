@@ -12,6 +12,8 @@ Develop data structures and algorithms planning and coding skills using:
 
 ## List of Projects
 
+Code Challenge Class 16: Binary Tree Find Max Integer [Implementation](./res/trees/treemax-readme.md)
+
 Code Challenge Class 15: Binary Tree and BST [Implementation](./res/trees/README-trees.md)
 
 Code Challenge Class 14: Mock Interviews (not in this project)
