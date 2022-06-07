@@ -10,9 +10,9 @@ Find the max value within a Tree using BST algorithms.
 
 ## Requirements
 
-- [ ] Write Unit Tests
+- [X] Write Unit Tests
 - [X] Follow well-formatted README template
-- [ ] Follow the special assignment submission instructions
+- [X] Follow the special assignment submission instructions
 
 ## Whiteboard Process
 
