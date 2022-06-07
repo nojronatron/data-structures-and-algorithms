@@ -105,10 +105,16 @@ public class BinarySearchTree extends BinaryTree {
     try {
       // code generation suggested this enhanced switch, replacing the much taller switch I had built
       switch (traversalType.toLowerCase(Locale.ROOT)) {
-        case "pre", "preorder" -> this.preOrder(node);
-        case "in", "inorder" -> this.inOrder(node);
-        case "post", "postorder" -> this.postOrder(node);
-        default -> throw new ExceptionSorryDave(
+        case "pre": this.preOrder(node);
+        case "preorder": this.preOrder(node);
+        break;
+        case "in": this.inOrder(node);
+        case "inorder": this.inOrder(node);
+        break;
+        case "post": this.postOrder(node);
+        case "postorder": this.postOrder(node);
+        break;
+        default: throw new ExceptionSorryDave(
           "An invalid traversal order was chosen. Enter \"PRE\", \"IN\", or \"POST\"");
       }
 
