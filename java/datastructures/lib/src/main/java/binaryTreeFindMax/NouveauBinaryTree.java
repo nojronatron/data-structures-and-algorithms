@@ -1,8 +1,6 @@
-package BinaryTreeFindMax;
+package binaryTreeFindMax;
 
 import stack.and.queue.MyQueue;
-
-import java.util.Queue;
 
 public class NouveauBinaryTree<T> {
   private NouveauBinaryNode<Integer> root;
@@ -38,7 +36,10 @@ public class NouveauBinaryTree<T> {
       }
     }
 
-    return return maxValue;
+    return maxValue;
   }
 
+  public Boolean isEmpty() {
+    return root == null;
+  }
 }

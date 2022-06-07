@@ -1,4 +1,4 @@
-package BinaryTreeFindMax;
+package binaryTreeFindMax;
 
 public class NouveauBinaryNode<T> {
   private T value;
