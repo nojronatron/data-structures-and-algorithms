@@ -83,6 +83,37 @@ public class NouveauBinaryTree<T> {
     return maxValue;
   }
 
+  // method accepts a binary tree and returns an array of values in order they were encountered
+  public ArrayList<Integer> getBreadthFirst(NouveauBinaryNode<Integer> rootNode) {
+    if (rootNode == null || rootNode.getValue() == null) {
+      return null;
+    }
+
+    this.breadthQueue = new MyQueue<>();
+    var trackingArray = new ArrayList<Integer>();
+    this.breadthQueue.enqueue(rootNode);
+
+    try {
+      while (!this.breadthQueue.isEmpty()) {
+        var tempNode = this.breadthQueue.dequeue();
+        trackingArray.add(tempNode.getValue());
+
+        if (tempNode.getLeft() != null) {
+          this.breadthQueue.enqueue(tempNode.getLeft());
+        }
+
+        if (tempNode.getRight() != null) {
+          this.breadthQueue.enqueue(tempNode.getRight());
+        }
+      }
+    } catch (Exception ex) {
+      return null;
+    }
+
+    return trackingArray;
+  }
+
+  // returns true if root node is empty which (equivalent to an empty tree), false if occupied
   public Boolean isEmpty() {
     return root == null;
   }
