@@ -20,21 +20,21 @@ public class BinaryTreeFindMaxPackageTests {
     11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11));
 
   @Test
-  void testCanInstantiateAnEmptyTree() {
+  void testFindMaxCanInstantiateAnEmptyTree() {
     NouveauBinaryTree sut = new NouveauBinaryTree();
     assertTrue(sut.isEmpty());
     assertTrue(sut != null);
   }
 
   @Test
-  void testCanSuccessfullyInstantiateTreeWithSingleRootNode() {
+  void testFindMaxCanSuccessfullyInstantiateTreeWithSingleRootNode() {
     NouveauBinaryNode<Integer> rootNode = new NouveauBinaryNode<>(11);
     NouveauBinaryTree sut = new NouveauBinaryTree(rootNode);
     assertEquals(false, sut.isEmpty());
   }
 
   @Test
-  void testHappyPath() {
+  void testFindMaxHappyPath() {
     // test should find the maxvalue in a tree (see sample input in Code Challenge assignment)
     int expectedResult = 11; // maxval in bulkLoadValues15 is 11
     NouveauBinaryTree<NouveauBinaryNode<Integer>> sut = new NouveauBinaryTree<>();
@@ -47,14 +47,14 @@ public class BinaryTreeFindMaxPackageTests {
   }
 
   @Test
-  void testAnExpectedFailure() {
+  void testFindMaxAnExpectedFailure() {
     // an empty tree should not find a max value
     NouveauBinaryTree<Integer> sut = new NouveauBinaryTree<>();
     assertNull(sut.findMax());
   }
 
   @Test
-  void testEdgeCaseOne() {
+  void testFindMaxEdgeCaseOne() {
     // long list of the same numbers returns an individual integer that is max
     int expectedResult = 11; // maxval in bulkLoadValuesBig11 is 11
     NouveauBinaryTree<NouveauBinaryNode<Integer>> sut = new NouveauBinaryTree<>();
@@ -65,5 +65,25 @@ public class BinaryTreeFindMaxPackageTests {
 
     assertEquals(expectedResult, actualResult, "max val in bulkloadvalues15 should be 11.");
 
+  }
+
+  @Test
+  void testBreadthFirstHappyPath() {
+  }
+
+  @Test
+  void testBreadthFirstExpectedFailure() {
+  }
+
+  @Test
+  void testBreadthFirstEdgeCase() {
+  }
+
+  @Test
+  void testBreadthFirstAnotherCase() {
+  }
+
+  @Test
+  void testBreadthFirstYetAnotherCase() {
   }
 }
