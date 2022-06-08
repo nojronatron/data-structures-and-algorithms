@@ -1,6 +1,7 @@
 package binaryTreeFindMax;
 
 import stack.and.queue.MyQueue;
+import java.util.ArrayList;
 
 public class NouveauBinaryTree<T> {
   private NouveauBinaryNode<Integer> root;
@@ -12,27 +13,70 @@ public class NouveauBinaryTree<T> {
     this.root = root;
   }
 
+  // method takes an arraylist<integer> of values and inserts them into this tree sorted by value top->bottom, left child to right child at each node
+  public Boolean bulkLoadTree(ArrayList<Integer> bulkValues) {
+    // TODO: TEST this method to bulk-load values into the tree using depth traversal preorder
+    // method loads this tree with nodes based on integer values
+    this.breadthQueue = new MyQueue<>();
+    int idx = 0;
+
+    if (this.isEmpty()) {
+      this.root = new NouveauBinaryNode<Integer>(bulkValues.get(0));
+      idx++;
+    }
+
+    this.breadthQueue.enqueue(root);
+    NouveauBinaryNode<Integer> tempNode = null;
+
+    try {
+      while (!this.breadthQueue.isEmpty()) {
+        tempNode = this.breadthQueue.dequeue();
+        NouveauBinaryNode<Integer> newNode = null;
+
+        if (tempNode.getLeft() == null &&
+          idx < bulkValues.size()) {
+          tempNode.setLeft(new NouveauBinaryNode<>(bulkValues.get(idx)));
+          idx++;
+          this.breadthQueue.enqueue(tempNode.getLeft());
+        }
+
+        if (tempNode.getRight() == null &&
+          idx < bulkValues.size()) {
+          tempNode.setRight(new NouveauBinaryNode<>(bulkValues.get(idx)));
+          idx++;
+          this.breadthQueue.enqueue(tempNode.getRight());
+        }
+      }
+
+    } catch (Exception ex) {
+      System.out.println("Exception thrown while breadth-inserting: " + ex.getMessage());
+      return false;
+    }
+
+    return true;
+  }
+
   public Integer findMax(){
     // use breadth traversal to find the largest integer
     if (root == null) {
       return null;
     }
 
-    breadthQueue = new MyQueue<>();
+    this.breadthQueue = new MyQueue<>();
     NouveauBinaryNode<Integer> tempNode = null;
     int maxValue = Integer.MIN_VALUE;
-    breadthQueue.enqueue(root);
+    this.breadthQueue.enqueue(root);
 
-    while (breadthQueue.isEmpty() != true) {
-      tempNode = breadthQueue.dequeue();
+    while (!this.breadthQueue.isEmpty()) {
+      tempNode = this.breadthQueue.dequeue();
       maxValue = tempNode.getValue() > maxValue ? tempNode.getValue() : maxValue;
 
       if (tempNode.getLeft() != null) {
-        breadthQueue.enqueue(tempNode.getLeft());
+        this.breadthQueue.enqueue(tempNode.getLeft());
       }
 
       if (tempNode.getRight() != null) {
-        breadthQueue.enqueue(tempNode.getRight());
+        this.breadthQueue.enqueue(tempNode.getRight());
       }
     }
 

@@ -10,9 +10,9 @@ Find the max value within a Tree using BST algorithms.
 
 ## Requirements
 
-- [ ] Write Unit Tests
+- [X] Write Unit Tests
 - [X] Follow well-formatted README template
-- [ ] Follow the special assignment submission instructions
+- [X] Follow the special assignment submission instructions
 
 ## Whiteboard Process
 
@@ -43,7 +43,7 @@ If the Binary Tree is sorted, it would not be necessary to visit every single no
 1. Clone the repo to your local.
 2. Install Gradle v.4 or grater.
 3. Execute `./gradlew test`.
-4. Open your IDE and traverse to the test files located in `lib/src/test/java/BinarySearchTreeFindMax` and run the tests.
+4. Open your IDE and traverse to the test files located in [BinarySearchTreeFindMax code](lib/src/test/java/BinarySearchTreeFindMax) and run the tests.
 
 ### Examples of code in action
 

@@ -23,15 +23,27 @@ public class NouveauBinaryNode<T> {
     return left;
   }
 
-  public void setLeft(NouveauBinaryNode<T> left) {
-    this.left = left;
+  public Boolean setLeft(NouveauBinaryNode<T> leftChild) {
+    try {
+      this.left = leftChild;
+    } catch (Exception ex) {
+      return false;
+    }
+
+    return true;
   }
 
   public NouveauBinaryNode<T> getRight() {
     return right;
   }
 
-  public void setRight(NouveauBinaryNode<T> right) {
-    this.right = right;
+  public Boolean setRight(NouveauBinaryNode<T> rightChild) {
+    try {
+      this.right = rightChild;
+    } catch (Exception ex) {
+      return false;
+    }
+
+    return true;
   }
 }
