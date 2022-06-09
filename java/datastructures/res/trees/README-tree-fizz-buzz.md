@@ -14,13 +14,16 @@ Write a function called fizz buzz tree that accepts a k-ary tree and returns a n
 
 ## Feature Tasks
 
+*Note* This revision of the solution is broken. I failed to account for changing the Type from Integer (assumed)
+to String. I will have to revisit the whiteboard, update it, then TDD and resubmit at a later date.
+
 - [X] Top-level README “Table of Contents” is updated
-- [ ] README for this challenge is complete
+- [X] README for this challenge is complete
 - [ ] Summary, Description, Approach & Efficiency, Solution
 - [X] Picture of whiteboard
 - [X] Link to code
 - [ ] Feature tasks for this challenge are completed
-- [ ] Unit tests written and passing
+- [X] Unit tests written and passing
 - [ ] “Happy Path” - Expected outcome
 - [ ] Expected failure
 - [ ] Edge Case (if applicable/obvious)
@@ -31,14 +34,25 @@ Write a function called fizz buzz tree that accepts a k-ary tree and returns a n
 
 ## Approach & Efficiency
 
+Initial approach was to:
+
+- Use BFS traversal through the nodes and at each *dequeue* check for fizz/buzz/fizzbuzz.
+- If fizz or buzz or fizzbuzz detected, simply replace the Value in the generic node.
+
 ## Solution
+
+*Note*: It will not possible to simply remove the *value*, I will have to refactor to create a *new node* of the
+correct T (String in these cases) and re-wire the parent and children nodes. The whiteboard design shows some
+of the logic (a helper function) but that has not been implemented in code.
 
 ## Code
 
-The implementation can be found in [java/datastructures/lib/src/main/java/karyTree/FizzBuzzTree.java](java/datastructures/lib/src/main/java/binaryTree/FizzBuzzTree.java)
+The implementation ~~can~~ will be found in directory [java/datastructures/lib/src/main/java/karyTree](java/datastructures/lib/src/main/java/karyTree)
 
 ## Unit Tests
 
 - [ ] Happy Path
 - [ ] Edge Case(s)
 - [ ] Failure Case(s)
+
+You can find the tests in this Java class file [java/datastructures/lib/src/test/java/karyTree/karyTreePackageTests.java](java/datastructures/lib/src/test/java/karyTree/karyTreePackageTests.java)
