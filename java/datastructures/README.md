@@ -12,6 +12,8 @@ Develop data structures and algorithms planning and coding skills using:
 
 ## List of Projects
 
+Code Challenge Class 18: Tree [Fizz-Buzz](./res/trees/README-tree-fizz-buzz.md)
+
 Code Challenge Class 17: Binary Tree Breadth First [Implementation](./res/trees/tree-breadth-first.md)
 
 Code Challenge Class 16: Binary Tree Find Max Integer [Implementation](./res/trees/treemax-readme.md)
