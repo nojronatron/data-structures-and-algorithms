@@ -17,8 +17,8 @@ Write a function called fizz buzz tree that accepts a k-ary tree and returns a n
 - [X] Top-level README “Table of Contents” is updated
 - [ ] README for this challenge is complete
 - [ ] Summary, Description, Approach & Efficiency, Solution
-- [ ] Picture of whiteboard
-- [ ] Link to code
+- [X] Picture of whiteboard
+- [X] Link to code
 - [ ] Feature tasks for this challenge are completed
 - [ ] Unit tests written and passing
 - [ ] “Happy Path” - Expected outcome
@@ -27,7 +27,7 @@ Write a function called fizz buzz tree that accepts a k-ary tree and returns a n
 
 ## Whiteboard Process
 
-[tree-fizz-buzz](./tree-fizz-buzz.jpg)
+![tree-fizz-buzz Whiteboard](tree-fizz-buzz.jpg)
 
 ## Approach & Efficiency
 
@@ -35,7 +35,7 @@ Write a function called fizz buzz tree that accepts a k-ary tree and returns a n
 
 ## Code
 
-The implementation can be found in [java/datastructures/lib/src/main/java/binaryTree/FizzBuzzTree.java](java/datastructures/lib/src/main/java/binaryTree/FizzBuzzTree.java)
+The implementation can be found in [java/datastructures/lib/src/main/java/karyTree/FizzBuzzTree.java](java/datastructures/lib/src/main/java/binaryTree/FizzBuzzTree.java)
 
 ## Unit Tests
 

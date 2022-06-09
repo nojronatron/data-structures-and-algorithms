@@ -1,4 +1,4 @@
-package binaryTree;
+package karyTree;
 
 public class FizzBuzzTree {
 }
