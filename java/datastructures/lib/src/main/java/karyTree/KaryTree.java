@@ -45,8 +45,8 @@ public class KaryTree<T> {
     KaryNode<String> resultNode = new KaryNode<>();
     resultNode.setValue(processFizzBuzz(inputNode.getValue()));
 
-    ArrayList<KaryNode<String>> kids = inputNode.getChildren();
-    boolean fizzBuzzResult = resultNode.setChildren();
+    ArrayList<KaryNode<String>> kids = null; //inputNode.getChildren();
+    boolean fizzBuzzResult = resultNode.setChildren(kids);
 
     return resultNode;
   }
