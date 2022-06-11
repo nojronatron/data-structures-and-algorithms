@@ -1,6 +1,5 @@
 package karyTree;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -51,8 +50,11 @@ public class karyTreePackageTests {
 
     KaryTree<KaryNode<Integer>> sut = new KaryTree<>(rootNode);
 
-    KaryTree<String> actualResult = null;
-//    actualResult = sut.FizzBuzz(sut);
+    KaryNode<String> actualResult = null;
+    actualResult = sut.FizzBuzz(sut);
+
+    assertNotNull(actualResult.getChildren());
+    assertEquals(2, actualResult.getChildren().size());
   }
 
   @Test

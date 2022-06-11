@@ -1,5 +1,7 @@
 package karyTree;
 
+import java.util.ArrayList;
+
 public class KaryTree<T> {
   protected T root;
 
@@ -34,7 +36,7 @@ public class KaryTree<T> {
   }
 
   private KaryNode<String> FizzBuzzRecursion(KaryNode<Integer> inputNode) {
-    if (inputNode.getChildren().size() > 0)
+    if (inputNode.getChildren() != null) // do better to avoid NullPointerException
       for(KaryNode<Integer> childNode: inputNode.getChildren()) {
         FizzBuzzRecursion(childNode);
     }
@@ -42,6 +44,9 @@ public class KaryTree<T> {
     //  process fizzybuzzy node values
     KaryNode<String> resultNode = new KaryNode<>();
     resultNode.setValue(processFizzBuzz(inputNode.getValue()));
+
+    ArrayList<KaryNode<String>> kids = inputNode.getChildren();
+    boolean fizzBuzzResult = resultNode.setChildren();
 
     return resultNode;
   }

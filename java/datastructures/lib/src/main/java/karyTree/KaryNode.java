@@ -24,7 +24,14 @@ public class KaryNode<T> {
     return children;
   }
 
-  public void setChildren(ArrayList<KaryNode<T>> children) {
-    this.children = children;
+  public Boolean setChildren(ArrayList<KaryNode<T>> children) {
+    try {
+      this.children = children;
+    } catch (Exception ex) {
+      System.out.println("Unable to add collection of child nodes to this node: " + ex.getMessage());
+      return false;
+    }
+
+    return true;
   }
 }
