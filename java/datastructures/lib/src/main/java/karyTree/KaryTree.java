@@ -1,23 +1,19 @@
 package karyTree;
 
-import stack.and.queue.MyQueue;
-
 public class KaryTree<T> {
-  protected karyNode<T> root;
-  protected MyQueue<karyNode<T>> karyQueue;
-  private boolean isEmpty;
+  protected T root;
 
   public KaryTree() {}
 
-  public KaryTree(karyNode<T> root) {
-    this.root = root;
+  public KaryTree(T rootNode) {
+    this.root = rootNode;
   }
 
-  public karyNode<T> getRoot() {
+  public T getRoot() {
     return root;
   }
 
-  public void setRoot(karyNode<T> root) {
+  public void setRoot(T root) {
     this.root = root;
   }
 
@@ -25,4 +21,43 @@ public class KaryTree<T> {
     return root == null;
   }
 
+  public KaryNode<String> FizzBuzz(KaryTree<KaryNode<Integer>> karyTree) {
+    if (karyTree.getRoot() == null || karyTree.getRoot().getValue() == null) {
+      return null;
+    }
+
+    KaryNode<Integer> rootNodeParam = karyTree.getRoot();
+    KaryNode<String> resultRootNode = null;
+
+    resultRootNode = FizzBuzzRecursion(rootNodeParam);
+    return resultRootNode;
+  }
+
+  private KaryNode<String> FizzBuzzRecursion(KaryNode<Integer> inputNode) {
+    if (inputNode.getChildren().size() > 0)
+      for(KaryNode<Integer> childNode: inputNode.getChildren()) {
+        FizzBuzzRecursion(childNode);
+    }
+
+    //  process fizzybuzzy node values
+    KaryNode<String> resultNode = new KaryNode<>();
+    resultNode.setValue(processFizzBuzz(inputNode.getValue()));
+
+    return resultNode;
+  }
+
+  private String processFizzBuzz(Integer nodeValue) {
+
+    if (nodeValue % 3 == 0 && nodeValue % 5 == 0) {
+      return "FizzBuzz";
+    }
+    if (nodeValue % 3 == 0) {
+      return "Fizz";
+    }
+    if (nodeValue % 5 == 0) {
+      return "Buzz";
+    }
+
+    return nodeValue.toString();
+  }
 }
