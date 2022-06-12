@@ -14,9 +14,6 @@ Write a function called fizz buzz tree that accepts a k-ary tree and returns a n
 
 ## Feature Tasks
 
-*Note* This revision of the solution is broken. I failed to account for changing the Type from Integer (assumed)
-to String. I will have to revisit the whiteboard, update it, then TDD and resubmit at a later date.
-
 - [X] Top-level README “Table of Contents” is updated
 - [X] README for this challenge is complete
 - [X] Summary, Description, Approach & Efficiency, Solution
