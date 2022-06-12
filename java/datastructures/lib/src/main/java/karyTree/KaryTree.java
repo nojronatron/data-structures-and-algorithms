@@ -1,52 +1,39 @@
 package karyTree;
 
-import java.util.ArrayList;
-
 public class KaryTree<T> {
-  protected T root;
+  protected KaryNode<T> root;
 
-  public KaryTree() {}
+  public KaryTree() {
+  }
 
-  public KaryTree(T rootNode) {
+  public KaryTree(KaryNode<T> rootNode) {
     this.root = rootNode;
   }
 
-  public T getRoot() {
-    return root;
-  }
-
-  public void setRoot(T root) {
-    this.root = root;
-  }
-
-  public boolean isEmpty() {
-    return root == null;
-  }
-
-  public KaryNode<String> FizzBuzz(KaryTree<KaryNode<Integer>> karyTree) {
-    if (karyTree.getRoot() == null || karyTree.getRoot().getValue() == null) {
+  public KaryNode<String> fizzBuzzConverter(KaryNode<Integer> inputNode) {
+    if (inputNode == null || inputNode.getValue() == null) {
       return null;
     }
 
-    KaryNode<Integer> rootNodeParam = karyTree.getRoot();
-    KaryNode<String> resultRootNode = null;
-
-    resultRootNode = FizzBuzzRecursion(rootNodeParam);
+    KaryNode<String> resultRootNode = nodeRecursionTraversal(inputNode);
     return resultRootNode;
   }
 
-  private KaryNode<String> FizzBuzzRecursion(KaryNode<Integer> inputNode) {
-    if (inputNode.getChildren() != null) // do better to avoid NullPointerException
-      for(KaryNode<Integer> childNode: inputNode.getChildren()) {
-        FizzBuzzRecursion(childNode);
-    }
-
-    //  process fizzybuzzy node values
+  private KaryNode<String> nodeRecursionTraversal(KaryNode<Integer> inputNode) {
+    // try postorder traversal, so that nodes can be converted and added from the bottom up
     KaryNode<String> resultNode = new KaryNode<>();
-    resultNode.setValue(processFizzBuzz(inputNode.getValue()));
 
-    ArrayList<KaryNode<String>> kids = null; //inputNode.getChildren();
-    boolean fizzBuzzResult = resultNode.setChildren(kids);
+    // check for empty children if so get its fizzbuzz value and assign it to resultNode value
+    if (!inputNode.hasChildren()) {
+      resultNode.value = processFizzBuzz(inputNode.value);
+    } else {
+      // otherwise cycle through children and get their fizzbuzz string value, assign to resultNode value
+      for(KaryNode<Integer> child: inputNode.getChildren()) {
+        resultNode.addChild(nodeRecursionTraversal(child));
+      }
+      // store the fizzbuzz string value into result node
+      resultNode.setValue(processFizzBuzz(inputNode.value));
+    }
 
     return resultNode;
   }

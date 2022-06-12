@@ -1,7 +1,6 @@
 package karyTree;
 
 import org.apache.commons.math3.exception.OutOfRangeException;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
@@ -10,26 +9,26 @@ public class KaryNode<T> {
   protected T value;
 
   // the max expected children this Node will ever have
-  protected int kChildren;
+  protected int kMaxChildren;
 
   // the collection that holds child Nodes
   protected ArrayList<KaryNode<T>> children;
 
   public KaryNode() {
-    kChildren = 2;
-    children = new ArrayList<KaryNode<T>>(2);
+    kMaxChildren = 2;
+    children = new ArrayList<>(2);
   }
 
   public KaryNode(T value) {
     this.value = value;
-    this.kChildren = 2;
-    children = new ArrayList<KaryNode<T>>(2);
+    this.kMaxChildren = 2;
+    children = new ArrayList<>(2);
   }
 
   public KaryNode(T value, int maxChildren){
     this.value = value;
-    this.kChildren = Math.abs(maxChildren); // ensure unsigned integer is added to avoid throwing
-    children = new ArrayList<KaryNode<T>>(maxChildren);
+    this.kMaxChildren = Math.abs(maxChildren); // ensure unsigned integer is added to avoid throwing
+    children = new ArrayList<>(maxChildren);
   }
 
   public T getValue() {
@@ -48,6 +47,18 @@ public class KaryNode<T> {
     return this.children != null && this.children.size() > 0;
   }
 
+  public Integer countChildren(){
+    int count = 0;
+
+    for(KaryNode<T> child: this.getChildren()) {
+      if (child != null) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+
   public ArrayList<KaryNode<T>> getChildren() {
     if (this.children == null || this.children.size() < 1) {
       return null;
@@ -59,10 +70,10 @@ public class KaryNode<T> {
   // sets a collection of children as the only set of child nodes to this Node
   public Boolean setChildren(ArrayList<KaryNode<T>> children) {
     try {
-      if (children != null && children.size() <= this.kChildren) {
+      if (children != null && children.size() <= this.kMaxChildren) {
         this.children = children;
       } else {
-        System.out.println("Unable to add collection of child nodes. Max child nodes is " + this.kChildren);
+        System.out.println("Unable to add collection of child nodes. Max child nodes is " + this.kMaxChildren);
       }
     } catch (Exception ex) {
       System.out.println("Unable to add collection of child nodes to this node: " + ex.getMessage());
@@ -72,14 +83,14 @@ public class KaryNode<T> {
     return true;
   }
 
-  // adds a single Node to this Node if its child array is not already full
-  public Boolean addNode(KaryNode<T> childNode) {
+  // adds a single Node to this Nodes child array if its child array is not already full
+  public Boolean addChild(KaryNode<T> childNode) {
     try {
-      if (childNode != null && this.children.size() <= kChildren) {
+      if (childNode != null && this.children.size() <= kMaxChildren) {
         return this.children.add(childNode);
       }
     } catch (OutOfRangeException oore) {
-      System.out.println("Child node cannot be added here (k=" + kChildren + ". " + oore.getMessage());
+      System.out.println("Child node cannot be added here (k=" + kMaxChildren + ". " + oore.getMessage());
     }
 
     return false;

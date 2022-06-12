@@ -2,8 +2,6 @@ package karyTree;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class karyTreePackageTests {
@@ -23,7 +21,7 @@ public class karyTreePackageTests {
   @Test
   void testCanAddNodeAsChild(){
     KaryNode<String> sut = new KaryNode<>("thingy");
-    sut.addNode(new KaryNode<String>("childThingy"));
+    sut.addChild(new KaryNode<String>("childThingy"));
     assertTrue(sut.hasChildren());
   }
 
@@ -40,71 +38,79 @@ public class karyTreePackageTests {
   @Test
   void testEmptyInputReturnsNullOutput() {
     KaryNode<Integer> rootNode = new KaryNode<>();
-    KaryTree<KaryNode<Integer>> sut = new KaryTree<>(rootNode);
-
-    KaryNode<String> actualResult = sut.FizzBuzz(sut);
-
+    KaryTree<KaryNode<Integer>> sut = new KaryTree<>();
+    KaryNode<String> actualResult = sut.fizzBuzzConverter(rootNode);
     assertNull(actualResult, "FizzBuzz method returns null if given an empty node.");
   }
 
   @Test
   void testTreeWithNoFizzyBuzzyNumbersReturnsTreeWithoutThrowing() {
-    KaryNode<Integer> rootNode = new KaryNode<>(25);
-    rootNode.addNode(new KaryNode<Integer>(17, 3));
-    rootNode.children.get(0).addNode(new KaryNode<Integer>(15));
-    rootNode.children.get(0).addNode(new KaryNode<Integer>(18));
-    rootNode.children.get(0).addNode(new KaryNode<Integer>(20));
-    rootNode.children.get(0).children.get(0).addNode(new KaryNode<Integer>(21)); // this might be failing
-    rootNode.children.add(new KaryNode<Integer>(28));
-    rootNode.children.get(1).addNode(new KaryNode<>(26));
-    rootNode.children.get(1).addNode(new KaryNode<>(27));
+    KaryNode<Integer> rootNode = new KaryNode<>(1,3);
+    rootNode.addChild(new KaryNode<>(2,3));
+    rootNode.addChild(new KaryNode<>(4,3));
+    rootNode.addChild(new KaryNode<>(7,3));
 
-    System.out.println(rootNode.getValue().toString());
-
-//    ArrayList<KaryNode<Integer>> childrenAtLevel3 = new ArrayList<>();
-//    childrenAtLevel3.add(new KaryNode<>(21));
-//
-//    ArrayList<KaryNode<Integer>> childrenAtLevel2Alpha = new ArrayList<>();
-//    childrenAtLevel2Alpha.add(new KaryNode<>(15));
-//    childrenAtLevel2Alpha.add(new KaryNode<>(18));
-//    childrenAtLevel2Alpha.add(new KaryNode<>(20));
-//
-//    ArrayList<KaryNode<Integer>> childrenAtLevel2Bravo = new ArrayList<>();
-//    childrenAtLevel2Bravo.add(new KaryNode<>(26));
-//    childrenAtLevel2Bravo.add(new KaryNode<>(27));
-//
-//    ArrayList<KaryNode<Integer>> childrenAtLevel1 = new ArrayList<>();
-//    childrenAtLevel1.add(new KaryNode<>(17));
-//    childrenAtLevel1.add(new KaryNode<>(28));
-//
-//    childrenAtLevel2Alpha.get(2).setChildren(childrenAtLevel3);
-//    childrenAtLevel1.get(0).setChildren(childrenAtLevel2Alpha);
-//    childrenAtLevel1.get(1).setChildren(childrenAtLevel2Bravo);
-//    rootNode.setChildren(childrenAtLevel1);
-//
-//    KaryTree<KaryNode<Integer>> sut = new KaryTree<>(rootNode);
-//
-//    KaryNode<String> actualResult = null;
-//    actualResult = sut.FizzBuzz(sut);
-//
-//    assertNotNull(actualResult.getChildren());
-//    assertEquals(2, actualResult.getChildren().size());
+    KaryTree<String> sut = new KaryTree<>();
+    assertDoesNotThrow(()-> {
+      sut.fizzBuzzConverter(rootNode);
+    });
   }
 
   @Test
-  void testTreeWithOnlyFizzyBuzzyNumbersReturnsCorrectSolutionWithoutThrowing() {
+  void testTreeWithFizzyBuzzyNumbersReturnsCorrectSolutionWithoutThrowing() {
+    KaryNode<Integer> rootNode = new KaryNode<>(25);
+    rootNode.addChild(new KaryNode<>(17, 3));
+    rootNode.children.get(0).addChild(new KaryNode<Integer>(15));
+    rootNode.children.get(0).addChild(new KaryNode<Integer>(18));
+    rootNode.children.get(0).addChild(new KaryNode<Integer>(20, 1));
+
+    rootNode.children.get(0).children.get(2).addChild(new KaryNode<Integer>(21)); // this might be failing
+
+    rootNode.children.add(new KaryNode<Integer>(28));
+    rootNode.children.get(1).addChild(new KaryNode<>(26));
+    rootNode.children.get(1).addChild(new KaryNode<>(27));
+
+    KaryTree<String> sut = new KaryTree<>();
+
+    assertDoesNotThrow(()-> {
+      sut.fizzBuzzConverter(rootNode);
+    });
   }
 
   @Test
   void testSingleFizzNumberNodeReturnsFizz() {
+    KaryNode<Integer> rootNode = new KaryNode<>(3);
+    KaryTree<String> sut = new KaryTree<>();
+
+    String expectedValue = "Fizz";
+
+    KaryNode<String> resultNode = sut.fizzBuzzConverter(rootNode);
+
+    assertEquals(expectedValue, resultNode.getValue());
   }
 
   @Test
   void testSingleBuzzNumberRootNodeReturnsBuzz() {
+    KaryNode<Integer> rootNode = new KaryNode<>(5);
+    KaryTree<String> sut = new KaryTree<>();
+
+    String expectedValue = "Buzz";
+
+    KaryNode<String> resultNode = sut.fizzBuzzConverter(rootNode);
+
+    assertEquals(expectedValue, resultNode.getValue());
   }
 
   @Test
   void testSingleFizBuzzNumberRootNodeReturnsFizzBuzz() {
+    KaryNode<Integer> rootNode = new KaryNode<>(15);
+    KaryTree<String> sut = new KaryTree<>();
+
+    String expectedValue = "FizzBuzz";
+
+    KaryNode<String> resultNode = sut.fizzBuzzConverter(rootNode);
+
+    assertEquals(expectedValue, resultNode.getValue());
   }
 
   @Test
