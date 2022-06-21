@@ -1,5 +1,6 @@
 package myHashTable;
 
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class myHashTablePackageTests {
   private static void instantiateSampleData() {
     sampleDataList = new ArrayList<>();
     sampleDataList.add(new NeighborhoodZipCode("Renton", 98055));
-    sampleDataList.add(new NeighborhoodZipCode("Capital Hill", 98102));
+    sampleDataList.add(new NeighborhoodZipCode("Capitol Hill", 98102));
     sampleDataList.add(new NeighborhoodZipCode("Greenwood", 98103));
     sampleDataList.add(new NeighborhoodZipCode("Greenlake", 98103));
     sampleDataList.add(new NeighborhoodZipCode("Pioneer Square", 98104));
@@ -45,14 +46,14 @@ public class myHashTablePackageTests {
 
   @Test
   void testMyhashtableCanBeInstantiated() {
-    MyHashtable sut = new MyHashtable();
+    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable();
     assertNotNull(sut);
   }
 
   @Test
   void testSettingKeyValueToHashtableResultsInValueBeingInTheDataStructure() {
     NeighborhoodZipCode expectedData = new NeighborhoodZipCode("Madison Park", 98112);
-    MyHashtable sut = new MyHashtable();
+    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable();
 
     sut.set(expectedData.neighborhood(), expectedData.zipCode());
     String actualData = sut.get("Madison park");
@@ -63,19 +64,58 @@ public class myHashTablePackageTests {
   @Test
   void testRetrieveBasedOnKeyReturnsValueStored() {
     NeighborhoodZipCode expectedData = new NeighborhoodZipCode("Madison Park", 98112);
+
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
 
     sut.set(expectedData.neighborhood(), expectedData.zipCode());
   }
 
   @Test
-  void testRetursNullForKeyThatDoesNotExistInHashtable() {
+  void testReturnsNullForKeyThatDoesNotExistInHashtable() {
+    sampleDataList = new ArrayList<>();
+    sampleDataList.add(new NeighborhoodZipCode("Renton", 98055));
+    sampleDataList.add(new NeighborhoodZipCode("Capitol Hill", 98102));
+    sampleDataList.add(new NeighborhoodZipCode("Greenwood", 98103));
 
+    String lookupKey = "West Seattle";
+
+    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
+    for(NeighborhoodZipCode nzc: sampleDataList) {
+      sut.set(nzc.neighborhood(), nzc.zipCode());
+    }
+
+    boolean actualResult = sut.contains(lookupKey);
+
+    assertFalse(actualResult, "West Seattle is not be in this hashtable.");
   }
 
   @Test
   void testReturnsListOfAllUniqueKeysThatExistInHashtable() {
+    // load table with some duplicate data
+    sampleDataList = new ArrayList<>();
+    sampleDataList.add(new NeighborhoodZipCode("Downtown", 98101));
+    sampleDataList.add(new NeighborhoodZipCode("Laurelhurst", 98105));
+    sampleDataList.add(new NeighborhoodZipCode("Bainbridge Island", 98110));
+    sampleDataList.add(new NeighborhoodZipCode("Magnolia", 98199));
+    sampleDataList.add(new NeighborhoodZipCode("Downtown", 98101));
+    sampleDataList.add(new NeighborhoodZipCode("Laurelhurst", 98105));
+    sampleDataList.add(new NeighborhoodZipCode("Bainbridge Island", 98110));
+    sampleDataList.add(new NeighborhoodZipCode("Magnolia", 98199));
+    sampleDataList.add(new NeighborhoodZipCode("Kirkland", 98033));
 
+    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
+    for(NeighborhoodZipCode nzc: sampleDataList) {
+      sut.set(nzc.neighborhood(), nzc.zipCode());
+    }
+
+    ArrayList<String> expectedResults = new ArrayList<>();
+    expectedResults.add("Downtown");
+    expectedResults.add("Laurelhurst");
+    expectedResults.add("Bainbridge Island");
+    expectedResults.add("Magnolia");
+    expectedResults.add("Kirkland");
+
+    sut.keys()
   }
 
   @Test

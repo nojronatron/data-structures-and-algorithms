@@ -90,3 +90,6 @@ The code challenge definition is pretty abstract and not well defined enough to 
 In recent Java versions, Dictionary is deprecated so I decided to create a Record type instead so the Keys and Values
 could be stored in a Linked List. Otherwise, the Linked List would not store the Key and would break lookups and the
 Getter().
+
+Why would a "Contains()" method return null instead of false? I implemented a Boolean Contains() method to work around
+this design limitation.

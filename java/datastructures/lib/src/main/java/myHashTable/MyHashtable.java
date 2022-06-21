@@ -33,11 +33,21 @@ public class MyHashtable<T> {
     return false;
   }
 
-  public String get(T key) {
+  public String get(String key) {
     return " ";
   }
 
-  public Boolean contains(T key) {
+  public Boolean contains(String key) {
+    return false;
+  }
 
+  public ArrayList<String> keys() {
+
+    return new ArrayList<String>();
+  }
+
+  public Integer hash(String key) {
+    
+    return -1;
   }
 }
