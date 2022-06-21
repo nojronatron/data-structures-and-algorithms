@@ -4,6 +4,7 @@ import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -115,7 +116,18 @@ public class myHashTablePackageTests {
     expectedResults.add("Magnolia");
     expectedResults.add("Kirkland");
 
-    sut.keys()
+    ArrayList<String> actualResults = sut.keys();
+
+    // test that values are there
+    for(String actual: actualResults) {
+      assertTrue(expectedResults.contains(actual));
+    }
+
+    // test for only unique values by comparing size of array before and after calling built-in distinct
+    long startCount = actualResults.size(); // leverage upcasting here because distinct().count() returns a long
+    Stream<String> distinctItems = actualResults.stream().distinct();
+    long distinctCount = distinctItems.count();
+    assertEquals(startCount, distinctCount);
   }
 
   @Test

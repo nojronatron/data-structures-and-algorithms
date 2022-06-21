@@ -47,7 +47,7 @@ public class MyHashtable<T> {
   }
 
   public Integer hash(String key) {
-    
+
     return -1;
   }
 }
