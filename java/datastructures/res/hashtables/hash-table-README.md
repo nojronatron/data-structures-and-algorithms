@@ -76,3 +76,17 @@ Write tests to prove the following functionality:
 [ ] Successfully retrieve a value from a bucket within the hashtable that has a collision
 
 [ ] Successfully hash a key to an in-range value
+
+## Links
+
+myHashTable [Class Definition](../../lib/src/main/java/myHashTable/MyHashtable.java)
+
+myHashTable [Tests](../../lib/src/test/java/myHashTable/myHashTablePackageTests.java)
+
+## Comments
+
+The code challenge definition is pretty abstract and not well defined enough to actually implement a simple example.
+
+In recent Java versions, Dictionary is deprecated so I decided to create a Record type instead so the Keys and Values
+could be stored in a Linked List. Otherwise, the Linked List would not store the Key and would break lookups and the
+Getter().
