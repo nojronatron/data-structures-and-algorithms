@@ -12,6 +12,8 @@ Develop data structures and algorithms planning and coding skills using:
 
 ## List of Projects
 
+Code Challenge Class 30: [Hash Tables](./res/hashtables/hash-table-README.md)
+
 Code Challenge Class 18: Tree [Fizz-Buzz](./res/trees/README-tree-fizz-buzz.md)
 
 Code Challenge Class 17: Binary Tree Breadth First [Implementation](./res/trees/tree-breadth-first.md)
@@ -34,9 +36,9 @@ Code Challenge Class 09: Mock Interviews (not in this project)
 
 Code Challenge Class 08 [Zip Two Linked Lists (Links to GitHub PR)](https://github.com/AbdulahiMohamud/data-structures-and-algorithms/pull/21)
 
-Code Challenge Class 07 [Linked List Kth](res/linked-lists/linked-lists-README.md)
+Code Challenge Class 07 [Linked List Kth](./res/linked-lists/linked-lists-README.md)
 
-Code Challenge Class 06 [Linked List Insertions](res/linked-lists/linked-lists-README.md)
+Code Challenge Class 06 [Linked List Insertions](./res/linked-lists/linked-lists-README.md)
 
 Code Challenge Class 05: [Linked List Implementation](./res/linked-lists/linked-lists-README.md)
 
