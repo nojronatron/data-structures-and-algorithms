@@ -93,6 +93,12 @@ public class MyHashtable<T> {
    */
   public Boolean set(String key, int value) {
     if (key.length() > 0 && value != 0) {
+
+      // check to return fast
+      if (this.contains(key)) {
+        return true;
+      }
+
       // insert the new item into the Hash Table
       int hashedIndex = this.hash(key);
       LinkedList<NeighborhoodZipCode> tempLL = null;
@@ -126,7 +132,9 @@ public class MyHashtable<T> {
       LinkedList<NeighborhoodZipCode> tempLL = this.dataArray.get(hashedIndex);
 
       for (int idx=0; idx <= tempLL.size(); idx++) {
+
         NeighborhoodZipCode nzc = tempLL.get(idx);
+
         if (Objects.equals(nzc.neighborhood(), key)) {
           return nzc.zipCode();
         }
@@ -139,21 +147,45 @@ public class MyHashtable<T> {
   }
 
   /**
-   * TODO: Implement => Returns Boolean representing whether a KEY can be found in this hashtable.
+   * Returns True if the key is found in this hashtable, otherwise returns False.
    * @param key
    * @return
    */
   public Boolean contains(String key) {
-    return false;
+    return this.get(key) != -1;
   }
 
   /**
-   * TODO: Implement => returns unique list of all KEYS within this hashtable.
+   * Locates all keys (Strings) in hash table and returns them as an ArrayList.
    * @return
    */
   public ArrayList<String> keys() {
+    ArrayList<String> allKeys = new ArrayList<String>();
 
-    return new ArrayList<String>();
+    for (int idx=0; idx < this.buckets; idx++) {
+      LinkedList<NeighborhoodZipCode> currentBucket = this.dataArray.get(idx);
+
+      if (currentBucket.size() > 0) {
+        getBucketAsArray(allKeys, currentBucket);
+      }
+    }
+
+    return allKeys;
+  }
+
+  /**
+   * Updates Strings array if currentBucket has stored items in it.
+   * @param strings
+   * @param currentBucket
+   */
+  private void getBucketAsArray(ArrayList<String> strings, LinkedList<NeighborhoodZipCode> currentBucket) {
+    if (currentBucket.size() == 0) {
+      return;
+    }
+
+    for (NeighborhoodZipCode neighborhoodZipCode : currentBucket) {
+      strings.add(neighborhoodZipCode.neighborhood());
+    }
   }
 
   /**

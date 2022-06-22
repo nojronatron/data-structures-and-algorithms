@@ -119,13 +119,19 @@ public class myHashTablePackageTests {
     sampleDataList.add(new NeighborhoodZipCode("Magnolia", 98199));
     sampleDataList.add(new NeighborhoodZipCode("Kirkland", 98033));
 
-    int expectedItemCount = 9;
+    int expectedItemCount = 5; // there are no duplicates by sut design
 
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
     for(NeighborhoodZipCode nzc: sampleDataList) {
       sut.set(nzc.neighborhood(), nzc.zipCode());
     }
 
+    int actualItemCount = sut.getItemCount();
+
+    assertEquals(expectedItemCount, actualItemCount,
+      "An unexpected number of items were loaded into the hashtable but uniqueness is guaranteed.");
+
+    // set up expected results array to confirm correct items have been loaded and are unique
     ArrayList<String> expectedResults = new ArrayList<>();
     expectedResults.add("Downtown");
     expectedResults.add("Laurelhurst");
@@ -133,23 +139,24 @@ public class myHashTablePackageTests {
     expectedResults.add("Magnolia");
     expectedResults.add("Kirkland");
 
-    assertEquals(expectedItemCount, sut.getItemCount(),
-      "There should be nine items loaded into the hashtable.");
-
     ArrayList<String> actualResults = sut.keys();
 
-    assertTrue(actualResults.size() == 5);
-    
+    expectedItemCount = 5;
+    actualItemCount = actualResults.size();
+
+    assertEquals(expectedItemCount, actualItemCount,
+      "There should only be unique values stored in the hash table despite adding duplicates.");
+
     // test that values are there
     for(String actual: actualResults) {
-      assertTrue(expectedResults.contains(actual));
+      assertTrue(expectedResults.contains(actual), "Item should be in the expected items array list.");
     }
 
     // test for only unique values by comparing size of array before and after calling built-in distinct
-    long startCount = actualResults.size(); // leverage upcasting here because distinct().count() returns a long
+    long uniqueCount = actualResults.size(); // leverage upcasting here because distinct().count() returns a long
     Stream<String> distinctItems = actualResults.stream().distinct();
     long distinctCount = distinctItems.count();
-    assertEquals(startCount, distinctCount);
+    assertEquals(uniqueCount, distinctCount);
   }
 
   @Test
@@ -164,6 +171,11 @@ public class myHashTablePackageTests {
       sut.set(nhz.neighborhood(), nhz.zipCode());
     }
 
+    int expectedCount = sampleDataList.size();
+    int actualCount = sut.getItemCount();
+    
+    assertEquals(expectedCount, actualCount,
+      "The expected number of items should have been added to the hash table despite collisions.");
     assertTrue(sut.getLoadFactor() > 1);
   }
 
