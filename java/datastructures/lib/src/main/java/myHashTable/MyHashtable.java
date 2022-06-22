@@ -5,10 +5,24 @@ import java.util.LinkedList;
 
 public class MyHashtable<T> {
   private ArrayList<LinkedList<NeighborhoodZipCode>> array;
+  private int buckets = 0;
+  private int items;
 
   // default constructor creates an empty hashtable with an initial capacity of 17
   public MyHashtable() {
-    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(17);
+    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(11);
+    this.buckets = 11;
+    this.items = 0;
+  }
+
+  public MyHashtable(int capacity) {
+    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(Math.abs(capacity));
+    this.buckets = Math.abs(capacity);
+    this.items = 0;
+  }
+
+  public float getLoadFactor() {
+    return (float)items / (float)buckets;
   }
 
   public ArrayList<LinkedList<NeighborhoodZipCode>> getArray() {
@@ -33,8 +47,8 @@ public class MyHashtable<T> {
     return false;
   }
 
-  public String get(String key) {
-    return " ";
+  public int get(String key) {
+    return -1;
   }
 
   public Boolean contains(String key) {

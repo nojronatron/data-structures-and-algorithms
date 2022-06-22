@@ -57,7 +57,7 @@ public class myHashTablePackageTests {
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable();
 
     sut.set(expectedData.neighborhood(), expectedData.zipCode());
-    String actualData = sut.get("Madison park");
+    int actualData = sut.get("Madison park");
 
     assertEquals(expectedData.zipCode(), actualData);
   }
@@ -132,16 +132,45 @@ public class myHashTablePackageTests {
 
   @Test
   void testHandlesCollisionWithinHashtable() {
+    // load list with some collision-likely data
+    instantiateSampleData();
+    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
 
+    for(NeighborhoodZipCode nhz: sampleDataList) {
+      sut.set(nhz.neighborhood(), nhz.zipCode());
+    }
+
+    assertTrue(sut.getLoadFactor() > 1);
   }
 
   @Test
   void testRetrieveValueFromBucketWithinHashtable_WithCollision() {
+    // load list with some collision-likely data
+    instantiateSampleData();
+    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
 
+    for(NeighborhoodZipCode nhz: sampleDataList) {
+      sut.set(nhz.neighborhood(), nhz.zipCode());
+    }
+
+    int expectedResult = 98037;
+    int actualResult = sut.get("Lynnwood");
+
+    assertTrue(sut.getLoadFactor() > 1,
+      "Load factor should be greater than one to ensure collisions exist.");
+    assertEquals(expectedResult, actualResult,
+      "Key Lynnwood should return 98037 even when load factor is greater than 1 (there are collisions).");
   }
 
   @Test
-  void testHashKeyToInRangeValue() {
+  void testCanHashAKeyToAnInRangeValue() {
+    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>(5);
 
+    int expectedResultMustBeLessThan = 5;
+
+    int actualResult = sut.hash("abcde");
+
+    assertTrue(0 < actualResult);
+    assertTrue(actualResult < expectedResultMustBeLessThan);
   }
 }
