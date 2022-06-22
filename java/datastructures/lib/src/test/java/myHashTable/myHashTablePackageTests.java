@@ -63,7 +63,7 @@ public class myHashTablePackageTests {
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable();
 
     sut.set(expectedData.neighborhood(), expectedData.zipCode());
-    int actualData = sut.get("Madison park");
+    int actualData = sut.get("Madison Park");
 
     assertEquals(expectedData.zipCode(), actualData);
   }
@@ -138,6 +138,8 @@ public class myHashTablePackageTests {
 
     ArrayList<String> actualResults = sut.keys();
 
+    assertTrue(actualResults.size() == 5);
+    
     // test that values are there
     for(String actual: actualResults) {
       assertTrue(expectedResults.contains(actual));
@@ -177,13 +179,13 @@ public class myHashTablePackageTests {
       sut.set(nhz.neighborhood(), nhz.zipCode());
     }
 
-    int expectedResult = 98037;
-    int actualResult = sut.get("Lynnwood");
+    int expectedResult = 98144;
+    int actualResult = sut.get("Mount Baker");
 
     assertTrue(sut.getLoadFactor() > 1,
       "Load factor should be greater than one to ensure collisions exist.");
     assertEquals(expectedResult, actualResult,
-      "Key Lynnwood should return 98037 even when load factor is greater than 1 (there are collisions).");
+      "Key Mount Baker should return 98144 even when load factor is greater than 1 (there are collisions).");
   }
 
   @Test
@@ -193,7 +195,7 @@ public class myHashTablePackageTests {
 
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>(expectedResultMustBeLessThan);
 
-    int actualResult = sut.hash("abcde");
+    long actualResult = sut.hash("abcde");
 
     assertTrue(0 < actualResult);
     assertTrue(actualResult < expectedResultMustBeLessThan);

@@ -2,12 +2,13 @@ package myHashTable;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class MyHashtable<T> {
   /**
    * array is the internal data-store backing this hash table that relies on linked lists for chaining
    */
-  private ArrayList<LinkedList<NeighborhoodZipCode>> array;
+  private ArrayList<LinkedList<NeighborhoodZipCode>> dataArray;
 
   /**
    * The number of buckets (raw capacity) of the backing array
@@ -29,8 +30,9 @@ public class MyHashtable<T> {
    */
   public MyHashtable() {
     this.buckets = 11;
-    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(buckets);
+    this.dataArray = new ArrayList<LinkedList<NeighborhoodZipCode>>(buckets);
     this.items = 0;
+    initializeArray();
   }
 
   /**
@@ -39,8 +41,15 @@ public class MyHashtable<T> {
    */
   public MyHashtable(int capacity) {
     this.buckets = Math.abs(capacity);
-    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(buckets);
+    this.dataArray = new ArrayList<LinkedList<NeighborhoodZipCode>>(buckets);
     this.items = 0;
+    initializeArray();
+  }
+
+  private void initializeArray() {
+    for (int idx=0; idx < this.buckets; idx++) {
+      dataArray.add(new LinkedList<NeighborhoodZipCode>());
+    }
   }
 
   /**
@@ -56,16 +65,16 @@ public class MyHashtable<T> {
    * Returns the backing array of this hash table
    * @return
    */
-  public ArrayList<LinkedList<NeighborhoodZipCode>> getArray() {
-    return array;
+  public ArrayList<LinkedList<NeighborhoodZipCode>> getDataArray() {
+    return dataArray;
   }
 
   /**
    * Allows setting the backing array of this hash table
-   * @param array
+   * @param dataArray
    */
-  public void setArray(ArrayList<LinkedList<NeighborhoodZipCode>> array) {
-    this.array = array;
+  public void setDataArray(ArrayList<LinkedList<NeighborhoodZipCode>> dataArray) {
+    this.dataArray = dataArray;
   }
 
   /**
@@ -85,31 +94,47 @@ public class MyHashtable<T> {
   public Boolean set(String key, int value) {
     if (key.length() > 0 && value != 0) {
       // insert the new item into the Hash Table
-      int hashcode = this.hash(key);
-      boolean hasData = this.array.get(hashcode) != null;
+      int hashedIndex = this.hash(key);
       LinkedList<NeighborhoodZipCode> tempLL = null;
 
-      if (!hasData) {
-        tempLL = new LinkedList<NeighborhoodZipCode>();
-      } else {
-        tempLL = this.array.get(hashcode);
+      try {
+        // boolean hasData = this.dataArray.get(hashedIndex) != null; // array.get does not accept a long
+        tempLL = this.dataArray.get(hashedIndex);
+        tempLL.add(new NeighborhoodZipCode(key, value));
+        // this.dataArray.add(tempLL);
+        this.items ++;
+        return true;
+      } catch (Exception ex) {
+        // TODO: Add a logging mechanism
+        System.out.println("Could not get data structure from hashcode " + hashedIndex + ", error:" + ex.getMessage());
       }
-
-      tempLL.add(new NeighborhoodZipCode(key, value));
-      this.array.add(tempLL);
-      this.items ++;
-      return true;
     }
 
     return false;
   }
 
   /**
-   * TODO: Implement => Returns the Value stored at KEY.
+   * Accepts a string key and returns the value (zip code here) if found otherwise -1 (failed to find).
    * @param key
    * @return
    */
   public int get(String key) {
+    int hashedIndex = this.hash(key);
+
+    try {
+      boolean hasData = this.dataArray.get(hashedIndex) != null; // array.get does not accept a long
+      LinkedList<NeighborhoodZipCode> tempLL = this.dataArray.get(hashedIndex);
+
+      for (int idx=0; idx <= tempLL.size(); idx++) {
+        NeighborhoodZipCode nzc = tempLL.get(idx);
+        if (Objects.equals(nzc.neighborhood(), key)) {
+          return nzc.zipCode();
+        }
+      }
+    } catch (Exception ex) {
+      System.out.println("There is no item at index " + hashedIndex + ", error: " + ex.getMessage());
+    }
+
     return -1;
   }
 
@@ -132,14 +157,14 @@ public class MyHashtable<T> {
   }
 
   /**
-   * Takes a KEY and returns hash of type Integer for use within this hashtable.
+   * Takes a KEY and returns hashed index for use within this hashtable.
    * @param key
    * @return
    */
-  public Integer hash(String key) {
+  public int hash(String key) {
     // MUST use long to avoid roll-over in large number calculations
     long charsProduct = multiplyChars(key);
-    Long primedCharsProduct = primeMultiplier * charsProduct;
+    long primedCharsProduct = primeMultiplier * charsProduct;
     int hashedIndex = (int) (primedCharsProduct % this.buckets);
     return hashedIndex;
   }
@@ -153,10 +178,10 @@ public class MyHashtable<T> {
     // private method handles calculation of strings to a hash of type primitive long
     char[] wordCharacters = new char[words.length()];
     words.getChars(0, words.length(), wordCharacters, 0);
-    int charCodeProduct = 1;
+    long charCodeProduct = 1;
 
     for(char character: wordCharacters) {
-      charCodeProduct = charCodeProduct * Character.hashCode(character);
+      charCodeProduct = charCodeProduct + Character.hashCode(character);
     }
 
     return charCodeProduct;
