@@ -173,7 +173,7 @@ public class myHashTablePackageTests {
 
     int expectedCount = sampleDataList.size();
     int actualCount = sut.getItemCount();
-    
+
     assertEquals(expectedCount, actualCount,
       "The expected number of items should have been added to the hash table despite collisions.");
     assertTrue(sut.getLoadFactor() > 1);
