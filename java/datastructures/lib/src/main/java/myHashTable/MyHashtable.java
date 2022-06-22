@@ -5,19 +5,20 @@ import java.util.LinkedList;
 
 public class MyHashtable<T> {
   private ArrayList<LinkedList<NeighborhoodZipCode>> array;
-  private int buckets = 0;
-  private int items;
+  private int buckets = 0; // raw capacity of the array
+  private int items; // raw count of buckets with data in them
+  private int primeMultiplier = 599;
 
-  // default constructor creates an empty hashtable with an initial capacity of 17
+  // default constructor creates an empty hashtable with an initial capacity of 11
   public MyHashtable() {
-    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(11);
     this.buckets = 11;
+    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(buckets);
     this.items = 0;
   }
 
   public MyHashtable(int capacity) {
-    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(Math.abs(capacity));
     this.buckets = Math.abs(capacity);
+    this.array = new ArrayList<LinkedList<NeighborhoodZipCode>>(buckets);
     this.items = 0;
   }
 
@@ -33,7 +34,7 @@ public class MyHashtable<T> {
     this.array = array;
   }
 
-  public int getArray_size() {
+  public int getItemCount() {
     return this.array.size();
   }
 
@@ -61,7 +62,22 @@ public class MyHashtable<T> {
   }
 
   public Integer hash(String key) {
+    // MUST use long to avoid roll-over in large number calculations
+    long charsProduct = multiplyChars(key);
+    Long primedCharsProduct = primeMultiplier * charsProduct;
+    int hashedIndex = (int) (primedCharsProduct % this.buckets);
+    return hashedIndex;
+  }
 
-    return -1;
+  private long multiplyChars(String words) {
+    char[] wordCharacters = new char[words.length()];
+    words.getChars(0, words.length(), wordCharacters, 0);
+    int charCodeProduct = 1;
+
+    for(char character: wordCharacters) {
+      charCodeProduct = charCodeProduct * Character.hashCode(character);
+    }
+
+    return charCodeProduct;
   }
 }

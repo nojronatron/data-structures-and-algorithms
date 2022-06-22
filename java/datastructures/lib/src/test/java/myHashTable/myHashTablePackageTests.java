@@ -1,6 +1,5 @@
 package myHashTable;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -47,12 +46,19 @@ public class myHashTablePackageTests {
 
   @Test
   void testMyhashtableCanBeInstantiated() {
+    // Tests Naked instantiation
+    int expectedCount = 0;
+
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable();
+
     assertNotNull(sut);
+    assertEquals(expectedCount, sut.getItemCount(),
+      "Default constructor instantiates a hashtable with a zero-count of items stored.");
   }
 
   @Test
   void testSettingKeyValueToHashtableResultsInValueBeingInTheDataStructure() {
+    // Tests hashtable.SET(key, value)
     NeighborhoodZipCode expectedData = new NeighborhoodZipCode("Madison Park", 98112);
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable();
 
@@ -64,15 +70,21 @@ public class myHashTablePackageTests {
 
   @Test
   void testRetrieveBasedOnKeyReturnsValueStored() {
+    // Tests hashtable.GET(key)
     NeighborhoodZipCode expectedData = new NeighborhoodZipCode("Madison Park", 98112);
 
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
-
     sut.set(expectedData.neighborhood(), expectedData.zipCode());
+
+    int actualResult = sut.get("Madison Park");
+
+    assertTrue(sut.getItemCount() > 0);
+    assertEquals(expectedData.zipCode(), actualResult, "Get(Madison Park) should return Integer 98112.");
   }
 
   @Test
-  void testReturnsNullForKeyThatDoesNotExistInHashtable() {
+  void testReturnsFalseForKeyThatDoesNotExistInHashtable() {
+    // Test: hashtable.contains(key) returns FALSE if NOT IN hashtable
     sampleDataList = new ArrayList<>();
     sampleDataList.add(new NeighborhoodZipCode("Renton", 98055));
     sampleDataList.add(new NeighborhoodZipCode("Capitol Hill", 98102));
@@ -87,11 +99,14 @@ public class myHashTablePackageTests {
 
     boolean actualResult = sut.contains(lookupKey);
 
+    assertTrue(sut.getItemCount() > 0, "There are 1 or more items in this Hashtable.");
     assertFalse(actualResult, "West Seattle is not be in this hashtable.");
   }
 
   @Test
   void testReturnsListOfAllUniqueKeysThatExistInHashtable() {
+    // Test: Hashtable.keys() returns list of UNIQUE KEYS only
+
     // load table with some duplicate data
     sampleDataList = new ArrayList<>();
     sampleDataList.add(new NeighborhoodZipCode("Downtown", 98101));
@@ -104,6 +119,8 @@ public class myHashTablePackageTests {
     sampleDataList.add(new NeighborhoodZipCode("Magnolia", 98199));
     sampleDataList.add(new NeighborhoodZipCode("Kirkland", 98033));
 
+    int expectedItemCount = 9;
+
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
     for(NeighborhoodZipCode nzc: sampleDataList) {
       sut.set(nzc.neighborhood(), nzc.zipCode());
@@ -115,6 +132,9 @@ public class myHashTablePackageTests {
     expectedResults.add("Bainbridge Island");
     expectedResults.add("Magnolia");
     expectedResults.add("Kirkland");
+
+    assertEquals(expectedItemCount, sut.getItemCount(),
+      "There should be nine items loaded into the hashtable.");
 
     ArrayList<String> actualResults = sut.keys();
 
@@ -132,6 +152,8 @@ public class myHashTablePackageTests {
 
   @Test
   void testHandlesCollisionWithinHashtable() {
+    // Test: hashtable.SET(k, v) handles COLLISIONS
+
     // load list with some collision-likely data
     instantiateSampleData();
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
@@ -145,6 +167,8 @@ public class myHashTablePackageTests {
 
   @Test
   void testRetrieveValueFromBucketWithinHashtable_WithCollision() {
+    // Test: hashtable.GET(k) handles COLLISIONS and RETURNS CORRECT VALUE
+
     // load list with some collision-likely data
     instantiateSampleData();
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
@@ -164,9 +188,10 @@ public class myHashTablePackageTests {
 
   @Test
   void testCanHashAKeyToAnInRangeValue() {
-    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>(5);
-
+    // Test: Hashtable.HASH(k) returns INTEGER IN RANGE OF TABLE SIZE
     int expectedResultMustBeLessThan = 5;
+
+    MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>(expectedResultMustBeLessThan);
 
     int actualResult = sut.hash("abcde");
 
