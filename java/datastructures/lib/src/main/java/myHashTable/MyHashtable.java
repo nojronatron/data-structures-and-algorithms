@@ -2,7 +2,6 @@ package myHashTable;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Objects;
 
 public class MyHashtable<T> {
   /**
@@ -135,8 +134,8 @@ public class MyHashtable<T> {
 
         NeighborhoodZipCode nzc = tempLL.get(idx);
 
-        if (Objects.equals(nzc.neighborhood(), key)) {
-          return nzc.zipCode();
+        if (nzc.get_neighborhood().equals(key)) {
+          return nzc.get_zipCode();
         }
       }
     } catch (Exception ex) {
@@ -184,7 +183,7 @@ public class MyHashtable<T> {
     }
 
     for (NeighborhoodZipCode neighborhoodZipCode : currentBucket) {
-      strings.add(neighborhoodZipCode.neighborhood());
+      strings.add(neighborhoodZipCode.get_neighborhood());
     }
   }
 
