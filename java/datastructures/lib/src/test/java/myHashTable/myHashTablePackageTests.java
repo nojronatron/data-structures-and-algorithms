@@ -62,10 +62,10 @@ public class myHashTablePackageTests {
     NeighborhoodZipCode expectedData = new NeighborhoodZipCode("Madison Park", 98112);
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable();
 
-    sut.set(expectedData.neighborhood(), expectedData.zipCode());
+    sut.set(expectedData.get_neighborhood(), expectedData.get_zipCode());
     int actualData = sut.get("Madison Park");
 
-    assertEquals(expectedData.zipCode(), actualData);
+    assertEquals(expectedData.get_zipCode(), actualData);
   }
 
   @Test
@@ -74,12 +74,12 @@ public class myHashTablePackageTests {
     NeighborhoodZipCode expectedData = new NeighborhoodZipCode("Madison Park", 98112);
 
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
-    sut.set(expectedData.neighborhood(), expectedData.zipCode());
+    sut.set(expectedData.get_neighborhood(), expectedData.get_zipCode());
 
     int actualResult = sut.get("Madison Park");
 
     assertTrue(sut.getItemCount() > 0);
-    assertEquals(expectedData.zipCode(), actualResult, "Get(Madison Park) should return Integer 98112.");
+    assertEquals(expectedData.get_zipCode(), actualResult, "Get(Madison Park) should return Integer 98112.");
   }
 
   @Test
@@ -94,7 +94,7 @@ public class myHashTablePackageTests {
 
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
     for(NeighborhoodZipCode nzc: sampleDataList) {
-      sut.set(nzc.neighborhood(), nzc.zipCode());
+      sut.set(nzc.get_neighborhood(), nzc.get_zipCode());
     }
 
     boolean actualResult = sut.contains(lookupKey);
@@ -123,7 +123,7 @@ public class myHashTablePackageTests {
 
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
     for(NeighborhoodZipCode nzc: sampleDataList) {
-      sut.set(nzc.neighborhood(), nzc.zipCode());
+      sut.set(nzc.get_neighborhood(), nzc.get_zipCode());
     }
 
     int actualItemCount = sut.getItemCount();
@@ -168,7 +168,7 @@ public class myHashTablePackageTests {
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
 
     for(NeighborhoodZipCode nhz: sampleDataList) {
-      sut.set(nhz.neighborhood(), nhz.zipCode());
+      sut.set(nhz.get_neighborhood(), nhz.get_zipCode());
     }
 
     int expectedCount = sampleDataList.size();
@@ -188,7 +188,7 @@ public class myHashTablePackageTests {
     MyHashtable<NeighborhoodZipCode> sut = new MyHashtable<>();
 
     for(NeighborhoodZipCode nhz: sampleDataList) {
-      sut.set(nhz.neighborhood(), nhz.zipCode());
+      sut.set(nhz.get_neighborhood(), nhz.get_zipCode());
     }
 
     int expectedResult = 98144;
