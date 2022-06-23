@@ -23,3 +23,15 @@ Ensure your tests are passing before you submit your solution.
 - [ ] Modify your function to return a count of each of the words in the provided string
 
 - [ ] Modify your function to return a list of the words most frequently used in the provided string
+
+## Whiteboard Process
+
+![Whiteboard Image](hashmap-repeated-word-whiteboard.jpg)
+
+## Approach and Efficiency
+
+## Solution
+
+Link to [Code](../../lib/src/main/java/simpleStringHashTable/SimpleStringHashTable.java)
+
+Link to [Tests](../../lib/src/test/java/simpleStringHashTable/SimpleStringHashTableTests.java)
