@@ -86,7 +86,7 @@ public class SimpleStringHashTable {
    * @param words
    * @return
    */
-  private long sumChars(String words) {
+  protected long sumChars(String words) {
     char[] wordCharacters = new char[words.length()];
     words.getChars(0, words.length(), wordCharacters, 0);
     long charCodeSum = 0;
