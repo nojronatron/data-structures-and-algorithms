@@ -2,6 +2,8 @@
 
 ## Assignments TOC
 
+Code Challenge Class 32: [Hashmap Intersecting Trees](./java/datastructures/res/hashtables/hashmap-repeated-word-README.md)
+
 Code Challenge Class 31: [Hashmap Repeated Word](./java/datastructures/res/hashtables/hashmap-repeated-word-README.md)
 
 Code Challenge Class 30: [Hash Tables](./java/datastructures/res/hashtables/hash-table-README.md)
