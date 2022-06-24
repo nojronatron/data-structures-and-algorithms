@@ -70,7 +70,7 @@ O(1) efficiency is performed, so overall storage efficiency is O(n).
 
 ## Submission Requirements
 
-- [ ] Top-level README “Table of Contents” is updated
+- [X] Top-level README “Table of Contents” is updated
 
 - [X] README for this challenge is complete
 
