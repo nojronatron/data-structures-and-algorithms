@@ -1,10 +1,12 @@
 package simpleStringHashTable;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Locale;
 
 public class SimpleStringHashTable {
 
-  private ArrayList<String> stringArray;
+  private ArrayList<LinkedList<String>> dataArray;
 
   private int capacity;
 
@@ -13,57 +15,58 @@ public class SimpleStringHashTable {
   private int primeMultiplier = 599;
 
   public SimpleStringHashTable() {
-    this.capacity = 11;
-    stringArray = new ArrayList<>(capacity);
   }
 
   public SimpleStringHashTable(int capacity) {
-    stringArray = new ArrayList<>(capacity);
     this.capacity = capacity;
+    initializeArray();
   }
 
-  public ArrayList<String> getStringArray() {
-    return stringArray;
+  private void initializeArray() {
+    this.dataArray = new ArrayList<>(this.capacity);
+
+    for(int idx=0; idx < capacity; idx++) {
+      this.dataArray.add(new LinkedList<>());
+    }
   }
 
-  public void setStringArray(ArrayList<String> stringArray) {
-    this.stringArray = stringArray;
-  }
-
-  public int getCapacity() {
-    return capacity;
-  }
-
-  public void setCapacity(int capacity) {
-    this.capacity = capacity;
-  }
-
-  public int getItemsCount() {
-    return itemsCount;
-  }
-
-  public void setItemsCount(int itemsCount) {
-    this.itemsCount = itemsCount;
-  }
-
-  public float getLoadFactor() {
-    return (float) this.itemsCount / (float) this.capacity;
-  }
-
+  /**
+   * Adds strings to a hashmap and returns the first duplicate string it encounters.
+   * @param string
+   * @return String
+   */
   public String repeatedWord(String string) {
-    if (string.length() <= 1) {
+    if (string.isEmpty() || string.length() == 1) {
       return "";
     }
 
-    String delimiters = "\\s,\\W";
+    String delimiters = "\\W";
     String[] wordList = string.split(delimiters);
 
-    if (wordList.length < 2 ) {
-      return string;
+    if (wordList.length < 2) {
+      return "";
     }
 
-    for(String word: wordList){
+    this.capacity = wordList.length;
+    this.initializeArray();
 
+    for (String word : wordList) {
+      String lcWord = word.toLowerCase(Locale.ROOT);
+      int hashedIdx = this.hash(lcWord);
+      LinkedList<String> tempLL = null;
+
+      try {
+        tempLL = this.dataArray.get(hashedIdx);
+        if (tempLL.contains(lcWord)) {
+          return word;
+        } else {
+          tempLL.add(lcWord);
+          this.itemsCount++;
+        }
+      } catch (Exception ex) {
+        // TODO: Add a logging mechanism
+        System.out.println("Friendly error message: Something went wrong while checking for duplicates in a bucket.");
+      }
     }
 
     return "";
@@ -97,4 +100,5 @@ public class SimpleStringHashTable {
 
     return charCodeSum;
   }
+
 }

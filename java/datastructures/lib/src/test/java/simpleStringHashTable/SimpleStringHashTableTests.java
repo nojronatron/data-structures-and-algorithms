@@ -13,27 +13,57 @@ public class SimpleStringHashTableTests {
   // RepeatWord method tests
   @Test
   public void testRepeatWordReturnsEmptyStringWithEmptyInput() {
+    String expectedResult = "";
 
+    SimpleStringHashTable sut = new SimpleStringHashTable();
+    String actualResult = sut.repeatedWord("");
+
+    assertEquals(expectedResult, actualResult, "Empty string input should return empty string output.");
   }
 
   @Test
   public void testRepeatWordReturnsEmptyStringWithSingleLetterInput() {
+    String expectedResult = "";
+    String singleLetterInput = "j";
 
+    SimpleStringHashTable sut = new SimpleStringHashTable();
+    String actualResult = sut.repeatedWord(singleLetterInput);
+
+    assertEquals(expectedResult, actualResult, "Single letter input should return empty string output.");
   }
 
   @Test
   public void testRepeatWordReturnsEmptyStringWithSingleWordInput() {
+    String expectedResult = "";
+    String singleWordInput = "jon";
 
+    SimpleStringHashTable sut = new SimpleStringHashTable();
+    String actualResult = sut.repeatedWord(singleWordInput);
+
+    assertEquals(expectedResult, actualResult, "Single word input returns empty string output.");
   }
 
   @Test
   public void testRepeatWordReturnsFirstDuplicateWord() {
+    String expectedResult = "firstDuplicate";
+    String inputStream = "the firstDuplicate duplicate word should be returned as firstDuplicate";
 
+    SimpleStringHashTable sut = new SimpleStringHashTable();
+    String actualResult = sut.repeatedWord(inputStream);
+
+    assertEquals(expectedResult, actualResult, "First repeated word in a stream of Strings is returned.");
   }
 
   @Test
   public void testRepeatWordReturnsFirstDuplicateWordLargeInput() {
+    String expectedResult = "it";
+    String inputStream = "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair, we had everything before us, we had nothing before us, we were all going direct to Heaven, we were all going direct the other way – in short, the period was so far like the present period, that some of its noisiest authorities insisted on its being received, for good or for evil, in the superlative degree of comparison only...";
 
+    SimpleStringHashTable sut = new SimpleStringHashTable();
+    String actualResult = sut.repeatedWord(inputStream);
+
+    assertEquals(expectedResult, actualResult, "Large input stream should still find and return the first " +
+      "duplicate. For this input the method should return \"it\".");
   }
 
   // Hash method tests

@@ -32,28 +32,38 @@ Ensure your tests are passing before you submit your solution.
 
 Approach:
 
-Ensure the size of the underlying array is such that collisions are unlikely *except for instances where the words are
-indeed duplicates*, in which case detection of duplicate words in a stream will be easy. A load factor calculation is
-implemented to verify it is less than 1 even when duplicates are found.
+Implement a Hash Table with a hashing function and Chaining using Linked Lists that will store items and simplify
+discovering when an item is a duplicate.
 
 Leverage String functions and a RegEx to split the input stream into separate "words" between non-word characters.
 
-Implement a simple hashing algorithm that will sum the Char values of each character in each word and use modulus
+Initialize the array with null-valued Linked Lists, one in each bucket, to avoid thrown Exceptions and to enable
+hash collisions between different words/inputs.
+
+Implement a simple hashing algorithm that will multiply the Char values of each character in each word and use modulus
 to ensure the resulting index is bound to the size of the underlying storage array.
 
 Short-circuit to returning a result as quickly as possible in all cases where it is appropriate to do so.
 
-Time Effeciency:
+Time Efficiency:
 
 An iterator is called on a string key to sum characters as part of the hashing algorithm, an O(n) operation.
-This iterator is called once for every word in the input stream which points to an overall O(n^2).
+This iterator is called once for every word in the input stream which points to an overall O(n^2). Searching for a
+duplicate value requires traversing the Bucket's linked list, which in a worst-case scenario is an O(n) operation,
+and that occurs whenever there is a collision which in the worst case scenario would happen with a very large input
+data set.
+
 Since the method exits as soon as a duplicate is found, the short-circuit effect will be reduced in the average
-scenario. Worst-case scenario however, will ben an O(n^2) performance in time.
+scenario. Still, the worst-case scenario boils-down to a significant O(n^2) performance in time.
 
-Space Effeciency:
+Space Efficiency:
 
-Space utilization grows almost linearly with the length of the input at a rate of about 2 * n.
-Since 2n boils down to n, the overall space utilization would be O(n).
+Space utilization grows exponentially at first, as an array is initialized and Linked Lists are created to match the
+size of the input stream. This results in O(n^2) space utilization. After this initialization, there is a 1/k chance
+that a Linked List will add a node (which is an O(n) operation until the load factor is about 1. After that every
+added item will result in an O(n) add to the linked list, but the increase is still linear.
+
+Boiling this down to the most significant denominator in a worst-case scenario, overall space efficiency is O(n^2).
 
 ## Solution
 
