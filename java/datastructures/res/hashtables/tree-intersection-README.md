@@ -66,7 +66,7 @@ O(1) efficiency is performed, so overall storage efficiency is O(n).
 
 ![Link to Code](../../lib/src/main/java/treeIntersections/TreeIntersections.java)
 
-![Link to Tests](../../lib/src/main/java/datastructures/lib/src/test/java/treeIntersections/TreeIntersectionsTests.java)
+![Link to Tests](../../lib/src/test/java/treeIntersections/TreeIntersectionsTests.java)
 
 ## Submission Requirements
 
