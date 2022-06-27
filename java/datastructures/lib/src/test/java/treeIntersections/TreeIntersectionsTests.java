@@ -18,6 +18,25 @@ public class TreeIntersectionsTests {
   }
 
   @Test
+  public void testTwoNullTreeInputsReturnsEmptyList() {
+    TreeIntersections<Integer> sut = new TreeIntersections<>();
+
+    ArrayList<Integer> actualResult = sut.tree_intersection(null, null);
+
+    assertEquals(new ArrayList<Integer>(), actualResult);
+  }
+
+  @Test
+  public void testOneNullTreeInputReturnsEmptyList() {
+    TreeIntersections<Integer> sut = new TreeIntersections<>();
+    NouveauBinaryNode<Integer> leftTree = initializeShortLeftRoot();
+
+    ArrayList<Integer> actualResult = sut.tree_intersection(leftTree, null);
+
+    assertEquals(new ArrayList<Integer>(), actualResult);
+  }
+
+  @Test
   public void testTwoShortTreesIntersectionFindsTwoDupes() {
     ArrayList<Integer> expectedDuplicates = new ArrayList<>();
     expectedDuplicates.add(100);

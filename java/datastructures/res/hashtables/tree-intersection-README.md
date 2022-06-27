@@ -4,19 +4,19 @@ Write a function that will take two binary trees and return a collection represe
 
 ## Feature Tasks
 
-- [ ] Write a function called tree_intersection that takes two binary trees as parameters.
+- [X] Write a function called tree_intersection that takes two binary trees as parameters.
 
-- [ ] Using your Hashmap implementation as a part of your algorithm, return a set of values found in both trees.
+- [X] Using your Hashmap implementation as a part of your algorithm, return a set of values found in both trees.
 
 ## Structure and Testing
 
-- [ ] Utilize the Single-responsibility principle.
+- [X] Utilize the Single-responsibility principle.
 
-- [ ] Methods you write should be clean, reusable, abstract component parts to the whole challenge.
+- [X] Methods you write should be clean, reusable, abstract component parts to the whole challenge.
 
 - [ ] Write at least three test assertions for each method that you define.
 
-- [ ] Ensure your tests are passing before you submit your solution.
+- [X] Ensure your tests are passing before you submit your solution.
 
 ## Stretch Goal
 
@@ -34,25 +34,37 @@ Write a function that will take two binary trees and return a collection represe
 
 ### Approach
 
-The Hash Table will utilize Linked-Lists as the chaining method to manage duplicate hash indices.
+The Hash Table will utilize Linked-Lists as the chaining method to manage duplicate hashed indices.
 
 I chose to work with each tree one at a time:
 
-- "Left Tree" determines the size of the hash table by having its values loaded using a pre-order traversal to get the values right away.
-- "Right Tree" values are later *compared* in a pre-order traversal (also, get values asap), and either dropped/ignored, or added to a storage array.
+- "Left Tree" values are loaded using a pre-order traversal to get the values into a tracking array.
+- "Right Tree" values are later *compared* in a pre-order traversal and either dropped/ignored, or added to a result array.
+
+Single-responsibility is achieved through:
+
+- Recursive functions are retained in their own function code blocks.
+- Globally-scoped variables are utilizes so multiple methods and code blocks can access them if/when needed.
+- Built-in or custom methods on imported objects are used instead of re-writing or incorporating int a code block.
 
 The output storage array represents the "middle of the venn diagram" of values between the two trees.
 
-Functions are defined with very tightly scoped functionality and are expected to pass-on their results as rapidly as possible.
+Copious in-line comments were added to help keep me from losing my place during testing, implementing, and refactoring.
 
-The tree-intersection function itself is mostly a directing method that drives execution of other methods and is ultimately responsible for returning the result.
+### Leveraged Code
+
+MyGenericHashtable: A custom-designed hashtable implementation with getHash(), add(), find(), and contains() methods following single-responsibility principle.
+
+NouveauBinaryNode: A custom-designed Binary Node that has been well tested, follows single-responsibility, and is appropriate for this challenge.
+
+TreeIntersections: The custom class where tree_intersection() method lives. Also contains a well-tested preOrder() recursive method.
 
 ### Efficiency
 
 #### Time
 
-There are multiple iterative functions within these custom functions, however only one nested pair, so the worst-case
-scenario is of O(n^2) efficiency.
+There are multiple iterative functions within these custom functions, ~~however only one nested pair,~~ so the worst-case
+scenario is ~~of O(n^2) efficiency~~ algorithmic complexity is O(n).
 
 #### Space
 
@@ -80,12 +92,12 @@ O(1) efficiency is performed, so overall storage efficiency is O(n).
 
 - [X] Link to code
 
-- [ ] Feature tasks for this challenge are completed
+- [X] Feature tasks for this challenge are completed
 
-- [ ] Unit tests written and passing
+- [X] Unit tests written and passing
 
-- [ ] “Happy Path” - Expected outcome
+- [X] “Happy Path” - Expected outcome
 
-- [ ] Expected failure
+- [X] Expected failure
 
-- [ ] Edge Case (if applicable/obvious)
+- [X] Edge Case (if applicable/obvious)
