@@ -53,7 +53,7 @@ public class TreeIntersections<T> {
     // 17.    test: currently selected item at hashIndex?
       if(hashtable.contains(traversedItem.toString()) &&
           !resultCollection.contains((int)traversedItem)) {
-        
+
         // 18.    test true? => Add item to SetCollection
         resultCollection.add((int) traversedItem);
       }
