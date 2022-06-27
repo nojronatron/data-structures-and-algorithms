@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TreeIntersections<T> {
+  private List<T> traversedItems = new ArrayList<>();
 
   /**
    * Call this default constructor to make a TreeIntersections instance, then call tree_intersections method to do work.
@@ -26,7 +27,7 @@ public class TreeIntersections<T> {
     }
 
     // 2. initialize TraversedItems to store PreOrder Traversal output from "left tree"
-    List<T> traversedItems = this.preOrder(leftTree);
+    traversedItems = this.preOrder(leftTree);
 
     // 4. init variable 'capacity' to store len of traverse items collection
     int capacity = (int)Math.round(traversedItems.size() * 1.5); // will drop decimals
@@ -46,7 +47,8 @@ public class TreeIntersections<T> {
     ArrayList<Integer> resultCollection = new ArrayList<>();
 
     // 12. re-init Traverseditems to store "right tree" values
-    traversedItems = null;
+//    traversedItems = null;
+    traversedItems = new ArrayList<>();
 
     // 13. call PreOrderTraversal function on "right tree" and store results in TraversedItems collection
     traversedItems = this.preOrder(rightTree);
@@ -70,20 +72,19 @@ public class TreeIntersections<T> {
   }
 
   // 3. create recursive function preorder starting from parameter 'node', load the outputArray using inOrder traversal.
-  protected List<T> preOrder(NouveauBinaryNode<T> rootNode) {
-    List<T> result = new ArrayList<>();
+  protected List<T> preOrder(NouveauBinaryNode<T> node) {
 
-    result.add(rootNode.getValue());
+    traversedItems.add(node.getValue());
 
-    if (rootNode.getLeft() != null) {
-      this.preOrder(rootNode.getLeft());
+    if (node.getLeft() != null) {
+      this.preOrder(node.getLeft());
     }
 
-    if (rootNode.getRight() != null) {
-      this.preOrder(rootNode.getRight());
+    if (node.getRight() != null) {
+      this.preOrder(node.getRight());
     }
 
-    return result;
+    return traversedItems;
   }
 
 }
