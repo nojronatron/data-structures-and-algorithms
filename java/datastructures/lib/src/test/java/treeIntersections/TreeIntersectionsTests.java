@@ -1,9 +1,8 @@
 package treeIntersections;
 
 import binaryTreeFindMax.NouveauBinaryNode;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 
 public class TreeIntersectionsTests {
@@ -14,8 +13,30 @@ public class TreeIntersectionsTests {
   private ArrayList<Integer> shortRightTreeValues = new ArrayList<>();
 
   @Test
+  public void testTreeIntersectionsObjectCanBeInstantiated() {
+    TreeIntersections<Integer> sut = new TreeIntersections<>();
+    assertNotNull(sut);
+  }
+
+  @Test
   public void testTwoShortTreesIntersectionFindsTwoDupes() {
+    ArrayList<Integer> expectedDuplicates = new ArrayList<>();
+    expectedDuplicates.add(100);
+    expectedDuplicates.add(125);
+    int expectedSize = 2;
+
+    TreeIntersections<Integer> sut = new TreeIntersections<>();
+    NouveauBinaryNode<Integer> leftTree = initializeShortLeftRoot();
+    NouveauBinaryNode<Integer> rightTree = initializeShortRightRoot();
+
+    ArrayList<Integer> actualResult = sut.tree_intersection(leftTree, rightTree);
+    int actualSize = actualResult.size();
+
+    for(Integer result: actualResult) {
+      assertTrue( expectedDuplicates.contains(result), "Expected items should be in the resulting collection.");
+    }
     
+    assertEquals(expectedSize, actualSize, "Output and expected array lengths should be equal.");
   }
 
   private boolean initializeLeftValues() {
@@ -58,11 +79,34 @@ public class TreeIntersectionsTests {
     return true;
   }
 
-  private boolean initializeShorRightValues() {
+  private boolean initializeShortRightValues() {
     rightTreeValues.add(15);
     rightTreeValues.add(100);
     rightTreeValues.add(125);
 
     return true;
   }
+
+  private NouveauBinaryNode<Integer> initializeShortLeftRoot() {
+    if(initializeShortLeftValues()) {
+      NouveauBinaryNode<Integer> node = new NouveauBinaryNode<>(leftTreeValues.get(1));
+      node.setLeft(new NouveauBinaryNode<>(leftTreeValues.get(0)));
+      node.setRight(new NouveauBinaryNode<>(leftTreeValues.get(2)));
+      return node;
+    }
+
+    return null;
+  }
+
+  private NouveauBinaryNode<Integer> initializeShortRightRoot() {
+    if (initializeShortRightValues()) {
+      NouveauBinaryNode<Integer> node = new NouveauBinaryNode<>(rightTreeValues.get(1));
+      node.setLeft(new NouveauBinaryNode<>(rightTreeValues.get(0)));
+      node.setRight(new NouveauBinaryNode<>(rightTreeValues.get(2)));
+      return node;
+    }
+
+    return null;
+  }
+
 }

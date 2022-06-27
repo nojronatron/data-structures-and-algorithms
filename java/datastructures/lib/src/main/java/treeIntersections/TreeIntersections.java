@@ -8,12 +8,17 @@ import java.util.List;
 public class TreeIntersections<T> {
 
   /**
-   * Accepts Root Binary Nodes of two Binary Trees and returns a list of duplicate values between them.
-   * @param leftTree
-   * @param rightTree
-   * @return
+   * Call this default constructor to make a TreeIntersections instance, then call tree_intersections method to do work.
    */
-  public List<Integer> tree_intersection(NouveauBinaryNode<T> leftTree, NouveauBinaryNode<T> rightTree) {
+  public TreeIntersections() {  }
+
+  /**
+   * Accepts Root Binary Nodes of two Binary Trees and returns a list of duplicate values between them.
+   * @param leftTree A NouveauBinaryNode, null or self or left and/or right child Nodes.
+   * @param rightTree A NouveauBinaryNode, null or self or left and/or right child Nodes.
+   * @return Collection of duplicated values at the intersection of the input trees.
+   */
+  public ArrayList<Integer> tree_intersection(NouveauBinaryNode<T> leftTree, NouveauBinaryNode<T> rightTree) {
 
     // 1. test if either tree is null or no nodes if so return empty array
     if (leftTree == null || rightTree == null) {
@@ -38,7 +43,7 @@ public class TreeIntersections<T> {
 
     }
     // 11. Init setCollection to store duplicate values
-    List<Integer> resultCollection = new ArrayList<>(); // TODO: Rename this 'resultCollection'
+    ArrayList<Integer> resultCollection = new ArrayList<>();
 
     // 12. re-init Traverseditems to store "right tree" values
     traversedItems = null;
