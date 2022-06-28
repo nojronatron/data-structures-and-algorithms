@@ -1,4 +1,10 @@
 package sorting.algorithms;
 
-public class InsertionSorter {
+import java.util.ArrayList;
+
+public abstract class InsertionSorter {
+  public void insertionSort(ArrayList<Integer> arrayToSort) {
+    
+    return;
+  }
 }
