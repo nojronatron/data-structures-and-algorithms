@@ -46,9 +46,10 @@ Expected Failure
 
 Edge Cases
 
-- Should accept empty array and return an empty array.
-- Zeroes and negative Integers should be accepted and properly processed.
-- Single-value array should be accepted and returned.
+- Should accept empty array without error.
+- Zeroes and negative Integers should be accepted as valid array elements and properly processed.
+- Single-value array should be accepted without error.
+- Input array with all the same numbers should be accepted without error.
 
 ## Status Report
 
