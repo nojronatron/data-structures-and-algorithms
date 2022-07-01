@@ -2,6 +2,8 @@
 
 ## Assignments TOC
 
+Code Challenge Class nn: [Merge Sort](./java/datastructures/res/sorting-algorithms/merge-sort-README.md)
+
 Code Challenge Class 26: [Insertion Sort](./java/datastructures/res/sorting-algorithms/insertion-sort-README.md)
 
 Code Challenge Class 32: [Hashmap Intersecting Trees](./java/datastructures/res/hashtables/hashmap-repeated-word-README.md)
