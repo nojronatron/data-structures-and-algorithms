@@ -14,6 +14,10 @@ Graphs are similar to trees and linked lists in that there are nodes that store 
 - [X] Size method. Arguments: none. Returns the total number of nodes in the graph.
 - [ ] Implement descriptive error handling.
 
+## Whiteboard
+
+![Whiteboard of Graph Design and Analysis](./graph-whiteboard.jpg)
+
 ## Structure and Testing
 
 Utilize the Single-responsibility principle: any methods you write should be clean, reusable, abstract component parts to the whole challenge. You will be given feedback and marked down if you attempt to define a large, complex algorithm in one function definition.
