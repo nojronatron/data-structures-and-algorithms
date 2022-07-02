@@ -12,6 +12,8 @@ Develop data structures and algorithms planning and coding skills using:
 
 ## List of Projects
 
+Code Challenge Class 35: [Graph Implementation](./res/graphs/graphs-README.md)
+
 Code Challenge Class 30: [Hash Tables](./res/hashtables/hash-table-README.md)
 
 Code Challenge Class 18: Tree [Fizz-Buzz](./res/trees/README-tree-fizz-buzz.md)

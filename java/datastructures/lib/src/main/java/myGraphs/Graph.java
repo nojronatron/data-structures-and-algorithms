@@ -5,6 +5,7 @@ import java.util.concurrent.LinkedTransferQueue;
 
 public class Graph<T> {
   private final Integer DEFAULT_BUCKETS_COUNT = 17;
+  private int verticesCount = 0;
   protected HashMap<Integer, Vertex<T>> adjacencyList;
 
   /**
@@ -21,7 +22,8 @@ public class Graph<T> {
    */
   public Vertex<T> addNode(T value) {
     Vertex<T> newVertex = new Vertex<>(value);
-    adjacencyList.put(newVertex.getHash(), newVertex);
+    adjacencyList.put(newVertex.hashCode(), newVertex);
+    this.verticesCount++;
     return newVertex;
   }
 
@@ -33,7 +35,7 @@ public class Graph<T> {
   public void addEdge(Vertex<T> node1, Vertex<T> node2){
     Edge<T> newEdge = new Edge<>();
     newEdge.setNeighbor(node2);
-    int node1Hash = node1.getHash();
+    int node1Hash = node1.hashCode();
     int indexHash = this.hashedIndex(node1Hash);
 
     if (!node1.edges.contains(newEdge)) {
@@ -47,7 +49,7 @@ public class Graph<T> {
    * Locates a Vertex within the Graph and returns a list of all Vertices with Edges.
    * @return collection
    */
-  public List<Vertex<T>> getNodes() {
+  public ArrayList<Vertex<T>> getNodes() {
     if (adjacencyList.isEmpty()) {
       return null;
     }
@@ -103,7 +105,7 @@ public class Graph<T> {
    * @return Collection
    */
   public ArrayList<Edge<T>> getNeighbors(Vertex<T> node) {
-    int nodeHash = node.getHash();
+    int nodeHash = node.hashCode();
     int indexHash = this.hashedIndex(nodeHash);
     Vertex<T> retrievedNode = adjacencyList.get(indexHash);
 
@@ -117,10 +119,10 @@ public class Graph<T> {
   /**
    * Retuns index hash for this adjacency list at its current bucket count.
    * @param hash
-   * @return hash
+   * @return hashed hash key for this hash table size
    */
   protected int hashedIndex(int hash) {
-    return hash % getBucketsCount();
+    return hash % DEFAULT_BUCKETS_COUNT;
   }
 
   /**
@@ -129,5 +131,13 @@ public class Graph<T> {
    */
   protected int getBucketsCount() {
     return adjacencyList.size();
+  }
+
+  /**
+   * Returns count of Vertices added to this Graph.
+   * @return count
+   */
+  public int getVerticesCount() {
+    return this.verticesCount;
   }
 }

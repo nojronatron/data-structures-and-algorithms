@@ -15,14 +15,6 @@ public class Vertex<T> {
     this.edges = new ArrayList<>();
   }
 
-  /**
-   * Returns an int hashcode from custom calculation to be used as an index.
-   * @return
-   */
-  public int getHash() {
-    return Math.abs(this.getValue().hashCode() * 599);
-  }
-
   public T getValue() {
     return value;
   }
@@ -43,6 +35,10 @@ public class Vertex<T> {
     this.edges = edges;
   }
 
+  /**
+   * Overrides Object.hashCode() and provides a custom hash calculation for this object.
+   * @return
+   */
   @Override
   public int hashCode() {
     return Math.abs(String.valueOf(value).hashCode() * 599);
