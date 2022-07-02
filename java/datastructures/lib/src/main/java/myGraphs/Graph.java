@@ -3,10 +3,10 @@ package myGraphs;
 import java.util.*;
 import java.util.concurrent.LinkedTransferQueue;
 
-public class Graph<T> {
+public class Graph {
   private final Integer DEFAULT_BUCKETS_COUNT = 17;
   private int verticesCount = 0;
-  protected HashMap<Integer, Vertex<T>> adjacencyList;
+  protected HashMap<Integer, Vertex> adjacencyList;
 
   /**
    * Default CTOR. Instantiates this Graph with a default buckets count.
@@ -20,8 +20,8 @@ public class Graph<T> {
    * @param value
    * @return vertex
    */
-  public Vertex<T> addNode(T value) {
-    Vertex<T> newVertex = new Vertex<>(value);
+  public Vertex addNode(Integer value) {
+    Vertex newVertex = new Vertex(value);
     adjacencyList.put(newVertex.hashCode(), newVertex);
     this.verticesCount++;
     return newVertex;
@@ -32,8 +32,8 @@ public class Graph<T> {
    * @param node1
    * @param node2
    */
-  public void addEdge(Vertex<T> node1, Vertex<T> node2){
-    Edge<T> newEdge = new Edge<>();
+  public void addEdge(Vertex node1, Vertex node2){
+    Edge newEdge = new Edge();
     newEdge.setNeighbor(node2);
     int node1Hash = node1.hashCode();
     int indexHash = this.hashedIndex(node1Hash);
@@ -49,12 +49,12 @@ public class Graph<T> {
    * Locates a Vertex within the Graph and returns a list of all Vertices with Edges.
    * @return collection
    */
-  public ArrayList<Vertex<T>> getNodes() {
+  public ArrayList<Vertex> getNodes() {
     if (adjacencyList.isEmpty()) {
       return null;
     }
 
-    Vertex<T> startNode = null;
+    Vertex startNode = null;
     var alKeys = adjacencyList.keySet();
 
     for(var item: alKeys) {
@@ -62,8 +62,8 @@ public class Graph<T> {
       break;
     }
 
-    ArrayList<Vertex<T>> visited = new ArrayList<>();
-    ArrayList<Vertex<T>> result = breadthFirst(startNode, visited);
+    ArrayList<Vertex> visited = new ArrayList<>();
+    ArrayList<Vertex> result = breadthFirst(startNode, visited);
 
     return result;
   }
@@ -74,21 +74,21 @@ public class Graph<T> {
    * @param visited
    * @return collection
    */
-  public ArrayList<Vertex<T>> breadthFirst(Vertex<T> start, ArrayList<Vertex<T>> visited) {
-    Queue<Vertex<T>> breadth = new LinkedTransferQueue<>();
-    ArrayList<Vertex<T>> nodes = new ArrayList<>();
+  public ArrayList<Vertex> breadthFirst(Vertex start, ArrayList<Vertex> visited) {
+    Queue<Vertex> breadth = new LinkedTransferQueue<>();
+    ArrayList<Vertex> nodes = new ArrayList<>();
 
     breadth.add(start);
     visited.add(start);
 
     while(!breadth.isEmpty()) {
-      Vertex<T> front = breadth.poll(); // using poll() avoids a possible exception
+      Vertex front = breadth.poll(); // using poll() avoids a possible exception
       if (front != null) {
         nodes.add(front);
 
-        for (Edge<T> edge : front.getEdges()) {
+        for (Edge edge : front.getEdges()) {
           var child = edge.getNeighbor();
-          if (!visited.contains(child)) {
+          if (!visited.contains(child) && child != null) {
             visited.add(child);
             breadth.add(child);
           }
@@ -104,10 +104,10 @@ public class Graph<T> {
    * @param node
    * @return Collection
    */
-  public ArrayList<Edge<T>> getNeighbors(Vertex<T> node) {
+  public ArrayList<Edge> getNeighbors(Vertex node) {
     int nodeHash = node.hashCode();
     int indexHash = this.hashedIndex(nodeHash);
-    Vertex<T> retrievedNode = adjacencyList.get(indexHash);
+    Vertex retrievedNode = adjacencyList.get(indexHash);
 
     if (retrievedNode == null) {
       return new ArrayList<>();
