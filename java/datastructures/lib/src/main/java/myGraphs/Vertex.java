@@ -6,11 +6,19 @@ public class Vertex<T> {
   protected T value;
   protected ArrayList<Edge<T>> edges;
 
+  /**
+   * CTOR accepts a value (suggest: Integer) and instantiates this Vertex object.
+   * @param value
+   */
   public Vertex(T value) {
     this.value = value;
     this.edges = new ArrayList<>();
   }
 
+  /**
+   * Returns an int hashcode from custom calculation to be used as an index.
+   * @return
+   */
   public int getHash() {
     return Math.abs(this.getValue().hashCode() * 599);
   }

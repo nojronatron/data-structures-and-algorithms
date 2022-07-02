@@ -54,4 +54,9 @@ public class Edge<T> {
   public void setWeight(Integer weight) {
     this.weight = weight;
   }
+
+  @Override
+  public String toString() {
+    return "Edge to Vertex " + this.neighbor.getValue() + " weight: " + this.weight + ".";
+  }
 }
