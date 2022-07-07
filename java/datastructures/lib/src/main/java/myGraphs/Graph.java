@@ -27,20 +27,88 @@ public class Graph {
   }
 
   /**
-   * Adds an Edge to the Graph based on reference of owning Vertex (node1) and neighbor Vertex (node2).
-   * @param node1
-   * @param node2
+   * Using Breadth First Traversal, return a collection of nodes in the order they were visited.
+   * @return
    */
-  public void addEdge(Vertex node1, Vertex node2){
-    Edge newEdge = new Edge();
-    newEdge.setNeighbor(node2);
-    int node1Hash = node1.hashCode();
+  public ArrayList<Vertex> breadthFirst() {
+    LinkedTransferQueue<Vertex> trackingQueue = new LinkedTransferQueue<>();
+    // todo: consider using a HashSet<E> instead of ArrayList<T> to simplify unique checking in code
+    // https://www.baeldung.com/java-hashset
+    // https://www.baeldung.com/java-iterator
+    ArrayList<Vertex> visitedList = new ArrayList<>();
 
-    if (!node1.edges.contains(newEdge)) {
-      node1.setEdge(newEdge);
+    if (this.getBucketsCount() < 1) {
+      return visitedList;
     }
 
-    adjacencyList.put(node1Hash, node1);
+    for(Vertex vertex: this.getNodes()) {
+      if (vertex != null) {
+        trackingQueue.add(vertex);
+      }
+    }
+
+    while(!trackingQueue.isEmpty()) {
+      Vertex currentVertex = trackingQueue.poll();
+      Graph.addUnique(currentVertex, visitedList);
+
+      ArrayList<Edge> attachedEdges = currentVertex.getEdges();
+
+      for(Edge edge: attachedEdges) {
+        // conditional added after whiteboarding
+        if(edge.neighbor != null && !visitedList.contains(edge.neighbor)) {
+         trackingQueue.add(edge.neighbor);
+        }
+      }
+    }
+
+    return visitedList;
+  }
+
+  /**
+   * Helper method adds only unique items to the collection parameter visited.
+   * Refactored to be static for testing purposes.
+   * @param current
+   * @param visited
+   */
+  public static void addUnique(Vertex current, ArrayList<Vertex> visited) {
+    // handled a null-input bug post-whiteboarding
+    if (current == null) {
+      return;
+    }
+
+    if(visited.size() < 2) {
+      visited.add(current);
+      return;
+    }
+
+    boolean doesContain = false;
+
+    for(int idx=0; idx <= visited.size() - 1; idx++){
+      if (current.value.equals(visited.get(idx).value)) {
+        return;
+      }
+    }
+
+    if (!doesContain){
+      visited.add(current);
+    }
+  }
+
+  /**
+   * Adds an Edge to the Graph based on reference of owning Vertex (node1) and neighbor Vertex (node2).
+   * @param owner
+   * @param neighbor
+   */
+  public void addEdge(Vertex owner, Vertex neighbor){
+    Edge newEdge = new Edge();
+    newEdge.setNeighbor(neighbor);
+    int node1Hash = owner.hashCode();
+
+    if (!owner.edges.contains(newEdge)) {
+      owner.setEdge(newEdge);
+    }
+
+    adjacencyList.put(node1Hash, owner);
   }
 
   /**
@@ -53,9 +121,9 @@ public class Graph {
     }
 
     Vertex startNode = null;
-    var alKeys = adjacencyList.keySet();
+    var allKeys = adjacencyList.keySet();
 
-    for(var item: alKeys) {
+    for(var item: allKeys) {
       startNode = adjacencyList.get(item);
       break;
     }
