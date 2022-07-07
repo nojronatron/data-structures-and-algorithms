@@ -1,15 +1,16 @@
 package myGraphs;
 
-public class Edge<T> {
+public class Edge {
   private final Integer DEFAULT_WEIGHT = 5;
   protected Integer weight;
-  protected Vertex<T> neighbor;
+  protected Vertex neighbor;
 
   /**
    * Default CTOR, sets defaul weight of 5.
    */
   public Edge() {
     this.weight = DEFAULT_WEIGHT;
+    this.neighbor = null;
   }
 
   /**
@@ -17,7 +18,7 @@ public class Edge<T> {
    * @param weight
    * @param neighbor
    */
-  public Edge(Integer weight, Vertex<T> neighbor) {
+  public Edge(Integer weight, Vertex neighbor) {
     this.weight = weight;
     this.neighbor = neighbor;
   }
@@ -26,7 +27,7 @@ public class Edge<T> {
    * Returns the Vertex instance attached to this the other side of this Edge AKA 'Neighbor'.
    * @return Vertex
    */
-  public Vertex<T> getNeighbor() {
+  public Vertex getNeighbor() {
     return neighbor;
   }
 
@@ -34,7 +35,7 @@ public class Edge<T> {
    * Sets the Vertex at end of this Edge to supplied Vertex instance.
    * @param neighbor
    */
-  public void setNeighbor(Vertex<T> neighbor) {
+  public void setNeighbor(Vertex neighbor) {
     this.neighbor = null;
     this.neighbor = neighbor;
   }
@@ -57,6 +58,7 @@ public class Edge<T> {
 
   @Override
   public String toString() {
-    return "Edge to Vertex " + this.neighbor.getValue() + " weight: " + this.weight + ".";
+    String neighborText = this.neighbor != null ? this.neighbor.getValue().toString() : "null";
+    return "Edge to Vertex " + neighborText + " weight: " + this.weight + ".";
   }
 }

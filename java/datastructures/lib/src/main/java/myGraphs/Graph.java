@@ -3,16 +3,15 @@ package myGraphs;
 import java.util.*;
 import java.util.concurrent.LinkedTransferQueue;
 
-public class Graph<T> {
-  private final Integer DEFAULT_BUCKETS_COUNT = 17;
+public class Graph {
   private int verticesCount = 0;
-  protected HashMap<Integer, Vertex<T>> adjacencyList;
+  protected HashMap<Integer, Vertex> adjacencyList;
 
   /**
    * Default CTOR. Instantiates this Graph with a default buckets count.
    */
   public Graph() {
-    adjacencyList = new HashMap<>(DEFAULT_BUCKETS_COUNT);
+    adjacencyList = new HashMap<>();
   }
 
   /**
@@ -20,50 +19,117 @@ public class Graph<T> {
    * @param value
    * @return vertex
    */
-  public Vertex<T> addNode(T value) {
-    Vertex<T> newVertex = new Vertex<>(value);
+  public Vertex addNode(Integer value) {
+    Vertex newVertex = new Vertex(value);
     adjacencyList.put(newVertex.hashCode(), newVertex);
     this.verticesCount++;
     return newVertex;
   }
 
   /**
-   * Adds an Edge to the Graph based on reference of owning Vertex (node1) and neighbor Vertex (node2).
-   * @param node1
-   * @param node2
+   * Using Breadth First Traversal, return a collection of nodes in the order they were visited.
+   * @return
    */
-  public void addEdge(Vertex<T> node1, Vertex<T> node2){
-    Edge<T> newEdge = new Edge<>();
-    newEdge.setNeighbor(node2);
-    int node1Hash = node1.hashCode();
-    int indexHash = this.hashedIndex(node1Hash);
+  public ArrayList<Vertex> breadthFirst() {
+    LinkedTransferQueue<Vertex> trackingQueue = new LinkedTransferQueue<>();
+    // todo: consider using a HashSet<E> instead of ArrayList<T> to simplify unique checking in code
+    // https://www.baeldung.com/java-hashset
+    // https://www.baeldung.com/java-iterator
+    ArrayList<Vertex> visitedList = new ArrayList<>();
 
-    if (!node1.edges.contains(newEdge)) {
-      node1.setEdge(newEdge);
+    if (this.getBucketsCount() < 1) {
+      return visitedList;
     }
 
-    adjacencyList.put(indexHash, node1);
+    for(Vertex vertex: this.getNodes()) {
+      if (vertex != null) {
+        trackingQueue.add(vertex);
+      }
+    }
+
+    while(!trackingQueue.isEmpty()) {
+      Vertex currentVertex = trackingQueue.poll();
+      Graph.addUnique(currentVertex, visitedList);
+
+      ArrayList<Edge> attachedEdges = currentVertex.getEdges();
+
+      for(Edge edge: attachedEdges) {
+        // conditional added after whiteboarding
+        if(edge.neighbor != null && !visitedList.contains(edge.neighbor)) {
+         trackingQueue.add(edge.neighbor);
+        }
+      }
+    }
+
+    return visitedList;
+  }
+
+  /**
+   * Helper method adds only unique items to the collection parameter visited.
+   * Refactored to be static for testing purposes.
+   * @param current
+   * @param visited
+   */
+  public static void addUnique(Vertex current, ArrayList<Vertex> visited) {
+    // handled a null-input bug post-whiteboarding
+    if (current == null) {
+      return;
+    }
+
+    if(visited.size() < 2) {
+      visited.add(current);
+      return;
+    }
+
+    boolean doesContain = false;
+
+    for(int idx=0; idx <= visited.size() - 1; idx++){
+      if (current.value.equals(visited.get(idx).value)) {
+        return;
+      }
+    }
+
+    if (!doesContain){
+      visited.add(current);
+    }
+  }
+
+  /**
+   * Adds an Edge to the Graph based on reference of owning Vertex (node1) and neighbor Vertex (node2).
+   * @param owner
+   * @param neighbor
+   */
+  public void addEdge(Vertex owner, Vertex neighbor){
+    Edge newEdge = new Edge();
+    newEdge.setNeighbor(neighbor);
+    int node1Hash = owner.hashCode();
+
+    if (!owner.edges.contains(newEdge)) {
+      owner.setEdge(newEdge);
+    }
+
+    adjacencyList.put(node1Hash, owner);
   }
 
   /**
    * Locates a Vertex within the Graph and returns a list of all Vertices with Edges.
    * @return collection
    */
-  public ArrayList<Vertex<T>> getNodes() {
+  public ArrayList<Vertex> getNodes() {
     if (adjacencyList.isEmpty()) {
       return null;
     }
 
-    Vertex<T> startNode = null;
-    var alKeys = adjacencyList.keySet();
+    Vertex startNode = null;
+    var allKeys = adjacencyList.keySet();
 
-    for(var item: alKeys) {
+    for(var item: allKeys) {
       startNode = adjacencyList.get(item);
       break;
     }
 
-    ArrayList<Vertex<T>> visited = new ArrayList<>();
-    ArrayList<Vertex<T>> result = breadthFirst(startNode, visited);
+    ArrayList<Vertex> visited = new ArrayList<>();
+    ArrayList<Vertex> result = breadthFirst(startNode, visited);
 
     return result;
   }
@@ -74,21 +140,21 @@ public class Graph<T> {
    * @param visited
    * @return collection
    */
-  public ArrayList<Vertex<T>> breadthFirst(Vertex<T> start, ArrayList<Vertex<T>> visited) {
-    Queue<Vertex<T>> breadth = new LinkedTransferQueue<>();
-    ArrayList<Vertex<T>> nodes = new ArrayList<>();
+  public ArrayList<Vertex> breadthFirst(Vertex start, ArrayList<Vertex> visited) {
+    Queue<Vertex> breadth = new LinkedTransferQueue<>();
+    ArrayList<Vertex> nodes = new ArrayList<>();
 
     breadth.add(start);
     visited.add(start);
 
     while(!breadth.isEmpty()) {
-      Vertex<T> front = breadth.poll(); // using poll() avoids a possible exception
+      Vertex front = breadth.poll(); // using poll() avoids a possible exception
       if (front != null) {
         nodes.add(front);
 
-        for (Edge<T> edge : front.getEdges()) {
+        for (Edge edge : front.getEdges()) {
           var child = edge.getNeighbor();
-          if (!visited.contains(child)) {
+          if (!visited.contains(child) && child != null) {
             visited.add(child);
             breadth.add(child);
           }
@@ -104,25 +170,15 @@ public class Graph<T> {
    * @param node
    * @return Collection
    */
-  public ArrayList<Edge<T>> getNeighbors(Vertex<T> node) {
+  public ArrayList<Edge> getNeighbors(Vertex node) {
     int nodeHash = node.hashCode();
-    int indexHash = this.hashedIndex(nodeHash);
-    Vertex<T> retrievedNode = adjacencyList.get(indexHash);
+    Vertex retrievedNode = adjacencyList.get(nodeHash);
 
     if (retrievedNode == null) {
       return new ArrayList<>();
     }
 
     return new ArrayList<>(retrievedNode.getEdges()); // suggested by IntelliJ three-step program to one-liners
-  }
-
-  /**
-   * Retuns index hash for this adjacency list at its current bucket count.
-   * @param hash
-   * @return hashed hash key for this hash table size
-   */
-  protected int hashedIndex(int hash) {
-    return hash % DEFAULT_BUCKETS_COUNT;
   }
 
   /**
