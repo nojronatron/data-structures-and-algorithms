@@ -41,6 +41,6 @@ public class Vertex {
    */
   @Override
   public int hashCode() {
-    return Math.abs(String.valueOf(value).hashCode() * 599);
+    return Math.abs(String.valueOf(this.value).hashCode() * 599);
   }
 }

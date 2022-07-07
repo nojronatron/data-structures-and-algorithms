@@ -37,6 +37,8 @@ public class TestMyGraphs {
   @Test
   public void testProperSizeIsReturnedRepresentingNumberOfVerticesInGraph() {
     int expectedResultCount = 3;
+    int expectedVerticesCount = 3;
+
     Graph sut = new Graph();
     var node1 = sut.addNode(1);
     var node2 = sut.addNode(2);
@@ -45,7 +47,11 @@ public class TestMyGraphs {
     sut.addEdge(node1, node2);
     sut.addEdge(node1, node3);
 
-    
+    var actualBucketsInAdjacencyList = sut.getBucketsCount();
+    var actualVerticesInThisGraph = sut.getVerticesCount();
+
+    assertEquals(expectedVerticesCount, actualBucketsInAdjacencyList);
+    assertEquals(expectedResultCount, actualVerticesInThisGraph);
   }
 
   @Test

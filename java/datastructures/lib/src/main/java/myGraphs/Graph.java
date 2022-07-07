@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.concurrent.LinkedTransferQueue;
 
 public class Graph {
-  private final Integer DEFAULT_BUCKETS_COUNT = 17;
   private int verticesCount = 0;
   protected HashMap<Integer, Vertex> adjacencyList;
 
@@ -12,7 +11,7 @@ public class Graph {
    * Default CTOR. Instantiates this Graph with a default buckets count.
    */
   public Graph() {
-    adjacencyList = new HashMap<>(DEFAULT_BUCKETS_COUNT);
+    adjacencyList = new HashMap<>();
   }
 
   /**
@@ -36,13 +35,12 @@ public class Graph {
     Edge newEdge = new Edge();
     newEdge.setNeighbor(node2);
     int node1Hash = node1.hashCode();
-    int indexHash = this.hashedIndex(node1Hash);
 
     if (!node1.edges.contains(newEdge)) {
       node1.setEdge(newEdge);
     }
 
-    adjacencyList.put(indexHash, node1);
+    adjacencyList.put(node1Hash, node1);
   }
 
   /**
@@ -106,23 +104,13 @@ public class Graph {
    */
   public ArrayList<Edge> getNeighbors(Vertex node) {
     int nodeHash = node.hashCode();
-    int indexHash = this.hashedIndex(nodeHash);
-    Vertex retrievedNode = adjacencyList.get(indexHash);
+    Vertex retrievedNode = adjacencyList.get(nodeHash);
 
     if (retrievedNode == null) {
       return new ArrayList<>();
     }
 
     return new ArrayList<>(retrievedNode.getEdges()); // suggested by IntelliJ three-step program to one-liners
-  }
-
-  /**
-   * Retuns index hash for this adjacency list at its current bucket count.
-   * @param hash
-   * @return hashed hash key for this hash table size
-   */
-  protected int hashedIndex(int hash) {
-    return hash % DEFAULT_BUCKETS_COUNT;
   }
 
   /**
