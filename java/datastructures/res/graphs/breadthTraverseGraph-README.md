@@ -12,6 +12,7 @@ Return a collection of nodes from a Graph in the order they were visited using B
 - [X] Implement solution using "clean, reusable, abstract component parts".
 - [X] Write at least 3 test cases (unittests) for each method created.
 - [ ] Ensure tests are passing (Two unittests not pass until I implement UNDIRECTED edges (Graph is currently DIRECTED)).
+- [X] Plan implementation by drawing a whiteboard to model and analyze the problem domain prior to implementation.
 
 ## Whiteboard
 
