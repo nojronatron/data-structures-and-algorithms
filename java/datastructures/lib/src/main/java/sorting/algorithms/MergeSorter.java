@@ -33,6 +33,7 @@ public abstract class MergeSorter {
 
     while (i < left.length && j < right.length) {
 
+      // TODO: fix array index out of bounds error somewhere in this method
       if (left[i] <= right[j]) {
         // int kTemp = left.get(i);
         int kTemp = Integer.valueOf(left[i]);
