@@ -8,9 +8,13 @@ Develop data structures and algorithms planning and coding skills using:
 - References
 - Gradle
 - JUnit Jupiter
-- And of course, Java
+- White boarding the problem domain
+- Analyzing algorithms using BigO notation
+- And of course, build experience writing Java
 
 ## List of Projects
+
+Code Challenge Class 36: [Breadth Traversal of a Graph](./res/graphs/breadthTraverseGraph-README.md)
 
 Code Challenge Class 35: [Graph Implementation](./res/graphs/graphs-README.md)
 
