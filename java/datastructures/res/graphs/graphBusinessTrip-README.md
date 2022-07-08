@@ -16,7 +16,7 @@ Determine if a direct flight is possible between two cities and return the cost 
 
 ## Whiteboard
 
-![Whiteboard of Business Trip Method Design]()
+![Whiteboard of Business Trip Method Design](./business-trip-whiteboard.jpg)
 
 ## Structure and Testing
 
@@ -39,13 +39,29 @@ Tests:
 
 
 
-Leveraged built-in Java classes TrackingQueue<E> and ArrayList<T> to ensure bug-free operation in those structures.
+The Graph utilizes built-in Java classes TrackingQueue<E> and ArrayList<T> to ensure bug-free operation in those structures.
 
 ### Big O: Time
 
+This algorithm operational efficiency is O(n) in time.
+
+Explanation:
+
+The businessTrip() function implements a single looping structure which is an O(edges) efficiency, meaning the most
+time will be taken by the Vertex that has edges to every-other Vertex in the Graph, which would boil-down to O(n).
+
+The other possible inefficiency would be in the adjacency list. Although the HashMap uses an O(1) algorithm to index in
+to the adjacency list to find the value/object. For a HashMap adjacency list that has lots of collisions, efficiency
+will drop as the Bucket Sizes to something approaching O(n) for the max number in any Bucket (assuming linked lists).
 
 ### Bit O: Space
 
+This algorithm operational efficiency is O(1) in space.
+
+Explanation:
+
+No additional storage is created, and storage is not duplicated within the method. The input graph is utilized in-
+place while executing the algorithm.
 
 ## API
 <!-- Description of each method publicly available in your Graph -->
@@ -57,7 +73,9 @@ may or may not be connected by a single edge.
 To use this method:
 
 1. Instantiate a new instance of the Graph class.
-2. Call graph.addNode(value) for as many Vertices (or an existing Graph of Vertices) to add.
-3. Note: Added Vertices MUST HAVE AN EDGE in order for traversal to function. Use my 'Vertex.java' class to be sure the Edge property is properly set.
-4. Call graph.addEdge(vertex, neighbor) to "tie" two vertices together.
-5. Call graph.breadthFirst() and store the return value as an ArrayList<Vertex> for inspection.
+2. Create a graph with Vertices containing city names as values and edges with values (weights) representing cost of each edge as a "flight".
+3. Create a Collection i.e. ArrayList<City> that has 2 city names (Strings) within it.
+4. Call graph.businessTrip(Graph, Collection) and include the Graph created above, and Collection created above.
+5. Capture the result as a String.
+6. If the String is null, there was no direct flight between the cities, or cities were not found, or graph was empty.
+7. String returned with value will be like (for example) "$150.00"
