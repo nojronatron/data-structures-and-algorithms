@@ -1,16 +1,17 @@
 package myGraphs;
 
-public class Edge {
-  private final Integer DEFAULT_WEIGHT = 5;
-  protected Integer weight;
-  protected Vertex neighbor;
+public class Edge<T> {
+//  private final Integer DEFAULT_WEIGHT = 5;
+  protected int weight;
+  protected Vertex<T> neighbor;
 
   /**
-   * Default CTOR, sets defaul weight of 5.
+   * Default CTOR, sets default weight of 5.
    */
-  public Edge() {
-    this.weight = DEFAULT_WEIGHT;
-    this.neighbor = null;
+  public Edge() {}
+
+  public Edge(Vertex<T> neighbor) {
+    this.neighbor = neighbor;
   }
 
   /**
@@ -18,7 +19,7 @@ public class Edge {
    * @param weight
    * @param neighbor
    */
-  public Edge(Integer weight, Vertex neighbor) {
+  public Edge(int weight, Vertex<T> neighbor) {
     this.weight = weight;
     this.neighbor = neighbor;
   }
@@ -27,7 +28,7 @@ public class Edge {
    * Returns the Vertex instance attached to this the other side of this Edge AKA 'Neighbor'.
    * @return Vertex
    */
-  public Vertex getNeighbor() {
+  public Vertex<T> getNeighbor() {
     return neighbor;
   }
 
@@ -35,8 +36,8 @@ public class Edge {
    * Sets the Vertex at end of this Edge to supplied Vertex instance.
    * @param neighbor
    */
-  public void setNeighbor(Vertex neighbor) {
-    this.neighbor = null;
+  public void setNeighbor(Vertex<T> neighbor) {
+//    this.neighbor = null;
     this.neighbor = neighbor;
   }
 
@@ -44,7 +45,7 @@ public class Edge {
    * Returns the Integer weight valueu of this Edge instance. Default weight is 5.
    * @return weight
    */
-  public Integer getWeight() {
+  public int getWeight() {
     return weight;
   }
 
@@ -52,7 +53,7 @@ public class Edge {
    * Sets the Weight of this Edge to supplied Integer.
    * @param weight
    */
-  public void setWeight(Integer weight) {
+  public void setWeight(int weight) {
     this.weight = weight;
   }
 
