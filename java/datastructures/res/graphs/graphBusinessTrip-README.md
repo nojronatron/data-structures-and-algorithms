@@ -54,7 +54,7 @@ The other possible inefficiency would be in the adjacency list. Although the Has
 to the adjacency list to find the value/object. For a HashMap adjacency list that has lots of collisions, efficiency
 will drop as the Bucket Sizes to something approaching O(n) for the max number in any Bucket (assuming linked lists).
 
-### Bit O: Space
+### Big O: Space
 
 This algorithm operational efficiency is O(1) in space.
 
@@ -66,9 +66,7 @@ place while executing the algorithm.
 ## API
 <!-- Description of each method publicly available in your Graph -->
 
-This Graph's businessTrip() method accepts a Graph of size N and an array of 2 cities possibly within the graph that
-may or may not be connected by a single edge.
-
+This Graph's businessTrip() method accepts a Graph of size N and an array of 2 cities possibly within the graph that may or may not be connected by a single edge.
 
 To use this method:
 

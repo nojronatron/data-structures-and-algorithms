@@ -43,8 +43,8 @@ public class TestMyGraphs {
     var node2 = sut.addNode(2);
     var node3 = sut.addNode(3);
 
-    sut.addEdge(node1, node2);
-    sut.addEdge(node1, node3);
+    sut.addDirectionalEdge(node1, node2);
+    sut.addDirectionalEdge(node1, node3);
 
     var actualBucketsInAdjacencyList = sut.getBucketsCount();
     var actualVerticesInThisGraph = sut.getVerticesCount();
@@ -60,7 +60,7 @@ public class TestMyGraphs {
 
     Graph<Integer> sut = new Graph<>();
     Vertex<Integer> newNode = sut.addNode(11);
-    sut.addEdge(newNode, null);
+    sut.addDirectionalEdge(newNode, null);
 
     var actualResultCollection = sut.getNodes();
     var actualResultNode = actualResultCollection.get(0);
@@ -197,16 +197,15 @@ public class TestMyGraphs {
     Graph<Integer> sut = new Graph<>();
     Vertex<Integer> node10 = sut.addNode(10);
     Vertex<Integer> node5 = sut.addNode(5);
-    sut.addEdge(node10, node5);
+    sut.addUndirectedEdge(node10, node5);
     Vertex<Integer> node2 = sut.addNode(2);
-    sut.addEdge(node5, node2);
+    sut.addUndirectedEdge(node5, node2);
     Vertex<Integer> node15 = sut.addNode(15);
-    sut.addEdge(node5, node15);
+    sut.addUndirectedEdge(node5, node15);
     Vertex<Integer> node7 = sut.addNode(7);
-    sut.addEdge(node15, node7);
-    sut.addEdge(node2, node7);
+    sut.addUndirectedEdge(node15, node7);
+    sut.addUndirectedEdge(node2, node7);
 
-  //  TODO: refactor the Graph to be UNDIRECTED e.g. Node -> Neighbor path should also be Neighbor -> node traversable.
     ArrayList<Vertex<Integer>> visitedVertices = sut.breadthFirst();
     int actualCollectionCount = visitedVertices.size();
 
@@ -220,7 +219,7 @@ public class TestMyGraphs {
 
   @Test
   public void testBreadthFirstMethod_DoesNotReturnDuplicateNodes() {
-    int expectedCollectionCount = 5;
+    int expectedCollectionCount = 4;
     ArrayList<Integer> expectedValues = new ArrayList<>();
     expectedValues.add(2);
     expectedValues.add(5);
@@ -231,13 +230,13 @@ public class TestMyGraphs {
     Graph<Integer> sut = new Graph<>();
     Vertex<Integer> node10 = sut.addNode(7);
     Vertex<Integer> node5 = sut.addNode(5);
-    sut.addEdge(node10, node5);
+    sut.addUndirectedEdge(node10, node5);
     Vertex<Integer> node2 = sut.addNode(2);
-    sut.addEdge(node5, node2);
+    sut.addUndirectedEdge(node5, node2);
     Vertex<Integer> node15 = sut.addNode(15);
-    sut.addEdge(node5, node15);
+    sut.addUndirectedEdge(node5, node15);
     Vertex<Integer> node7 = sut.addNode(7);
-    sut.addEdge(node15, node7);
+    sut.addUndirectedEdge(node15, node7);
 
     ArrayList<Vertex<Integer>> visitedVertices = sut.breadthFirst();
     int actualCollectionCount = visitedVertices.size();
@@ -246,8 +245,22 @@ public class TestMyGraphs {
       assertTrue(expectedValues.contains(vertex.getValue()));
     }
 
-    // TODO: implement UNDIRECTED paths in Graph then re-test
-//    assertEquals(expectedCollectionCount, actualCollectionCount,
-//      "There should be 5 Vertices returned.");
+    assertEquals(expectedCollectionCount, actualCollectionCount,
+      "There should be 5 Vertices returned.");
+  }
+
+  @Test
+  public void testGetSpecificItemInGraph() {
+    Graph<String> sut = new Graph<>();
+    var alpha = sut.addNode("alpha");
+    var bravo = sut.addNode("bravo");
+    var charlie = sut.addNode("charlie");
+
+    sut.addUndirectedEdge(alpha, bravo);
+    sut.addUndirectedEdge(alpha, charlie);
+
+    var foundVertex = sut.findVertex("alpha");
+    assertEquals(alpha.value, foundVertex.value,
+      "Searching for \"alpha\" should return a Vertex with value \"alpha\"");
   }
 }

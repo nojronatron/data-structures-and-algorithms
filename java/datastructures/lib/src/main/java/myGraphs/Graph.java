@@ -32,7 +32,7 @@ public class Graph<T> {
    */
   public ArrayList<Vertex<T>> breadthFirst() {
     LinkedTransferQueue<Vertex<T>> trackingQueue = new LinkedTransferQueue<>();
-    // todo: consider using a HashSet<E> instead of ArrayList<T> to simplify unique checking in code
+    // TODO: consider using a HashSet<E> instead of ArrayList<T> to simplify unique checking in code
     // https://www.baeldung.com/java-hashset
     // https://www.baeldung.com/java-iterator
     ArrayList<Vertex<T>>visitedList = new ArrayList<>();
@@ -62,6 +62,56 @@ public class Graph<T> {
     }
 
     return visitedList;
+  }
+
+  /**
+   * Method accepts an existing Graph and a Collection of 2 city names, searches the graph, for a direct flight
+   * path between the two cities and returns the 'cost'. If direct flight is not found method returns 'No direct
+   * flights found.'. Multi-stop flights are not calculated. Method will return
+   * nulls for following conditions: Less than 2 vertices; city names count not equal to 2.
+   * @param graph
+   * @param twoCities
+   * @return
+   */
+  public String businessTrip(Graph<T> graph, ArrayList<T> twoCities) {
+    if (graph == null || graph.getBucketsCount() < 2) {
+      return null;
+    }
+
+    if (twoCities.size() != 2) {
+      return "Don't know which cities to check.";
+    }
+
+    T startCityValue = twoCities.get(0);
+    var startCity = this.findVertex(startCityValue);
+    var numDirectFlights = startCity.getEdges().size();
+
+    if (numDirectFlights < 1) {
+      return null;
+    }
+
+    var dollarCost = "";
+
+    for(Edge<T> edge: startCity.edges) {
+      if (edge.getNeighbor().getValue().toString().toLowerCase(Locale.ROOT).equals(startCity.getValue().toString().toLowerCase(Locale.ROOT))) {
+        dollarCost = String.format("$ %1s.00", edge.getWeight());
+        return dollarCost;
+      }
+    }
+
+    return "No direct flights found.";
+  }
+
+  /**
+   * Given a value, locate an existing Vertex within the Graph and return it.
+   * @param value
+   * @return
+   */
+  public Vertex<T> findVertex(T value) {
+    Vertex<T> hashVertex = new Vertex<>(value);
+    int indexToLookup = hashVertex.hashCode();
+    Vertex<T> discoveredItem = this.adjacencyList.get(indexToLookup);
+    return discoveredItem;
   }
 
   /**
@@ -95,11 +145,11 @@ public class Graph<T> {
   }
 
   /**
-   * Adds an Edge to the Graph based on reference of owning Vertex (node1) and neighbor Vertex (node2).
-   * @param owner
-   * @param neighbor
+   * Adds a DIRECTED Edge to the Graph based on reference of owning Vertex (node1) and neighbor Vertex (node2).
+   * @param owner Vertex
+   * @param neighbor Vertex
    */
-  public void addEdge(Vertex<T> owner, Vertex<T> neighbor){
+  public void addDirectionalEdge(Vertex<T> owner, Vertex<T> neighbor){
     Edge<T> newEdge = new Edge<>();
     newEdge.setNeighbor(neighbor);
     int node1Hash = owner.hashCode();
@@ -109,6 +159,17 @@ public class Graph<T> {
     }
 
     adjacencyList.put(node1Hash, owner);
+  }
+
+  /**
+   * Adds an UNDIRECTED Edge to the graph based on references to two Vertices.
+   * Literally ends up creating 2 Directed Edges.
+   * @param neighbor_A Vertex
+   * @param neighbor_B Vertex
+   */
+  public void addUndirectedEdge(Vertex<T> neighbor_A, Vertex<T> neighbor_B) {
+    this.addDirectionalEdge(neighbor_A, neighbor_B);
+    this.addDirectionalEdge(neighbor_B, neighbor_A);
   }
 
   /**
