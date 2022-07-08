@@ -14,6 +14,8 @@ Develop data structures and algorithms planning and coding skills using:
 
 ## List of Projects
 
+Code Challenge Class 37: [Graph Business Trip](./res/graphs/graphBusinessTrip-README.md)
+
 Code Challenge Class 36: [Breadth Traversal of a Graph](./res/graphs/breadthTraverseGraph-README.md)
 
 Code Challenge Class 35: [Graph Implementation](./res/graphs/graphs-README.md)

@@ -2,36 +2,36 @@ package myGraphs;
 
 import java.util.ArrayList;
 
-public class Vertex {
-  protected Integer value;
-  protected ArrayList<Edge> edges;
+public class Vertex<T> {
+  protected T value;
+  protected ArrayList<Edge<T>> edges;
 
   /**
    * CTOR accepts a value (suggest: Integer) and instantiates this Vertex object.
    * @param value
    */
-  public Vertex(Integer value) {
+  public Vertex(T value) {
     this.value = value;
     this.edges = new ArrayList<>();
   }
 
-  public Integer getValue() {
+  public T getValue() {
     return value;
   }
 
-  public void setValue(Integer value) {
+  public void setValue(T value) {
     this.value = value;
   }
 
-  public boolean setEdge(Edge edge) {
+  public boolean setEdge(Edge<T> edge) {
     return edges.add(edge);
   }
 
-  public ArrayList<Edge> getEdges() {
+  public ArrayList<Edge<T>> getEdges() {
     return edges;
   }
 
-  public void setEdges(ArrayList<Edge> edges) {
+  public void setEdges(ArrayList<Edge<T>> edges) {
     this.edges = edges;
   }
 

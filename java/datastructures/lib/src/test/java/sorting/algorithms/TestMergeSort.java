@@ -20,7 +20,7 @@ public class TestMergeSort {
     String inputArrayAsString = getPrettyArrayString(inputArray);
     System.out.println("Input array: " + inputArrayAsString.toString());
 
-    MergeSorter.mergesort(inputArray);
+//    MergeSorter.mergesort(inputArray);
 
     String mutatedArrayAsString = getPrettyArrayString(inputArray);
     System.out.println("Resulting array: " + mutatedArrayAsString);
