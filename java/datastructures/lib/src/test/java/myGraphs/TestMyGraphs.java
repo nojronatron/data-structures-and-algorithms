@@ -270,7 +270,7 @@ public class TestMyGraphs {
   }
 
   @Test
-  public void testTwoCitiesDirectlyConnectedReturnsCorrectValue() {
+  public void testBusinessTrip_TwoCitiesDirectlyConnectedReturnsCorrectValue() {
     String helena = "Helena";
     String buffalo = "Buffalo";
 
@@ -287,5 +287,63 @@ public class TestMyGraphs {
     var actualResult = sut.businessTrip(sut, twoCities);
     assertEquals("$150.00", actualResult,
       "The cost of the edge between Helena and Buffalo is 150 aka $150.00");
+  }
+
+  @Test
+  public void testBusinessTrip_NullGraphInputResultsInNullReturn() {
+    String helena = "Helena";
+    String buffalo = "Buffalo";
+    ArrayList<String> twoCities = new ArrayList<>();
+    twoCities.add(helena);
+    twoCities.add(buffalo);
+
+    Graph<String> sut = new Graph<>();
+    var actualResult = sut.businessTrip(sut, twoCities);
+
+    assertNull(actualResult);
+  }
+
+  @Test
+  public void testBusinessTrip_SingleCityCollectionResultsInCantCheckCitiesResponse() {
+    var expectedResult = "Don't know which cities to check.";
+    String helena = "Helena";
+    String buffalo = "Buffalo";
+    ArrayList<String> twoCities = new ArrayList<>();
+    twoCities.add(helena);
+
+    Graph<String> sut = new Graph<>();
+    var helenaVertex = sut.addNode(helena);
+    var buffaloVertex = sut.addNode(buffalo);
+    sut.addUndirectedEdge(helenaVertex, 150, buffaloVertex);
+    var actualResult = sut.businessTrip(sut, twoCities);
+
+    assertEquals(expectedResult, actualResult,
+      "Including a city list with more than 2 cities results in \"Don't know which cities to check.\"");
+  }
+
+  @Test
+  public void testBusinessTrip_ThreeCityCollectionResultsInCantCheckCitiesResponse() {
+    var expectedResult = "Don't know which cities to check.";
+    String seattle = "Seattle";
+    String helena = "Helena";
+    String buffalo = "Buffalo";
+    ArrayList<String> threeCities = new ArrayList<>();
+    threeCities.add(seattle);
+    threeCities.add(helena);
+    threeCities.add(buffalo);
+
+    Graph<String> sut = new Graph<>();
+    var seattleVertex = sut.addNode(seattle);
+    var helenaVertex = sut.addNode(helena);
+    var buffaloVertex = sut.addNode(buffalo);
+
+    sut.addUndirectedEdge(seattleVertex, 300, buffaloVertex);
+    sut.addUndirectedEdge(helenaVertex, 200, buffaloVertex);
+    sut.addUndirectedEdge(seattleVertex, 150, helenaVertex);
+
+    var actualResult = sut.businessTrip(sut, threeCities);
+
+    assertEquals(expectedResult, actualResult,
+      "Including a city list with more than 2 cities results in \"Don't know which cities to check.\"");
   }
 }

@@ -1,4 +1,4 @@
-# Breadth Traverse a Graphs
+# Find Cost of Direct Flights In Graph
 
 ## Challenge
 
@@ -6,13 +6,13 @@ Determine if a direct flight is possible between two cities and return the cost 
 
 ## Features
 
-- [ ] Write a function called businessTrip.
-- [ ] Method takes a graph and an array of city names as input.
-- [ ] Method returns null if direct flight not available, or the cost of the flight if it is available.
-- [ ] Implement solution using "clean, reusable, abstract component parts".
-- [ ] Write at least 3 test cases (unittests) for each method created.
-- [ ] Ensure tests are passing (Two unittests not pass until I implement UNDIRECTED edges (Graph is currently DIRECTED)).
-- [ ] Plan implementation by drawing a whiteboard to model and analyze the problem domain prior to implementation.
+- [X] Write a function called businessTrip.
+- [X] Method takes a graph and an array of city names as input.
+- [X] Method returns null if direct flight not available, or the cost of the flight if it is available.
+- [X] Implement solution using "clean, reusable, abstract component parts".
+- [X] Write at least 3 test cases (unittests) for each method created.
+- [X] Ensure tests are passing.
+- [X] Plan implementation by drawing a whiteboard to model and analyze the problem domain prior to implementation.
 
 ## Whiteboard
 
@@ -28,18 +28,21 @@ Any exceptions or errors that come from your code should be contextual, descript
 
 Tests:
 
-- [ ] An empty graph returns null.
-- [ ] An empty array of cities returns null.
-- [ ] An array of one city returns null (you don't really want to purchase a circular flight, do you?).
-
-...
+- [X] An empty graph returns null.
+- [X] An empty array of cities returns null.
+- [X] An array of one city returns ~~null (you don't really want to purchase a circular flight, do you?)~~ "Don't know which cities to check."
+- [X] A graph with at least cities "Helena" and "Buffalo" included, and city list includes only "Helena" and "Buffalo", returns the cost "$150.00"
 
 ## Approach & Efficiency
 <!-- What approach did you take? Why? What is the Big O space/time for this approach? -->
 
+Utilized the existing methods in my graph class to find Vertices, and create a nondirected Graph.
 
+Leveraged HashMap capability to find a Vertex by hashed index to get adjacency list or determine adjacent Vertices.
 
-The Graph utilizes built-in Java classes TrackingQueue<E> and ArrayList<T> to ensure bug-free operation in those structures.
+Utilize existing methods to get the Edges and the Cost of each Edge.
+
+With those existing generalized Edge, Vertex, and Graph methods, the remaining logic was ensuring clean, expected inputs, and develop a sensible test for adjacency that would also quickly return a value if found.
 
 ### Big O: Time
 
@@ -70,10 +73,12 @@ This Graph's businessTrip() method accepts a Graph of size N and an array of 2 c
 
 To use this method:
 
-1. Instantiate a new instance of the Graph class.
-2. Create a graph with Vertices containing city names as values and edges with values (weights) representing cost of each edge as a "flight".
-3. Create a Collection i.e. ArrayList<City> that has 2 city names (Strings) within it.
-4. Call graph.businessTrip(Graph, Collection) and include the Graph created above, and Collection created above.
-5. Capture the result as a String.
-6. If the String is null, there was no direct flight between the cities, or cities were not found, or graph was empty.
-7. String returned with value will be like (for example) "$150.00"
+1. Create an ArrayList of type String that has 2 city names in it.
+2. Instantiate a new Graph class object.
+3. Call graph instance method addNode and supply a city name as a value. Repeat for all cities in the Graph.
+4. Remember to capture the returned Vertex from the previous step.
+5. Call graph instance method addUndirectedEdge and supply the city-pair Vertices for each flight path between cities, along with the cost as input e.g. Helena, 150, Buffalo.
+6. Call graph instance method businessTrip and include the Graph created above and Collection created above.
+7. Store the result of the previous step in a String variable.
+8. If the String is null, there was no direct flight between the cities, or cities were not found, or graph was empty.
+10. If there is a direct flight between Helena and Buffalo, the resulting value will be "$150.00" (the value of the edge "weight").
