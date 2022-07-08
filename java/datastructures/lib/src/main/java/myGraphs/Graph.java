@@ -83,18 +83,20 @@ public class Graph<T> {
     }
 
     T startCityValue = twoCities.get(0);
-    var startCity = this.findVertex(startCityValue);
+    var startCity = graph.findVertex(startCityValue);
     var numDirectFlights = startCity.getEdges().size();
 
     if (numDirectFlights < 1) {
       return null;
     }
 
+    var destinationCity = twoCities.get(1);
     var dollarCost = "";
 
     for(Edge<T> edge: startCity.edges) {
-      if (edge.getNeighbor().getValue().toString().toLowerCase(Locale.ROOT).equals(startCity.getValue().toString().toLowerCase(Locale.ROOT))) {
-        dollarCost = String.format("$ %1s.00", edge.getWeight());
+      // if startCity's current edge neighbor value is destinationCity's name, get the Edge Cost, format as a string, and return it
+      if (edge.getNeighbor().getValue().toString().toLowerCase(Locale.ROOT).equals(destinationCity.toString().toLowerCase(Locale.ROOT))) {
+        dollarCost = String.format("$%1s.00", edge.getWeight());
         return dollarCost;
       }
     }
@@ -149,9 +151,10 @@ public class Graph<T> {
    * @param owner Vertex
    * @param neighbor Vertex
    */
-  public void addDirectionalEdge(Vertex<T> owner, Vertex<T> neighbor){
+  public void addDirectionalEdge(Vertex<T> owner, Integer weight, Vertex<T> neighbor){
     Edge<T> newEdge = new Edge<>();
     newEdge.setNeighbor(neighbor);
+    newEdge.setWeight(weight);
     int node1Hash = owner.hashCode();
 
     if (!owner.edges.contains(newEdge)) {
@@ -167,9 +170,9 @@ public class Graph<T> {
    * @param neighbor_A Vertex
    * @param neighbor_B Vertex
    */
-  public void addUndirectedEdge(Vertex<T> neighbor_A, Vertex<T> neighbor_B) {
-    this.addDirectionalEdge(neighbor_A, neighbor_B);
-    this.addDirectionalEdge(neighbor_B, neighbor_A);
+  public void addUndirectedEdge(Vertex<T> neighbor_A, Integer weight, Vertex<T> neighbor_B) {
+    this.addDirectionalEdge(neighbor_A, weight, neighbor_B);
+    this.addDirectionalEdge(neighbor_B, weight, neighbor_A);
   }
 
   /**

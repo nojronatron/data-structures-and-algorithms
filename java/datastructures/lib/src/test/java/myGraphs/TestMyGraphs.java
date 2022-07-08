@@ -35,6 +35,7 @@ public class TestMyGraphs {
 
   @Test
   public void testProperSizeIsReturnedRepresentingNumberOfVerticesInGraph() {
+    int weight = 5;
     int expectedResultCount = 3;
     int expectedVerticesCount = 3;
 
@@ -43,8 +44,8 @@ public class TestMyGraphs {
     var node2 = sut.addNode(2);
     var node3 = sut.addNode(3);
 
-    sut.addDirectionalEdge(node1, node2);
-    sut.addDirectionalEdge(node1, node3);
+    sut.addDirectionalEdge(node1, weight, node2);
+    sut.addDirectionalEdge(node1, weight, node3);
 
     var actualBucketsInAdjacencyList = sut.getBucketsCount();
     var actualVerticesInThisGraph = sut.getVerticesCount();
@@ -55,12 +56,13 @@ public class TestMyGraphs {
 
   @Test
   public void testGraphWithOnlyOneNodeAndEdgeCanBeReturned() {
+    int weight = 5;
     int expectedResultCount = 1;
     Vertex<Integer> expectedNode = new Vertex<>(11);
 
     Graph<Integer> sut = new Graph<>();
     Vertex<Integer> newNode = sut.addNode(11);
-    sut.addDirectionalEdge(newNode, null);
+    sut.addDirectionalEdge(newNode, weight, null);
 
     var actualResultCollection = sut.getNodes();
     var actualResultNode = actualResultCollection.get(0);
@@ -186,6 +188,7 @@ public class TestMyGraphs {
 
   @Test
   void testBreadthFirstMethod_NoNodeIsVisitedMoreThanOnce() {
+    int weight = 5;
     int expectedCollectionCount = 5;
     ArrayList<Integer> expectedValues = new ArrayList<>();
     expectedValues.add(2);
@@ -197,14 +200,14 @@ public class TestMyGraphs {
     Graph<Integer> sut = new Graph<>();
     Vertex<Integer> node10 = sut.addNode(10);
     Vertex<Integer> node5 = sut.addNode(5);
-    sut.addUndirectedEdge(node10, node5);
+    sut.addUndirectedEdge(node10, weight, node5);
     Vertex<Integer> node2 = sut.addNode(2);
-    sut.addUndirectedEdge(node5, node2);
+    sut.addUndirectedEdge(node5, weight, node2);
     Vertex<Integer> node15 = sut.addNode(15);
-    sut.addUndirectedEdge(node5, node15);
+    sut.addUndirectedEdge(node5, weight, node15);
     Vertex<Integer> node7 = sut.addNode(7);
-    sut.addUndirectedEdge(node15, node7);
-    sut.addUndirectedEdge(node2, node7);
+    sut.addUndirectedEdge(node15, weight, node7);
+    sut.addUndirectedEdge(node2, weight, node7);
 
     ArrayList<Vertex<Integer>> visitedVertices = sut.breadthFirst();
     int actualCollectionCount = visitedVertices.size();
@@ -219,6 +222,7 @@ public class TestMyGraphs {
 
   @Test
   public void testBreadthFirstMethod_DoesNotReturnDuplicateNodes() {
+    int weight = 5;
     int expectedCollectionCount = 4;
     ArrayList<Integer> expectedValues = new ArrayList<>();
     expectedValues.add(2);
@@ -230,13 +234,13 @@ public class TestMyGraphs {
     Graph<Integer> sut = new Graph<>();
     Vertex<Integer> node10 = sut.addNode(7);
     Vertex<Integer> node5 = sut.addNode(5);
-    sut.addUndirectedEdge(node10, node5);
+    sut.addUndirectedEdge(node10, weight, node5);
     Vertex<Integer> node2 = sut.addNode(2);
-    sut.addUndirectedEdge(node5, node2);
+    sut.addUndirectedEdge(node5, weight, node2);
     Vertex<Integer> node15 = sut.addNode(15);
-    sut.addUndirectedEdge(node5, node15);
+    sut.addUndirectedEdge(node5, weight, node15);
     Vertex<Integer> node7 = sut.addNode(7);
-    sut.addUndirectedEdge(node15, node7);
+    sut.addUndirectedEdge(node15, weight, node7);
 
     ArrayList<Vertex<Integer>> visitedVertices = sut.breadthFirst();
     int actualCollectionCount = visitedVertices.size();
@@ -251,16 +255,37 @@ public class TestMyGraphs {
 
   @Test
   public void testGetSpecificItemInGraph() {
+    int weight = 5;
     Graph<String> sut = new Graph<>();
     var alpha = sut.addNode("alpha");
     var bravo = sut.addNode("bravo");
     var charlie = sut.addNode("charlie");
 
-    sut.addUndirectedEdge(alpha, bravo);
-    sut.addUndirectedEdge(alpha, charlie);
+    sut.addUndirectedEdge(alpha, weight, bravo);
+    sut.addUndirectedEdge(alpha, weight, charlie);
 
     var foundVertex = sut.findVertex("alpha");
     assertEquals(alpha.value, foundVertex.value,
       "Searching for \"alpha\" should return a Vertex with value \"alpha\"");
+  }
+
+  @Test
+  public void testTwoCitiesDirectlyConnectedReturnsCorrectValue() {
+    String helena = "Helena";
+    String buffalo = "Buffalo";
+
+    ArrayList<String> twoCities = new ArrayList<>();
+    twoCities.add(helena);
+    twoCities.add(buffalo);
+
+    Graph<String> sut = new Graph<>();
+    var Helena = sut.addNode(helena);
+    var Buffalo = sut.addNode(buffalo);
+
+    sut.addUndirectedEdge(Helena, 150, Buffalo);
+
+    var actualResult = sut.businessTrip(sut, twoCities);
+    assertEquals("$150.00", actualResult,
+      "The cost of the edge between Helena and Buffalo is 150 aka $150.00");
   }
 }

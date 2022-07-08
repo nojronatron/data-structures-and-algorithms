@@ -16,12 +16,12 @@ public class Edge<T> {
 
   /**
    * CTOR instantiates a new Edge with supplied weight and Vertex instance.
-   * @param weight
    * @param neighbor
+   * @param weight
    */
-  public Edge(int weight, Vertex<T> neighbor) {
-    this.weight = weight;
+  public Edge(Vertex<T> neighbor, int weight) {
     this.neighbor = neighbor;
+    this.weight = weight;
   }
 
   /**
