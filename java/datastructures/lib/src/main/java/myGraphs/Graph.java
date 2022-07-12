@@ -78,27 +78,33 @@ public class Graph<T> {
       return null;
     }
 
-    if (twoCities.size() != 2) {
-      return "Don't know which cities to check.";
+    if (twoCities.size() < 2) {
+      return null;
     }
 
+    ArrayList<T> cityList = new ArrayList<>();
+
+    // TODO: need to loop through cities starting with 0 and 1, then 1 and 2, etc and compare for chained single-flights
     T startCityValue = twoCities.get(0);
     var startCity = graph.findVertex(startCityValue);
-    var numDirectFlights = startCity.getEdges().size();
 
-    if (numDirectFlights < 1) {
+    if (startCity.getEdges().size() < 1) {
       return null;
     }
 
     var destinationCity = twoCities.get(1);
-    var dollarCost = "";
+    int costAccumulator = 0;
 
     for(Edge<T> edge: startCity.edges) {
       // if startCity's current edge neighbor value is destinationCity's name, get the Edge Cost, format as a string, and return it
       if (edge.getNeighbor().getValue().toString().toLowerCase(Locale.ROOT).equals(destinationCity.toString().toLowerCase(Locale.ROOT))) {
-        dollarCost = String.format("$%1s.00", edge.getWeight());
-        return dollarCost;
+        costAccumulator = costAccumulator + edge.getWeight();
       }
+    }
+
+    if (costAccumulator > 0) {
+      String dollarCost = String.format("$%1s.00", costAccumulator);
+      return dollarCost;
     }
 
     return "No direct flights found.";

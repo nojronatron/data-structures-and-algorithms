@@ -2,6 +2,7 @@ package myGraphs;
 
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -119,7 +120,6 @@ public class TestMyGraphs {
     for (Vertex<Integer> vertex : allUniqueValues) {
       assertTrue(expectedValues.contains(vertex.getValue()));
     }
-    ;
 
     assertEquals(expectedResultCount, actualResultCount, "Resulting collection should be size 5.");
   }
@@ -305,25 +305,24 @@ public class TestMyGraphs {
 
   @Test
   public void testBusinessTrip_SingleCityCollectionResultsInCantCheckCitiesResponse() {
-    var expectedResult = "Don't know which cities to check.";
     String helena = "Helena";
+    ArrayList<String> singleCityCollection = new ArrayList<>();
+    singleCityCollection.add(helena);
     String buffalo = "Buffalo";
-    ArrayList<String> twoCities = new ArrayList<>();
-    twoCities.add(helena);
 
     Graph<String> sut = new Graph<>();
     var helenaVertex = sut.addNode(helena);
     var buffaloVertex = sut.addNode(buffalo);
     sut.addUndirectedEdge(helenaVertex, 150, buffaloVertex);
-    var actualResult = sut.businessTrip(sut, twoCities);
+    var actualResult = sut.businessTrip(sut, singleCityCollection);
 
-    assertEquals(expectedResult, actualResult,
-      "Including a city list with more than 2 cities results in \"Don't know which cities to check.\"");
+    assertNull(actualResult,
+"Including just a single city in collection should return Null.");
   }
 
   @Test
   public void testBusinessTrip_ThreeCityCollectionResultsInCantCheckCitiesResponse() {
-    var expectedResult = "Don't know which cities to check.";
+    var expectedResult = "$150.00";
     String seattle = "Seattle";
     String helena = "Helena";
     String buffalo = "Buffalo";
@@ -344,6 +343,65 @@ public class TestMyGraphs {
     var actualResult = sut.businessTrip(sut, threeCities);
 
     assertEquals(expectedResult, actualResult,
-      "Including a city list with more than 2 cities results in \"Don't know which cities to check.\"");
+      "Including a city list with more than 2 cities results only 1st two cities getting checked => $150.00");
+  }
+
+  @Test
+  public void testBusinessTrip_exampleDataFromCodeChallengePassesMuster() {
+    var expectedResult = "$82.00";
+    var expectedResult2 = "$42.00";
+    var expectedNoDirectFlights = "No direct flights found.";
+
+    String pandora = "Pandora";
+    String arendelle="Arendelle";
+    String metroville="Metroville";
+    String newMonstropolis="New Monstropolis";
+    String narnia="Narnia";
+    String naboo="Naboo";
+
+    ArrayList<String> input1 = new ArrayList<>();
+    input1.add(metroville);
+    input1.add(pandora);
+
+    ArrayList<String> input2 = new ArrayList<>();
+    input2.add(arendelle);
+    input2.add(newMonstropolis);
+    input2.add(naboo);
+
+    ArrayList<String> input3 = new ArrayList<>();
+    input3.add(naboo);
+    input3.add(pandora);
+
+    ArrayList<String> input4 = new ArrayList<>();
+    input4.add(narnia);
+    input4.add(arendelle);
+    input4.add(naboo);
+
+    Graph<String> sut = new Graph<>();
+    var vPandora = sut.addNode(pandora);
+    var vArendelle = sut.addNode(arendelle);
+    var vMetroville = sut.addNode(metroville);
+    var vNewMonstropolis = sut.addNode(newMonstropolis);
+    var vNarnia = sut.addNode(narnia);
+    var vNaboo = sut.addNode(naboo);
+
+    sut.addUndirectedEdge(vPandora, 150, vArendelle);
+    sut.addUndirectedEdge(vPandora, 82, vMetroville);
+    sut.addUndirectedEdge(vArendelle, 99, vMetroville);
+    sut.addUndirectedEdge(vArendelle, 42, vNewMonstropolis);
+    sut.addUndirectedEdge(vNewMonstropolis, 105, vMetroville);
+    sut.addUndirectedEdge(vNewMonstropolis, 73, vNaboo);
+    sut.addUndirectedEdge(vMetroville, 26, vNaboo);
+    sut.addUndirectedEdge(vMetroville, 37, vNarnia);
+    sut.addUndirectedEdge(vNarnia, 250, vNaboo);
+
+    assertEquals(expectedResult, sut.businessTrip(sut,input1),
+      "Inputs Metroville and Pandora should return $82.00");
+    assertEquals(expectedResult2, sut.businessTrip(sut, input2),
+      "Inputs Arendelle, New Monstropolis, and Naboo should return $155.00 (2 single-stop flights)");
+    assertEquals(expectedNoDirectFlights, sut.businessTrip(sut, input3),
+      "Inputs Naboo and Pandora should return \"No direct flights found.\".");
+    assertEquals(expectedNoDirectFlights,sut.businessTrip(sut, input4),
+      "Inputs Narnia, Arendelle, and Naboo should return \"No direct flights found.\".");
   }
 }
