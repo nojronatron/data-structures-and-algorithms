@@ -6,12 +6,12 @@ public class LinkedList {
   protected int count;
 
   public LinkedList() {
-    head = new LinkedListNode(null);
+    head = null;
     tail = head;
     count = 0;
   }
 
-  public void insert(Integer value) {
+  public void insert(int value) {
     // adds a new node with the value to the head of the list with an O(1) time performance
     // TODO: Consider changing return to Boolean so caller knows how to handle success vs failure condx
     LinkedListNode Node = new LinkedListNode(value);
@@ -40,7 +40,7 @@ public class LinkedList {
     // void method requires no return statement
   }
 
-  public Boolean includes(Integer value) {
+  public Boolean includes(int value) {
     // indicates whether that value exists as a Node's value somewhere within the list.
     // TODO: refactor this to use a private method FIND
     LinkedListNode Node = head;
@@ -68,9 +68,25 @@ public class LinkedList {
 
     try {
       LinkedListNode newNode = new LinkedListNode(value);
-      tail.next = newNode;
-      tail = newNode;
-      tail.next = null;
+
+      if (count > 1) {
+        tail.next = newNode;
+        tail = newNode;
+        tail.next = null;
+      }
+
+      if (head != null && head == tail) {
+        head.next = newNode;
+        tail = newNode;
+        tail.next = null;
+      }
+
+      if (head == null) {
+        head = newNode;
+        tail = head;
+        tail.next = null;
+      }
+
       count++;
       return true;
     }
@@ -81,32 +97,64 @@ public class LinkedList {
     return false;
   }
 
-  public Boolean insertBefore(int nodeValue, int newNodeValue) {
-    // insert a new Node with value newNodeValue before node with nodeValue
-    // TODO: refactor this to utilize a helper method to FIND
-    LinkedListNode newNode = new LinkedListNode(newNodeValue);
-    LinkedListNode currentNode = head;
+  /**
+   * Searched for a value in the Linked List and returns Node with targetValue if found, otherwise returns Null.
+   * @param targetValue
+   * @return LinkedListNode
+   */
+  public LinkedListNode find(int targetValue) {
+    LinkedListNode top = head;
 
-    // create a previousNode reference so an insertion can be done before the Node with matching search value
-    LinkedListNode previousNode = null;
+    while (top != null) {
+      if (top.value == targetValue) {
+        return top;
+      }
+
+      top = top.next;
+    }
+
+    return null;
+  }
+
+  /**
+   * Given a value, find the LLNode with that value then return the Node PREVIOUS to it in the Linked List.
+   * If not found or is Head.value equals targetValue then return Null.
+   * @param targetValue
+   * @return
+   */
+  public LinkedListNode findPrevious(int targetValue) {
+    LinkedListNode current = head;
+
+    if (head.value == targetValue) {
+      return null;
+    }
+
+    current = head.next;
+    LinkedListNode previous = head;
+
+    while (current != null) {
+      if (current.value == targetValue) {
+        return previous;
+      }
+
+      previous = current;
+      current = current.next;
+    }
+
+    return null;
+  }
+
+  public Boolean insertBefore(int beforeThisValue, int newNodeValue) {
+
+    LinkedListNode previousNode = findPrevious(beforeThisValue);
+    LinkedListNode nextNode = find(beforeThisValue);
 
     try {
-      while (currentNode.value != null) {
-        if (currentNode.value.equals(nodeValue)) {
-          if (currentNode != head) {
-            previousNode.next = newNode;
-            newNode.next = currentNode;
-          }
-          else {
-            newNode.next = head;
-            head = newNode;
-          }
-          count++;
-          return true;
-        }
-        previousNode = currentNode;
-        currentNode = currentNode.next;
-      }
+      LinkedListNode newNode = new LinkedListNode(newNodeValue);
+      newNode.next = nextNode;
+      previousNode.next = newNode;
+      this.count++;
+      return true;
     } catch (Exception ex) {
       System.out.println("An error occurred while searching or inserting to the Linked List. Message: " +
         ex.getMessage());
@@ -116,20 +164,16 @@ public class LinkedList {
   }
 
   public boolean insertAfter(int nodeValue, int newNodeValue) {
-    // TODO: refactor this to utilize a private helper method to FIND
-    LinkedListNode newNode = new LinkedListNode(newNodeValue);
-    LinkedListNode currentNode = head;
 
     try {
-      while (currentNode.value != null) {
-        if (currentNode.value.equals(nodeValue)) {
-          newNode.next = currentNode.next;
-          currentNode.next = newNode;
-          count++;
-          return true;
-        }
-        currentNode = currentNode.next;
-      }
+      LinkedListNode foundNode = find(nodeValue);
+      LinkedListNode nextNode = foundNode.next;
+      LinkedListNode newNode = new LinkedListNode(newNodeValue);
+
+      newNode.next = nextNode;
+      foundNode.next = newNode;
+      this.count++;
+      return true;
     } catch (Exception ex) {
       System.out.println("An error occurred while searching or inserting to the Linked List. Message: " +
         ex.getMessage());
@@ -171,6 +215,74 @@ public class LinkedList {
     }
 
     return current.value;
+  }
+
+  /**
+   * Removes and returns the Head Node from the Linked List and decrements the count.
+   * Returns null if there are no Nodes in the Linked List.
+   * @return LinkedListNode | Null
+   */
+  public LinkedListNode pop() {
+    if (count < 1) {
+      return null;
+    }
+
+    LinkedListNode temp = head;
+    head = temp.next;
+    temp.next = null;
+    this.count--;
+    return temp;
+  }
+
+  public static LinkedList zip(LinkedList left, LinkedList right) {
+    if (left == null) {
+      return right;
+    }
+
+    if (right == null) {
+      return left;
+    }
+
+    LinkedList newLinkedList = new LinkedList();
+    LinkedListNode newItem = null;
+
+    try {
+
+      while (true) {
+        newItem = left.pop();
+        if (newItem != null) {
+          newLinkedList.append(newItem.value);
+        } else {
+          break;
+        }
+
+        newItem = right.pop();
+        if (newItem != null) {
+          newLinkedList.append(newItem.value);
+        } else {
+          break;
+        }
+      }
+
+      while (left.count > 0) {
+        newItem = left.pop();
+        if (newItem != null) {
+          newLinkedList.append(newItem.value);
+        }
+      }
+
+      while (right.count > 0) {
+        newItem = right.pop();
+        if (newItem != null) {
+          newLinkedList.append(newItem.value);
+        }
+      }
+
+    } catch (Exception ex) {
+      System.out.println("Something went wrong while zippering: " + ex.getMessage());
+    }
+
+    return newLinkedList;
   }
 
   @Override

@@ -39,6 +39,18 @@ Create Unit Tests:
 - Additional tests as defined in instructions.
 - Additional tests for edge-cases etc per domain diagramming and technical whiteboard planning session.
 
+## Latest Additions
+
+July 11th and 12th, 2022
+
+- Fixed several bugs in Insert, Append, Contains, InsertBefore, InsertAfter, and the empty constructor.
+- Implement Find and FindPrevious methods.
+- Implemented Zip function that will zipper two Linked Lists of any size with O(n) time and O(1) space efficiencies.
+- Implemented POP to remove Head as a LinkedListNode.
+- Added unittests for all new methods.
+- Added Documentation Comments to newly implemented methods.
+- Other minor edits.
+
 ### LL ToString Override
 
 Returns `[a]->[b]->[c]->NULL` where a, b, and c are NODEs.
