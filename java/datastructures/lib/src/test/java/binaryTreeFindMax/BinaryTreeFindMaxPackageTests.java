@@ -33,7 +33,7 @@ public class BinaryTreeFindMaxPackageTests {
   void testFindMaxCanSuccessfullyInstantiateTreeWithSingleRootNode() {
     NouveauBinaryNode<Integer> rootNode = new NouveauBinaryNode<>(11);
     NouveauBinaryTree sut = new NouveauBinaryTree(rootNode);
-    System.out.println("Resulting Tree (InOrder): " + sut.toString());
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
     assertEquals(false, sut.isEmpty());
   }
 
@@ -67,7 +67,7 @@ public class BinaryTreeFindMaxPackageTests {
 
     int actualResult = sut.findMax();
 
-    System.out.println("Resulting Tree (InOrder): " + sut.toString());
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
 
     assertEquals(expectedResult, actualResult, "max val in bulkloadvalues15 should be 11.");
   }
@@ -105,7 +105,7 @@ public class BinaryTreeFindMaxPackageTests {
         "Array elements should be in correct order.");
     }
 
-    System.out.println("Resulting Tree (InOrder): " + sut.toString());
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
 
     assertTrue(true);
   }
@@ -123,7 +123,7 @@ public class BinaryTreeFindMaxPackageTests {
     NouveauBinaryNode<Integer> nullBinaryNode = new NouveauBinaryNode<>();
     var sut = new NouveauBinaryTree<>();
 
-    System.out.println("Resulting Tree (InOrder): " + sut.toString());
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
 
     assertTrue(sut.isEmpty());
     assertEquals(expectedResult, sut.getBreadthFirst(nullBinaryNode),
@@ -158,7 +158,7 @@ public class BinaryTreeFindMaxPackageTests {
         "Array elements should be in correct order.");
     }
 
-    System.out.println("Resulting Tree (InOrder): " + sut.toString());
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
 
     assertTrue(true);
   }
@@ -174,7 +174,7 @@ public class BinaryTreeFindMaxPackageTests {
     var firstAddedNode = bst.add(firstLeftChild);
     var secondAddedNode = bst.add(firstRightChild);
 
-    System.out.println("Resulting Tree (InOrder): " + bst.toString());
+    System.out.println("Resulting Binary Search Tree (InOrder): " + bst.toString());
 
     assertNotNull(firstAddedNode, "Add with valid input should not return a null Node.");
     assertNotNull(secondAddedNode, "Add with valid input should not return a null Node.");
@@ -198,7 +198,7 @@ public class BinaryTreeFindMaxPackageTests {
       addCounter++;
     }
 
-    System.out.println("Resulting Tree (InOrder): " + bst.toString());
+    System.out.println("Resulting Binary Search Tree (InOrder): " + bst.toString());
 
     assertEquals(expectedCount, addCounter,
       "Add Node should add 10 more nodes to the BST without returning Null.");
@@ -221,7 +221,7 @@ public class BinaryTreeFindMaxPackageTests {
 
     boolean actualResult = bst.contains(searchValue);
 
-    System.out.println("Resulting Tree (InOrder): " + bst.toString());
+    System.out.println("Resulting Binary Search Tree (InOrder): " + bst.toString());
 
     assertEquals(expectedResult, actualResult,
       "Node with value 65 is contained within this BST.");
@@ -240,7 +240,7 @@ public class BinaryTreeFindMaxPackageTests {
     int addCounter = 0;
 
     StringBuilder sb = new StringBuilder();
-    sb.append("Input Array: [");
+    sb.append("[");
 
     for(int val: inputValues) {
       bst.addUsingBFS(val);

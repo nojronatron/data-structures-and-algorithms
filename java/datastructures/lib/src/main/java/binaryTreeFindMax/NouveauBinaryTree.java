@@ -132,6 +132,10 @@ public class NouveauBinaryTree<T> {
     for(int item: result) {
       sb.append(item).append(", ");
     }
-    
+
+    sb.delete(sb.length() - 2, sb.length() - 1);
+    sb.append("]");
+
+    return sb.toString();
   }
 }
