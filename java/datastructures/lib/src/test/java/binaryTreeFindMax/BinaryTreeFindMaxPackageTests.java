@@ -1,5 +1,7 @@
 package binaryTreeFindMax;
 
+import binarySearchTree.BinaryNode;
+import binarySearchTree.BinarySearchTree;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.stream.FactoryConfigurationError;
@@ -31,6 +33,7 @@ public class BinaryTreeFindMaxPackageTests {
   void testFindMaxCanSuccessfullyInstantiateTreeWithSingleRootNode() {
     NouveauBinaryNode<Integer> rootNode = new NouveauBinaryNode<>(11);
     NouveauBinaryTree sut = new NouveauBinaryTree(rootNode);
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
     assertEquals(false, sut.isEmpty());
   }
 
@@ -64,8 +67,9 @@ public class BinaryTreeFindMaxPackageTests {
 
     int actualResult = sut.findMax();
 
-    assertEquals(expectedResult, actualResult, "max val in bulkloadvalues15 should be 11.");
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
 
+    assertEquals(expectedResult, actualResult, "max val in bulkloadvalues15 should be 11.");
   }
 
   @Test
@@ -101,6 +105,8 @@ public class BinaryTreeFindMaxPackageTests {
         "Array elements should be in correct order.");
     }
 
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
+
     assertTrue(true);
   }
 
@@ -116,6 +122,8 @@ public class BinaryTreeFindMaxPackageTests {
     ArrayList<Integer> expectedResult = null;
     NouveauBinaryNode<Integer> nullBinaryNode = new NouveauBinaryNode<>();
     var sut = new NouveauBinaryTree<>();
+
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
 
     assertTrue(sut.isEmpty());
     assertEquals(expectedResult, sut.getBreadthFirst(nullBinaryNode),
@@ -150,10 +158,104 @@ public class BinaryTreeFindMaxPackageTests {
         "Array elements should be in correct order.");
     }
 
+    System.out.println("Resulting Nouveau Binary Tree (InOrder): " + sut.toString());
+
     assertTrue(true);
   }
 
   @Test
-  void testBreadthFirstYetAnotherCase() {
+  void test_BinarySearchTree_CanAddNodesAndSortThemIntoTree() {
+
+    int rootValue = 50;
+    int firstLeftChild = 40;
+    int firstRightChild = 60;
+
+    BinarySearchTree bst = new BinarySearchTree(rootValue);
+    var firstAddedNode = bst.add(firstLeftChild);
+    var secondAddedNode = bst.add(firstRightChild);
+
+    System.out.println("Resulting Binary Search Tree (InOrder): " + bst.toString());
+
+    assertNotNull(firstAddedNode, "Add with valid input should not return a null Node.");
+    assertNotNull(secondAddedNode, "Add with valid input should not return a null Node.");
+    assertEquals(3, bst.getCount(), "There should be 3 Binary Nodes in the tree now.");
+  }
+
+  @Test
+  void test_BinarySearchTree_CanAddManyNodesAndSortThemIntoTree() {
+    int expectedCount = 11;
+    int rootValue = 50;
+    ArrayList<Integer> inputValues = new ArrayList<>(Arrays.asList(rootValue, 40,60,30,45,55,70,20,43,65,67));
+
+    BinarySearchTree bst = new BinarySearchTree();
+    assertEquals(0, bst.getCount(),
+      "Instantiating a BST with a single value adds a single Node (root).");
+
+    int addCounter = 0;
+
+    for(int val: inputValues) {
+      assertNotNull(bst.add(val));
+      addCounter++;
+    }
+
+    System.out.println("Resulting Binary Search Tree (InOrder): " + bst.toString());
+
+    assertEquals(expectedCount, addCounter,
+      "Add Node should add 10 more nodes to the BST without returning Null.");
+    assertEquals(expectedCount, bst.getCount(), "BST Count should be 11.");
+  }
+
+  @Test
+  void test_BinarySearchTree_ContainsFindsExistingValuesUsingDFS() {
+    int searchValue = 65;
+    boolean expectedResult = true;
+    int rootValue = 50;
+    ArrayList<Integer> inputValues = new ArrayList<>(Arrays.asList(40,60,30,45,55,70,20,43,65,67));
+
+    BinarySearchTree bst = new BinarySearchTree();
+    BinaryNode rootNode = bst.add(rootValue);
+
+    for(int val: inputValues) {
+      assertNotNull(bst.add(val));
+    }
+
+    boolean actualResult = bst.contains(searchValue);
+
+    System.out.println("Resulting Binary Search Tree (InOrder): " + bst.toString());
+
+    assertEquals(expectedResult, actualResult,
+      "Node with value 65 is contained within this BST.");
+  }
+
+  @Test
+  void test_BinarySearchTree_AddUsingBfsActuallyAddsNodes() {
+    int expectedCount = 11;
+    int rootValue = 50;
+    ArrayList<Integer> inputValues = new ArrayList<>(Arrays.asList(rootValue, 40,60,30,45,55,70,20,43,65,67));
+
+    BinarySearchTree bst = new BinarySearchTree();
+    assertEquals(0, bst.getCount(),
+      "Instantiating a BST with a single value adds a single Node (root).");
+
+    int addCounter = 0;
+
+    StringBuilder sb = new StringBuilder();
+    sb.append("[");
+
+    for(int val: inputValues) {
+      bst.addUsingBFS(val);
+      addCounter++;
+      sb.append(val).append(", ");
+    }
+
+    sb.delete(sb.length() - 2, sb.length() - 1);
+    sb.append(" ]");
+
+    System.out.println("Input Array: " + sb.toString());
+    System.out.println("BST Loaded using BFS: " + bst.toString());
+
+    assertEquals(expectedCount, addCounter,
+      "Add Node using BFS should add 10 more nodes to the BST without returning Null.");
+    assertEquals(expectedCount, bst.getCount(), "BST Count should be 11 after BFS add technique.");
   }
 }
