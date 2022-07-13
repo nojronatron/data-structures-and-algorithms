@@ -11,13 +11,15 @@ public class BinarySearchTree extends BinaryTree {
 
   public BinarySearchTree() {
     super();
-    storageQueue = new MyQueue<>() {};
+    storageQueue = new MyQueue<>() {
+    };
     hasRootNode = this.root != null;
   }
 
   public BinarySearchTree(int rootNodeValue) {
     super(rootNodeValue);
-    storageQueue = new MyQueue<>() {};
+    storageQueue = new MyQueue<>() {
+    };
     root = new BinaryNode(rootNodeValue);
     hasRootNode = this.root != null;
   }
@@ -39,7 +41,7 @@ public class BinarySearchTree extends BinaryTree {
     storageQueue = new MyQueue<>();
     storageQueue.enqueue(root);
 
-    while(!storageQueue.isEmpty()) {
+    while (!storageQueue.isEmpty()) {
       BinaryNode currentNode = storageQueue.dequeue();
 
       if (currentNode.value > newNode.value) {
@@ -70,7 +72,7 @@ public class BinarySearchTree extends BinaryTree {
   public void addUsingBFS(int value) {
     BinaryNode newNode = new BinaryNode(value);
 
-    if (this.hasRootNode != true) {
+    if (!this.hasRootNode) {
       this.addRootNode(newNode);
       return;
     }
@@ -109,35 +111,12 @@ public class BinarySearchTree extends BinaryTree {
     }
   }
 
-  private Boolean addRootNode(BinaryNode node){
+  private Boolean addRootNode(BinaryNode node) {
     this.root = node;
     this.hasRootNode = true;
     this.count++;
     return true;
   }
-
-//  // returns true if binary tree has values and the input value is found within the tree
-//  public boolean contains(int value) {
-//    try {
-//      if (this.root == null) {
-//        return false;
-//      }
-//
-//      if (this.root.value == value) {
-//        return true;
-//      }
-//
-//      this.outputArray = new ArrayList<>();
-//      if (this.orderWrapper(this.root, "post")) {
-//        return this.outputArray.contains(value);
-//      }
-//    } catch (ExceptionSorryDave esd) {
-//      return false;
-//    }
-//
-//    return false;
-//
-//  }
 
   public boolean contains(int searchValue) {
     BinaryNode startNode = this.root;
@@ -145,6 +124,7 @@ public class BinarySearchTree extends BinaryTree {
     contains(startNode, searchValue);
     return this.containsResult;
   }
+
   private void contains(BinaryNode root, int searchValue) {
     if (root == null) {
       return;
@@ -155,7 +135,7 @@ public class BinarySearchTree extends BinaryTree {
       return;
     }
 
-    if(searchValue < root.value)  {
+    if (searchValue < root.value) {
       this.contains(root.left, searchValue);
     }
 
@@ -164,45 +144,16 @@ public class BinarySearchTree extends BinaryTree {
     }
   }
 
-  // helper method calls the correct recursive function and returns the loaded array of values
-  // yes this breaks YAGNI but it is here anyway
-  private boolean orderWrapper(BinaryNode node, String traversalType) throws ExceptionSorryDave {
-    this.outputArray = new ArrayList<>();
-
-    try {
-      // code generation suggested this enhanced switch, replacing the much taller switch I had built
-      switch (traversalType.toLowerCase(Locale.ROOT)) {
-        case "pre": this.preOrder(node);
-        case "preorder": this.preOrder(node);
-        break;
-        case "in": this.inOrder(node);
-        case "inorder": this.inOrder(node);
-        break;
-        case "post": this.postOrder(node);
-        case "postorder": this.postOrder(node);
-        break;
-        default: throw new ExceptionSorryDave(
-          "An invalid traversal order was chosen. Enter \"PRE\", \"IN\", or \"POST\"");
-      }
-
-    } catch (Exception ex) {
-      throw new ExceptionSorryDave(ex.getMessage());
-    }
-
-    return true;
-  }
-
   // returns a textual array representation of output array
   private String getOutputArrayString() {
     this.inOrder(this.root);
     StringBuilder result = new StringBuilder();
     result.append("[ ");
 
-    for(int idx=0; idx < this.outputArray.size(); idx++)
-    {
+    for (int idx = 0; idx < this.outputArray.size(); idx++) {
       result.append(this.outputArray.get(idx));
 
-      if (idx+1 == this.outputArray.size()) {
+      if (idx + 1 == this.outputArray.size()) {
         break;
       }
 
@@ -215,19 +166,15 @@ public class BinarySearchTree extends BinaryTree {
   }
 
   // return an Ordered Traversal String representation of the BinaryTree data
-  public String toString(String traversalType) {
+  @Override
+  public String toString() {
     String result = "";
 
-    try {
+    if (this.hasRootNode) {
       this.outputArray = new ArrayList<>();
-
-      if (this.orderWrapper(this.root, traversalType)) {
-        result = this.getOutputArrayString();
-      }
-
-      this.outputArray = new ArrayList<>();
-    } catch (ExceptionSorryDave esd) {
-      result = "Something went wrong call a developer! " + esd.getMessage();
+      result = this.getOutputArrayString();
+    } else {
+      result = "empty";
     }
 
     return result;

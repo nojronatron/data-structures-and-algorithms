@@ -117,4 +117,21 @@ public class NouveauBinaryTree<T> {
   public Boolean isEmpty() {
     return root == null;
   }
+
+  @Override
+  public String toString(){
+    if (this.isEmpty()) {
+      return "null";
+    }
+
+    var result = this.getBreadthFirst(this.root);
+
+    StringBuilder sb = new StringBuilder();
+    sb.append("[ ");
+
+    for(int item: result) {
+      sb.append(item).append(", ");
+    }
+    
+  }
 }
