@@ -1,5 +1,7 @@
 package binaryTreeFindMax;
 
+import binarySearchTree.BinaryNode;
+import binarySearchTree.BinarySearchTree;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.stream.FactoryConfigurationError;
@@ -154,6 +156,60 @@ public class BinaryTreeFindMaxPackageTests {
   }
 
   @Test
-  void testBreadthFirstYetAnotherCase() {
+  void test_BinarySearchTree_CanAddNodesAndSortThemIntoTree() {
+
+    int rootValue = 50;
+    int firstLeftChild = 40;
+    int firstRightChild = 60;
+
+    BinarySearchTree bst = new BinarySearchTree(rootValue);
+    var firstAddedNode = bst.add(firstLeftChild);
+    var secondAddedNode = bst.add(firstRightChild);
+
+    assertNotNull(firstAddedNode, "Add with valid input should not return a null Node.");
+    assertNotNull(secondAddedNode, "Add with valid input should not return a null Node.");
+    assertEquals(3, bst.getCount(), "There should be 3 Binary Nodes in the tree now.");
+  }
+
+  @Test
+  void test_BinarySearchTree_CanAddManyNodesAndSortThemIntoTree() {
+    int expectedCount = 11;
+    int rootValue = 50;
+    ArrayList<Integer> inputValues = new ArrayList<>(Arrays.asList(rootValue, 40,60,30,45,55,70,20,43,65,67));
+
+    BinarySearchTree bst = new BinarySearchTree();
+    assertEquals(0, bst.getCount(),
+      "Instantiating a BST with a single value adds a single Node (root).");
+
+    int addCounter = 0;
+
+    for(int val: inputValues) {
+      assertNotNull(bst.add(val));
+      addCounter++;
+    }
+
+    assertEquals(expectedCount, addCounter,
+      "Add Node should add 10 more nodes to the BST without returning Null.");
+    assertEquals(expectedCount, bst.getCount(), "BST Count should be 11.");
+  }
+
+  @Test
+  void test_BinarySearchTree_ContainsFindsExistingValuesUsingDFS() {
+    int searchValue = 65;
+    boolean expectedResult = true;
+    int rootValue = 50;
+    ArrayList<Integer> inputValues = new ArrayList<>(Arrays.asList(40,60,30,45,55,70,20,43,65,67));
+
+    BinarySearchTree bst = new BinarySearchTree();
+    BinaryNode rootNode = bst.add(rootValue);
+
+    for(int val: inputValues) {
+      assertNotNull(bst.add(val));
+    }
+
+    boolean actualResult = bst.contains(searchValue);
+
+    assertEquals(expectedResult, actualResult,
+      "Node with value 65 is contained within this BST.");
   }
 }
