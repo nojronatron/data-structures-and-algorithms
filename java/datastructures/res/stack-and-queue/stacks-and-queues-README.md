@@ -27,7 +27,7 @@ At this point you can import the packages 'MyStack' and 'MyQueue' by pointing to
 
 Implement a PseudoQueue class that uses two MyStack class objects to implement the Queue API.
 
-See the sibling readme file [PseudoQueueREADME.md](./PseudoQueueREADME.html)
+See the sibling readme file [PseudoQueueREADME.md](./PseudoQueueREADME.md)
 
 ## Challenge Stack And Queue
 
@@ -129,4 +129,36 @@ IsEmpty(): Getter/Setter function to A) Return true if the Queue is empty, and B
 
 ## Link to Code
 
-Code files are [in this repo](../../datastructures/lib/src/main/java/stack/and/queue)
+Code files are [in this repo](../../lib/src/main/java/stack/and/queue)
+
+## References
+
+### Code Files
+
+[Balanced Brackets Code](../../lib/src/main/java/stack/and/queue/BalancedBrackets.java)
+
+[My Node Code](../../lib/src/main/java/stack/and/queue/MyNode.java)
+
+[My Queue Code](../../lib/src/main/java/stack/and/queue/MyQueue.java)
+
+[My Stack Code](../../lib/src/main/java/stack/and/queue/MyStack.java)
+
+[Pseudo Queue Code](../../lib/src/main/java/stack/and/queue/PseudoQueue.java)
+
+### Test Files
+
+[Test Balanced Brackets](../../lib/src/test/java/stack/and/queue/TestBalancedBrackets.java)
+
+[Test My Node](../../lib/src/test/java/stack/and/queue/TestMyNode.java)
+
+[Test My Queue](../../lib/src/test/java/stack/and/queue/TestMyQueue.java)
+
+[Test My Stack](../../lib/src/test/java/stack/and/queue/TestMyStack.java)
+
+[Test Pseudo Queue](../../lib/src/test/java/stack/and/queue/TestPseudoQueue.java)
+
+## Footer
+
+Return to [Data Structures Read Me](../../README.md)
+
+Return to [Root Read Me](../../../../README.md)
