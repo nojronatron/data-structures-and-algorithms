@@ -4,37 +4,25 @@ public class MyStack<T> {
   protected MyNode<T> top;
   protected int count;
   private boolean isEmpty;
+
   public MyStack() {
     this.top = null;
     this.count = 0;
     this.isEmpty = true;
   }
 
-  public MyStack(T value) {
-    this.top = new MyNode<T>(value);
-    this.count = 1;
-    this.isEmpty = false;
-  }
-
-  public T pop() {
+  public T pop() throws NullPointerException {
     // returns the value of the top node, reducing stack size by 1
-
-    if (this.top != null) {
-      MyNode<T> temp = this.top;
-      this.top = top.next;
-      temp.next = null;
-      this.count--;
-      this.isEmpty();
-      return temp.value;
-    }
-
-    return null;
+    MyNode<T> temp = this.top;
+    this.top = top.next;
+    temp.next = null;
+    this.count--;
+    this.isEmpty();
+    return temp.value;
   }
 
   public boolean push(T value) {
-    // takes a generic value type, creates a new Node, and adds it to the top of the stack
-    // adds to stack size by 1
-
+    // takes a generic value type, creates a new Node, and adds it to the top of the stack increments stack size by 1
     var newNode = new MyNode<T>(value);
 
     try {
@@ -55,7 +43,6 @@ public class MyStack<T> {
 
   public T peek() throws NullPointerException {
     // return top.value only if top is not null
-    //return count > 0 ? this.top.value : null;
     return this.top.value;
   }
 
