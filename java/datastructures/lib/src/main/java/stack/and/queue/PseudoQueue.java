@@ -13,7 +13,11 @@ public class PseudoQueue<T> {
     count = 0;
   }
 
-  // method enqueue takes a value and inserts value into pseudoQueue using FIFO
+  /**
+   * Adds an item to the back of this queue following LILO (FIFO) ordering rules.
+   * @param value of type T
+   * @return boolean
+   */
   public boolean enqueue(T value) {
     try {
       this.inputStack.push(value);
@@ -27,7 +31,10 @@ public class PseudoQueue<T> {
     return false;
   }
 
-  // method dequeue takes no args and extracts a value from pseudoQueue using FIFO
+  /**
+   * Returns the Front item of this queue following FIFO ordering rules.
+   * @return T
+   */
   public T dequeue() {
     if (this.outputStack.count > 0) {
       T returnValue = this.outputStack.pop();
@@ -36,20 +43,23 @@ public class PseudoQueue<T> {
     }
 
     if (this.outputStack.count == 0 && this.inputStack.count > 0) {
-      if(stackShift()) {
+      if (stackShift()) {
         T returnValue = this.outputStack.pop();
         this.count = this.inputStack.count + this.outputStack.count;
         return returnValue;
       }
     }
-    // this.count == 0
+
     return null;
   }
 
+  /**
+   * Internal method moves items from input stack to output stack.
+   * @return boolean
+   */
   private boolean stackShift() {
-    try
-    {
-      while(inputStack.count > 0) {
+    try {
+      while (inputStack.count > 0) {
         this.outputStack.push(this.inputStack.pop());
       }
       return true;
@@ -59,5 +69,21 @@ public class PseudoQueue<T> {
     }
 
     return false;
+  }
+
+  /**
+   * Returns the value at the Front of the PseudoQueue, or Null if PseudoQueue is empty.
+   * @return T
+   */
+  public T peek() {
+    if (this.outputStack.count == 0 && this.inputStack.count > 0) {
+      this.stackShift();
+    }
+
+    if (this.outputStack.count > 0) {
+      return this.outputStack.peek();
+    }
+
+    return null;
   }
 }
