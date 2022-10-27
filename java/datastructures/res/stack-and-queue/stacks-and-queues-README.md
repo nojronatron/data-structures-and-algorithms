@@ -63,15 +63,15 @@ All Stack methods are O(1) operation because no iterations or recursive function
 
 ## API
 
-Methods and their short descriptions
+Methods with short descriptions.
 
 ### Stack
 
-Constructor: Only necessary to instantiate a Stack, and requires a value with a user-defined Type T.
+Constructor: Only necessary to instantiate a Stack. Including a value-initiating constructor is optional.
 
 Push: Accepts a value type T, creates a new Node of type T, adds it to top of the existing stack instance.
 
-Pop: Creates temporary Node and moves head pointer to previous Node, then returns temp Node value to the caller.
+Pop: Creates temporary Node and moves head pointer to previous Node, then returns temp Node *value* to the caller.
 
 Peek: Returns the value of the 'top' Node in the Stack, or null if the Stack is empty.
 
@@ -105,7 +105,7 @@ IsEmpty(): Getter/Setter function to A) Return true if the Queue is empty, and B
 
 [X] Can successfully instantiate an empty stack
 
-[P] Calling pop or peek on empty stack raises exception
+[X] Calling pop or peek on empty stack raises exception
 
 *Note*: Calling peek() will return *null* instead of an Exception.
 
@@ -123,7 +123,7 @@ IsEmpty(): Getter/Setter function to A) Return true if the Queue is empty, and B
 
 [X] Can successfully instantiate an empty queue
 
-[P] Calling dequeue or peek on empty queue raises exception
+[X] Calling dequeue or peek on empty queue raises exception
 
 *Note*: Calling peek() will return *null* instead of an Exception.
 
