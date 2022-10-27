@@ -10,7 +10,7 @@ public class MyQueue<T> {
   }
 
   public boolean enqueue(T value) {
-    MyNode<T> newNode = new MyNode<T>(value);
+    MyNode<T> newNode = new MyNode<>(value);
 
     if (this.isEmpty()) {
       // there are no nodes in the Queue so add new node and keep front and rear pointers on it
