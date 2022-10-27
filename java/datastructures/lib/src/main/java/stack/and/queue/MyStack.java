@@ -11,8 +11,12 @@ public class MyStack<T> {
     this.isEmpty = true;
   }
 
+  /**
+   * Returns the value at the top of the stack.
+   * @return T
+   * @throws NullPointerException on empty stack
+   */
   public T pop() throws NullPointerException {
-    // returns the value of the top node, reducing stack size by 1
     MyNode<T> temp = this.top;
     this.top = top.next;
     temp.next = null;
@@ -21,6 +25,11 @@ public class MyStack<T> {
     return temp.value;
   }
 
+  /**
+   * Adds the input value to the top of the stack and returns True. Returns false if operation fails for any reason.
+   * @param value T
+   * @return boolean
+   */
   public boolean push(T value) {
     // takes a generic value type, creates a new Node, and adds it to the top of the stack increments stack size by 1
     var newNode = new MyNode<T>(value);
@@ -41,6 +50,11 @@ public class MyStack<T> {
     return false;
   }
 
+  /**
+   * Returns the value of the top node without removing it from the stack.
+   * @return T
+   * @throws NullPointerException on empty stack
+   */
   public T peek() throws NullPointerException {
     // return top.value only if top is not null
     return this.top.value;
@@ -52,6 +66,10 @@ public class MyStack<T> {
     return this.isEmpty;
   }
 
+  /**
+   * Generate a pretty representation of the state of the stack when called.
+   * @return String
+   */
   @Override
   public String toString() {
     // must iterate through existing Nodes and display their values as a single string
