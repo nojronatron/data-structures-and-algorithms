@@ -3,6 +3,8 @@ package binaryTreeFindMax;
 import stack.and.queue.MyQueue;
 import java.util.ArrayList;
 
+// TODO: Remove generic settings on tree and move to NouveauBionaryNode instead
+
 public class NouveauBinaryTree<T> {
   private NouveauBinaryNode<Integer> root;
   private MyQueue<NouveauBinaryNode<Integer>> breadthQueue;

@@ -2,11 +2,9 @@ package binaryTreeFindMax;
 
 import binarySearchTree.BinaryNode;
 import binarySearchTree.BinarySearchTree;
-import org.junit.jupiter.api.Test;
-
-import javax.xml.stream.FactoryConfigurationError;
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
